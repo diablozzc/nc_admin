@@ -1,0 +1,89 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <div class="btn-group">
+          <!--<button type="button" class="btn btn-default light">-->
+            <!--<i class="fa fa-refresh"></i>-->
+          <!--</button>-->
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_employee',func:add})" ng-disabled="!flag.add_employee">
+            <i class="fa fa-plus pr5"></i>
+            新增员工
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+      <div class="btn-group">
+
+      </div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_employee',func:add})" ng-disabled="!flag.add_employee">新增员工</button>
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <!--<table id="message-table" class="table admin-form theme-warning tc-checkbox-1" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:adInfosListPromise,message:'请稍候...'}">-->
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:adminsListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="w125" data-title="'用户名'" sortable="'username'">{{item.username}}</td>
+          <td class="w125" data-title="'员工姓名'" sortable="'name'">{{item.name}}</td>
+          <td class="w75" data-title="'性别'">{{item.gender | statesName:"gender"}}</td>
+          <td class="w150" data-title="'所属小区'">{{item.communityName}}</td>
+          <td class="" data-title="'手机号'">{{item.mobile}}</td>
+          <!--<td class="" data-title="'状态'" width="100">{{item.status}}</td>-->
+          <td class="w200" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_employee',func:edit,param:item})" ng-disabled="!flag.edit_employee">修改</button>
+            <!--<button class="btn btn-xs btn-danger" ng-click="del(item)">删除</button>-->
+
+            <span confirm-popover title="删除员工" content="确定要删除{{item.communityName}}的{{item.name}}么?" on-action="ucauth.isAccess" value="{key:'del_employee',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.del_employee"></span>
+
+            <div class="btn-group">
+              <button type="button" class="btn br2 btn-xs dropdown-toggle ng-binding btn-success" data-toggle="dropdown" aria-expanded="false"> 分配
+                <span class="caret ml5"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="" ng-click="ucauth.isAccess({key:'save_menugroup',func:assignMenu,param:item})">分配菜单</a></li>
+                <!--<li><a href="" ng-click="assignAuth(item)">分配权限</a></li>-->
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="custom/pager">
+
+  <div style="text-align: center">
+    <table-pager></table-pager>
+  </div>
+
+</script>
+
+
+
+

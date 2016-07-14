@@ -1,0 +1,50 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-12">
+        <span action-btn="add_room" action="onAdd" btn-class="btn btn-success btn-sm" btn-name="新增房间" btn-icon="fa fa-plus pr5" value="" value-type="any"></span>
+        <span action-btn="edit_room" action="onEdit" btn-class="btn btn-primary btn-sm" btn-name="编辑" btn-icon="fa fa-edit pr5" value="selectedDataItem" value-type="object"></span>
+        <span action-btn="del_room" action="onDel" btn-class="btn btn-danger btn-sm" btn-name="删除" btn-icon="fa fa-minus pr5" value="selectedDataItem" value-type="object" confirm="true" title="删除房间" content="确实要删除该房间吗?"></span>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="blank/pager" cg-busy="{promise:roomsListPromise,message:'请稍候...'}" select-container="$data" multi-select="false">
+
+        <tbody>
+        <tr ng-repeat="item in $data" ng-class="{'selected':item.selected}" ng-click="checkIt(item)">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
+          <td class="autocut" data-title="'所在小区'">{{item.communityName}}</td>
+          <td class="autocut" data-title="'楼宇'">{{item.buildingName}}</td>
+          <td class="autocut" data-title="'单元号'" sortable="'unit'">{{item.unit}}</td>
+          <td class="autocut" data-title="'门牌号'" sortable="'houseNumber'">{{item.houseNumber}}</td>
+          <td class="autocut" data-title="'出售状态'">{{item.saleState}}</td>
+          <td class="" data-title="'房间状态'">{{item.useState}}</td>
+
+          <td class="w100" data-title="'操作'">
+            <button class="btn btn-xs btn-success" ng-click="ucauth.isAccess({key:'building_rooms',func:goTenement,param:item})" ng-if="flag.building_rooms">管理住户</button>
+            <!--<span action-btn="building_rooms" action="goTenement" btn-class="btn btn-primary btn-xs" btn-name="管理住户" btn-icon="" value="item" value-type="object"></span>-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div style="text-align: center">
+      <ola-pager tp="pager.tp" cp="pager.cp" ms="pager.ms" table="tableParams"></ola-pager>
+    </div>
+  </div>
+</div>
+
+
+
+
+

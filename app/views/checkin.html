@@ -1,0 +1,21 @@
+<section id="content">
+  <div class="admin-panels">
+
+    <div class="row" ng-repeat="row in rows">
+      <div class="col-md-6 admin-grid" ng-repeat="item in row">
+
+        <div class="panel">
+          <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">{{item.communityName}}({{item.community}})</span>
+          </div>
+          <div class="panel-body pn">
+            <angular-chart options="item.options"></angular-chart>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

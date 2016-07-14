@@ -1,0 +1,220 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="itemsForm" ng-submit="save()" name="itemsForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="the_item.community" title="所属小区" name-key="name" val-key="code"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="name" value="the_item.name" label="缴费项目名称" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="charge_type_list" selected-value="the_item.category" title="费用类型" name-key="name" val-key="val" on-change="onChangeChargeType"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6" ng-if="the_item.category!==0">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="rate_type_list" selected-value="the_item.rateType" title="费率计算方式" name-key="name" val-key="val"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="bill_type_list" selected-value="the_item.billType" title="账单生成方式" name-key="name" val-key="val"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="months" min="1" value="the_item.months" label="账单周期" unit="个月"></div>
+
+                    <!--<div class="col-lg-12">-->
+                      <!--<div class="bs-component">-->
+                        <!--<div class="input-group">-->
+                          <!--<span class="input-group-addon">账单生成周期</span>-->
+                          <!--<input type="number" class="gui-input" ng-model="the_item.months" min="1"/>-->
+                          <!--<span class="input-group-addon">个月</span>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div datetime-select select-id="billTime" select-value="the_item.billTime" format="yyyy-MM-dd" label="初次生成时间" min-view="day" icon="fa fa-calendar"></div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="pre_payment_list" selected-value="the_item.prePayment" title="预交费" name-key="name" val-key="val"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <!-- end .section -->
+        <div class="section-divider" style="margin-bottom:43px;">
+          <span>费率计算方式</span>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12" ng-if="the_item.rateType==1">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+
+                    <div input-number="fixRate" type="number" min="0.01" step="0.01" value="the_item.fixRate" label="固定费率" unit="元"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-12" ng-if="the_item.rateType>1">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+                    <div class="col-lg-6">
+                      <div class="bs-component">
+                        <div class="input-group">
+                          <span class="input-group-addon">0 至</span>
+                          <input type="number" class="gui-input form-control" ng-model="the_item.oneStepLimit" min="1" placeholder="1阶梯上限"/>
+                          <span class="input-group-addon">单位</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="bs-component">
+                        <div class="input-group">
+                          <input type="number" class="gui-input form-control" ng-model="the_item.oneStepRate" min="0.01" step="0.01" placeholder="1阶梯费率"/>
+                          <span class="input-group-addon">元/单位</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+                    <div class="col-lg-6">
+                      <div class="bs-component">
+                        <div class="input-group">
+                          <span class="input-group-addon">{{the_item.oneStepLimit+1}} 至</span>
+                          <input type="number" class="gui-input form-control" ng-model="the_item.twoStepLimit" min="{{the_item.oneStepLimit+2}}" placeholder="2阶梯上限"/>
+                          <span class="input-group-addon">单位</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="bs-component">
+                        <div class="input-group">
+                          <input type="number" class="gui-input form-control" ng-model="the_item.twoStepRate" min="{{the_item.oneStepRate}}" step="0.01" placeholder="2阶梯费率"/>
+                          <span class="input-group-addon">元/单位</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+                        <div class="input-group">
+                          <span class="input-group-addon">{{the_item.twoStepLimit}}以上</span>
+                          <input type="number" class="gui-input form-control" ng-model="the_item.threeStepRate" min="{{the_item.twoStepRate}}" step="0.01" placeholder="3阶梯费率"/>
+                          <span class="input-group-addon">元/单位</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- end .form-body section -->
+
+    </div>
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="itemsForm.$invalid">保存</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

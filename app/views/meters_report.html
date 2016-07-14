@@ -1,0 +1,26 @@
+<section id="content">
+  <div class="admin-panels">
+
+    <div class="row" ng-repeat="meter in meterData">
+      <div class="col-md-12 admin-grid">
+
+        <div class="panel">
+          <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">{{meter.communityName}}({{meter.community}})</span>
+          </div>
+          <div class="panel-body pn">
+            <ul class="meter-list">
+              <li ng-repeat="report in meter.report">
+                <angular-chart options="report.options"></angular-chart>
+                {{report.itemName}}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

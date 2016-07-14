@@ -1,0 +1,82 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="buildingForm" ng-submit="save()" name="buildingForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- 所属小区 -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="the_building.community" title="所属小区" name-key="name" val-key="code"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-text="name" value="the_building.name" icon="glyphicons glyphicons-building" label="楼宇名称" required="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--楼宇单元数-->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-number="unit" type="number" min="1" max="9" value="the_building.unit" label="楼宇单元数" unit="个" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="floors" type="number" min="1" max="99" value="the_building.floors" label="楼宇楼层" unit="层" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="roomNumber" type="number" min="1" max="9" value="the_building.roomNumber" label="单层房间" unit="套" required="true"></div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- end .section -->
+        <!-- end .form-body section -->
+
+
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="button btn-primary" ng-disabled="buildingForm.$invalid">保存</button>
+      <button type="button" class="button" ng-click="close()">关闭</button>
+    </div>
+    <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

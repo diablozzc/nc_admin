@@ -1,0 +1,162 @@
+<div class="admin-form theme-primary">
+  <form id="roomForm" ng-submit="save()" name="roomForm" class="form-horizontal">
+  <div class="panel heading-border panel-primary">
+
+      <div class="panel-body bg-light">
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-8">
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-label="communityName" value="the_building.communityName" label="所属小区"></div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-label="buildingName" value="the_building.name" label="所属楼宇"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-label="unit" value="the_building.unit" label="楼宇单元数" unit="个" ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-label="floors" value="the_building.floors" label="楼宇楼层" unit="层"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-label="roomNumber" value="the_building.roomNumber" label="单层房间" unit="套"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-number="startFloor" min="1" value="building.startFloor" label="起始楼层" unit="层" required="true"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-number="endFloor" min="{{building.startFloor+1}}" max="{{the_building.floors}}" value="building.endFloor" label="结束楼层" unit="层" required="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+
+      </div>
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="roomForm.$invalid">开始生成</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+
+    <!-- end .form-footer section -->
+  </div>
+
+  <h3 class="text-center mb25 fw400">楼宇单层房间设置</h3>
+
+
+  <ul class="room-list">
+    <li class="mr25" ng-repeat="room in room_list">
+
+      <div class="panel heading-border panel-primary w275">
+        <div class="panel-body pt20 p10">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--<div class="section">-->
+                <div class="form-group">
+                  <div input-number="houseNumber" value="room.houseNumber" label="房间编号" required="true"></div>
+                </div>
+              <!--</div>-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <!--<div class="section">-->
+                <div class="form-group">
+                  <div item-select item-data="house_door_model_list" selected-value="room.houseDoorModel" title="房屋户型" name-key="name" val-key="val">
+                  </div>
+                </div>
+              <!--</div>-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <!--<div class="section">-->
+                <div class="form-group">
+                  <div input-number="houseArea" min="1" value="room.houseArea" label="房屋面积" unit="平米" required="true"></div>
+                </div>
+              <!--</div>-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <!--<div class="section">-->
+                <div class="form-group">
+                  <div input-number="useArea" min="1" value="room.useArea" label="有效面积" unit="平米" required="true"></div>
+                </div>
+              <!--</div>-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <!--<div class="section">-->
+                <div class="form-group">
+                  <div item-select item-data="building_head_list" selected-value="room.buildingHead" title="房屋朝向" name-key="name" val-key="val"></div>
+                </div>
+              <!--</div>-->
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </li>
+
+  </ul>
+  </form>
+
+
+
+
+
+</div>

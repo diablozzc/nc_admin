@@ -1,0 +1,8 @@
+<ul class="pagination mt5 mb5">
+  <li class="paginate_button previous" ng-class="{'disabled': noPrev()}"><a ng-click="selectPrev()" href="">上一页</a></li>
+  <li class="paginate_button" ng-repeat="p in pages" ng-class="{'active':isActive(p)}"><a ng-click="selectPage(p)" href="">{{p}}</a></li>
+  <li class="paginate_button next" ng-class="{'disabled':noNext()}"><a ng-click="selectNext()" href="">下一页</a>
+  </li>
+</ul>
+
+

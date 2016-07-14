@@ -1,0 +1,9 @@
+<div class="cg-notify-message alert alert-sm alert-border-left alert-dismissable" ng-click="$close()" ng-class="[$classes,
+    $position === 'center' ? 'cg-notify-message-center' : '',
+    $position === 'left' ? 'cg-notify-message-left' : '',
+    $position === 'right' ? 'cg-notify-message-right' : '']"
+     ng-style="{'margin-left': $centerMargin}">
+  <button type="button" class="close" ng-click="$close()">×</button>
+  <i class="fa fa-info pr10"></i>
+  {{$message}}
+</div>

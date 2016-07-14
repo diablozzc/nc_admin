@@ -1,0 +1,64 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <div class="panel-body bg-light">
+      <form id="feedbackRepairForm" ng-submit="save()" name="feedbackRepairForm" class="form-horizontal">
+        <div class="section-divider mb40">
+          <span>{{form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div class="well author-well">
+                      <address>
+                        <strong>报修人:</strong> {{the_repair.createUser}}
+                        <br><strong>所在小区:</strong> {{the_repair.communityName}}
+                        <br> 报修时间: {{the_repair.createTime | date:"yyyy-MM-dd HH:mm"}}
+                        <br>
+                      </address>
+
+                      <p><b>报修内容:</b>{{the_repair.content}}
+                      </p>
+                      <p><b>状态:</b>{{the_repair.statusName}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <textarea class="form-control" rows="3" ng-model="the_repair.remark" placeholder="填写反馈内容" required ng-disabled="action=='check'"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <!--<div class="col-md-4">-->
+          <!--<div class="section ">-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+        <div class="panel-footer">
+          <button type="submit" class="button btn-primary" ng-disabled="feedbackRepairForm.$invalid" ng-if="action=='feedback'">提交</button>
+          <button type="button" class="button" ng-click="close()">关闭</button>
+        </div>
+        <!-- end .form-footer section -->
+      </form>
+    </div>
+  </div>
+
+</div>

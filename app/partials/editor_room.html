@@ -1,0 +1,161 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="roomForm" ng-submit="save()" name="roomForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<div input-label="communityName" value="the_building.communityName" label="所属小区"></div>-->
+                    <div item-select item-data="community_list" selected-value="the_building.community" title="所属小区" name-key="name" val-key="code" disabled="{{$stateParams.action=='edit'}}" on-change="onCommunityChange"></div>
+
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<div input-label="buildingName" value="the_building.name" label="所属楼宇"></div>-->
+                    <div item-select item-data="building_list" selected-value="the_building.code" title="所属楼宇" name-key="name" val-key="code" disabled="{{$stateParams.action=='edit'}}" on-change="onBuildingChange"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="unit_list" selected-value="the_room.unit" title="所属单元" name-key="name" val-key="val" disabled="{{$stateParams.action=='edit'}}"></div>
+
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="houseNumber" value="the_room.houseNumber" label="门牌号" required="true" pattern="^[0-9]{1,4}$"></div>
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="room_sale_state_list" selected-value="the_room.saleStateCode" title="出售状态" name-key="name" val-key="val" disabled="{{$stateParams.action=='edit'}}">
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="room_use_state_list" selected-value="the_room.useStateCode" title="使用状态" name-key="name" val-key="val" disabled="true">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="house_door_model_list" selected-value="the_room.houseDoorModel" title="房屋户型" name-key="name" val-key="val">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="houseArea" min="0.01" step="0.01" value="the_room.houseArea" label="房屋面积" unit="平米" required="true"></div>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="useArea" min="0.01" step="0.01" value="the_room.useArea" label="有效面积" unit="平米" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div item-select item-data="building_head_list" selected-value="the_room.buildingHead" title="房屋朝向" name-key="name" val-key="val">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="waterMeter" value="the_room.waterMeter" label="水表户号"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="electricMeter" value="the_room.electricMeter" label="电表户号"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="button btn-primary" ng-disabled="roomForm.$invalid">保存</button>
+      <button type="button" class="button" ng-click="close()">关闭</button>
+    </div>
+    </form>
+  <!-- end .form-footer section -->
+  </div>
+
+</div>

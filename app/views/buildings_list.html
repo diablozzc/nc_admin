@@ -1,0 +1,68 @@
+<div class="panel mb10">
+  <div class="panel-menu admin-form">
+    <div class="row">
+      <div class="col-md-6">
+        <div item-select item-data="community_list" selected-value="the_search.community" title="所属小区" name-key="name" val-key="code" on-change="communityChange" col-class="false" size-class="input-sm" required="false"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group">
+          <span action-btn="add_building" action="onAdd" btn-class="btn btn-success btn-sm" btn-name="新增楼宇" btn-icon="fa fa-plus pr5" value="" value-type="any"></span>
+          <span action-btn="edit_building" action="onEdit" btn-class="btn btn-primary btn-sm" btn-name="编辑" btn-icon="fa fa-edit pr5" value="selectedDataItem" value-type="object"></span>
+          <span action-btn="del_building" action="onDel" btn-class="btn btn-danger btn-sm" btn-name="删除" btn-icon="fa fa-minus pr5" value="selectedDataItem" value-type="object" confirm="true" title="删除楼宇" content="确实要删除楼宇吗?"></span>
+          <span action-btn="room_generate" action="onGenerateRoom" btn-class="btn btn-primary btn-sm" btn-name="生成房间" btn-icon="fa fa-plus pr5" value="selectedDataItem" value-type="object"></span>
+
+
+        </div>
+
+
+      </div>
+
+      <!--<div class="col-md-9 text-right">-->
+
+        <!--<span action-btn ></span>-->
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:buildingsListPromise,message:'请稍候...'}" select-container="$data" multi-select="false">
+
+        <tbody>
+        <tr ng-repeat="item in $data" ng-class="{'selected':item.selected}" ng-click="checkIt(item)">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="autocut" data-title="'所在小区'" sortable="'communityName'" width="200">{{item.communityName}}</td>
+          <td class="autocut" data-title="'楼宇'" sortable="'name'">{{item.name}}</td>
+          <td class="autocut" data-title="'单元数'" width="100">{{item.unit}}</td>
+          <td class="autocut" data-title="'楼层数'" width="100">{{item.floors}}</td>
+          <td class="autocut" data-title="'每层房间数'" width="100">{{item.roomNumber}}</td>
+
+          <td class="w100" data-title="'操作'">
+            <button class="btn btn-xs btn-success" ng-click="ucauth.isAccess({key:'building_rooms',func:rooms,param:item})" ng-if="flag.building_rooms">管理房间</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

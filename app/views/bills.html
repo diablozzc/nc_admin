@@ -1,0 +1,123 @@
+<div class="panel mb10">
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="btn-group">
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_bill',func:add})" ng-disabled="!flag.add_bill">
+            <i class="fa fa-plus pr5"></i> 添加账单
+          </button>
+          <button type="button" class="btn btn-success" ng-click="ucauth.isAccess({key:'create_bill',func:create})" ng-disabled="!flag.create_bill">
+            <i class="fa fa-filter pr5"></i> 生成账单
+          </button>
+          <button type="button" class="btn btn-success dark" ng-click="ucauth.isAccess({key:'payment_bill',func:payment})" ng-disabled="!flag.payment_bill">
+            <i class="fa fa-cny pr5"></i> 支付账单
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+      </div>
+
+      <div class="col-xs-12 col-md-6 text-right">
+        <!--<button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess('add_community',add)" ng-disabled="!has_add_community">添加小区</button>-->
+
+        <div class="btn-group mr10">
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+          <button class="btn btn-alert" ng-click="ucauth.isAccess({key:'download_bill',func:download})" ng-disabled="!flag.download_bill">下载账单</button>
+          <label class="btn btn-alert light" ng-model="statusModel" btn-radio="''">全部</label>
+          <label class="btn btn-alert light" ng-model="statusModel" btn-radio="0">未支付</label>
+          <label class="btn btn-alert light" ng-model="statusModel" btn-radio="1">已支付</label>
+          <button class="btn btn-alert light" ng-if="!show_all" ng-click="showAllBill()">显示全部账单</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu admin-form">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <div item-select item-data="community_list" selected-value="current.community" title="小区" name-key="name" val-key="code" on-change="onCommunityChange" required="false" col-class="false"></div>
+          </div>
+
+          <div class="col-md-3">
+            <div item-select item-data="building_list" selected-value="current.buildingId" title="楼宇" name-key="name" val-key="autoId" on-change="onBuildingChange" required="false" col-class="false"></div>
+          </div>
+
+          <div class="col-md-3">
+            <div item-select item-data="unit_list" selected-value="current.unit" title="单元" name-key="name" val-key="val" on-change="onUnitChange" required="false" col-class="false"></div>
+          </div>
+
+          <div class="col-md-3">
+            <div item-select item-data="room_list" selected-value="current.room" title="房间" name-key="houseNumber" val-key="code" on-change="onRoomChange" required="false" col-class="false"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:billsListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-left w50" header="'selectAll.html'">
+            <label class="option block mn" ng-if="item.status==0">
+              <input type="checkbox" ng-model="checkboxes.items[item.code]">
+              <span class="checkbox mn"></span>
+            </label>
+          </td>
+          <td class="mnw100" data-title="'所在房间'">{{item.communityName}}/{{item.buildingName}}/{{item.unit}}单元/{{item.houseNumber}}号
+            <a href="" ng-click="showRoomBill(item.room)" title="查看该房间所有账单" ng-if="show_all"><i class="glyphicons glyphicons-search"></i></a></td>
+          <td class="mnw75" data-title="'缴费项目'">{{item.itemName}}</td>
+          <td class="mnw75" data-title="'账单金额(元)'">{{item.paymentAmt | currency:"￥"}}</td>
+          <td class="mnw75" data-title="'账期'">{{item.period | date:'yyyy-MM-dd'}}</td>
+          <td class="mnw75" data-title="'缴费时间'">{{item.payTime | date:'yyyy-MM-dd'}}</td>
+          <td class="mnw75" data-title="'状态'">
+
+            <div class="btn-group" ng-if="item.status==0">
+              <button type="button" class="btn br2 btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-class="{'btn-success':item.status==1,'btn-danger':item.status==0}">
+                {{item.statusName}}
+                <span class="caret ml5"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="" ng-click="ucauth.isAccess({key:'payment_bill',func:payment,param:item.code})">支付 {{item.itemName}} 账单</a></li>
+              </ul>
+            </div>
+
+            <span class="label label-success" ng-if="item.status==1">{{item.statusName}}</span>
+            <button class="btn btn-primary btn-xs" ng-if="item.status==1" ng-click="ucauth.isAccess({key:'print_payment',func:print,param:item})" ng-disabled="!flag.print_payment">打印凭证</button>
+
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="selectAll.html">
+
+  <label class="option block mn">
+    <input type="checkbox" ng-model="checkboxes.checked">
+    <span class="checkbox mn"></span>
+  </label>
+
+</script>
+
+<iframe id="ifile" style="display:none;" ng-src="{{the_link}}"></iframe>
+<div print-preview class="hidden"></div>

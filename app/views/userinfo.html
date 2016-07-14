@@ -1,0 +1,60 @@
+
+<table class="table table-striped">
+  <colgroup>
+    <col class="col-xs-3">
+    <col class="col-xs-7">
+  </colgroup>
+
+  <tbody>
+  <tr>
+    <td>管理员</td>
+    <td>
+      <div class="bs-component">
+        {{userInfo.name}}
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>用户名</td>
+    <td>
+      <div class="bs-component">
+        {{userInfo.username}}
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>物业名称</td>
+    <td>
+      <div class="bs-component">
+        {{userInfo.propertyInfo.name}}
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>所在地</td>
+    <td>
+      <div class="bs-component">
+        {{userInfo.propertyInfo.provinceName}}{{userInfo.propertyInfo.cityName}}{{userInfo.propertyInfo.areaName}}
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>通讯地址</td>
+    <td>
+      <div class="bs-component">
+        {{userInfo.propertyInfo.address}}
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>注册时间</td>
+    <td>
+      <div class="bs-component">
+        {{userInfo.createTime | date:"yyyy-MM-dd"}}
+      </div>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+

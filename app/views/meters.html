@@ -1,0 +1,95 @@
+<div class="panel mb10">
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="btn-group">
+          <button type="button" class="btn btn-success light" ng-click="add()" ng-click="ucauth.isAccess({key:'add_meter',func:add})" ng-disabled="!flag.add_meter">
+            <i class="fa fa-plus pr5"></i>
+            新增抄表信息
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+      </div>
+
+      <div class="col-xs-12 col-md-6 text-right">
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10"  ng-click="add()" ng-click="ucauth.isAccess({key:'add_meter',func:add})" ng-disabled="!flag.add_meter">新增抄表信息</button>
+        <!--<button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess('add_community',add)" ng-disabled="!has_add_community">添加小区</button>-->
+
+        <div class="btn-group mr10">
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+          <label class="btn btn-alert light" ng-model="statusModel" btn-radio="0">未生成</label>
+          <label class="btn btn-alert light" ng-model="statusModel" btn-radio="1">已生成</label>
+          <button class="btn btn-alert light" ng-if="!show_all" ng-click="showAllMeter()">显示全部</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu admin-form">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <div item-select item-data="community_list" selected-value="current.community" title="小区" name-key="name" val-key="code" on-change="onCommunityChange" required="false" col-class="false"></div>
+          </div>
+
+          <div class="col-md-3">
+            <div item-select item-data="building_list" selected-value="current.buildingId" title="楼宇" name-key="name" val-key="autoId" on-change="onBuildingChange" required="false" col-class="false"></div>
+          </div>
+
+          <div class="col-md-3">
+            <div item-select item-data="unit_list" selected-value="current.unit" title="单元" name-key="name" val-key="val" on-change="onUnitChange" required="false" col-class="false"></div>
+          </div>
+
+          <div class="col-md-3">
+            <div item-select item-data="room_list" selected-value="current.room" title="房间" name-key="houseNumber" val-key="code" on-change="onRoomChange" required="false" col-class="false"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:metersListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="mnw250 text-left" data-title="'所在房间'">{{item.communityName}}/{{item.buildingName}}/{{item.unit}}/{{item.roomName}}</td>
+          <td class="mnw100" data-title="'业主'">{{item.ownerName}}</td>
+          <td class="mnw100" data-title="'缴费项目'">{{item.itemName}}</td>
+          <td class="mnw100" data-title="'抄表读数'" sortable="'thisTimeRead'">{{item.thisTimeRead}}</td>
+          <td class="mnw100" data-title="'抄表时间'" sortable="'meterReadDate'">{{item.meterReadDate | date:"yyyy-MM-dd"}}</td>
+          <td class="mnw100" data-title="'账单状态'" >{{item.statusName}}</td>
+
+          <td class="w150" data-title="'操作'" ng-if="statusModel==0">
+            <button class="btn btn-xs btn-primary" ng-click="edit(item)" ng-click="ucauth.isAccess({key:'edit_meter',func:edit,param:item})" ng-disabled="!flag.edit_meter">修改</button>
+            <!--<button class="btn btn-xs btn-danger" ng-click="del(item)">删除</button>-->
+            <span confirm-popover title="删除抄表纪录" content="确定要删除该信息么?" on-action="ucauth.isAccess" value="{key:'del_meter',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.del_meter"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+<div class="admin-form">
+
+  <h4> 查询过滤</h4>
+
+  <hr class="short">
+  <div class="row">
+    <div class="section">
+      <div class="form-group">
+        <div item-select item-data="community_list" selected-value="the_search.community" title="所属小区" name-key="name" val-key="code" on-change="communityChange" label-class="text-muted-lighter" required="false"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <hr class="short">
+
+  <div class="section">
+    <button class="btn btn-default btn-sm ph25" type="button" ng-click="search()">查询</button>
+
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+
+
+<div class="table-responsive">
+  <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:withDrawListPromise,message:'请稍候...'}">
+    <tbody>
+    <tr ng-repeat="item in $data">
+      <td class="w100" data-title="'账户号'">{{item.accCode}}</td>
+      <td class="mnw100" data-title="'提款金额(元)'" sortable="'applyAmt'">{{item.applyAmt | currency:'￥'}}</td>
+      <td class="mnw100" data-title="'账户类型'">{{item.typeName}}</td>
+      <td class="mnw100" data-title="'提款账户'">{{item.traToDec}}</td>
+
+      <td class="mnw150" data-title="'申请时间'">{{item.applyTime | date:'yyyy-MM-dd HH:mm'}}</td>
+      <td class="mnw100" data-title="'状态'">{{item.statusName}}</td>
+
+      <td class="" data-title="'操作'">
+
+        <span confirm-popover title="撤销提款" content="确定要撤销本次提款么?" on-action="cancelApply" value="item" btn-class="btn-xs btn-danger" btn-name="撤销" ng-if="item.status == 0"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="btn btn-primary" ng-click="bindAccount()">绑定提款帐号</button>

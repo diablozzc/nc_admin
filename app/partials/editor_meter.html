@@ -1,0 +1,127 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="meterForm" ng-submit="save()" name="meterForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="current.community" title="所属小区" name-key="name" val-key="code" on-change="onCommunityChange"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="building_list" selected-value="current.buildingId" title="所属楼宇" name-key="name" val-key="autoId" on-change="onBuildingChange"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="unit_list" selected-value="current.unit" title="所属单元" name-key="name" val-key="val" on-change="onUnitChange"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="room_list" selected-value="the_meter.room" title="所属房间" name-key="houseNumber" val-key="code" on-change="onRoomChange"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" ng-if="the_meter.room">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="item_list" selected-value="the_meter.item" title="缴费项目" name-key="name" val-key="autoId" on-change="onItemChange"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row" ng-show="the_meter.item">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-label="lastTimeRead" value="the_meter.lastTimeRead" label="上次抄表读数" ng-if="the_meter.lastReadDate !== 0"></div>
+                    <div input-number="lastTimeRead" min="0" value="the_meter.lastTimeRead" label="上次抄表读数" required="true" ng-if="the_meter.lastReadDate == 0"></div>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4" ng-hide="the_meter.lastReadDate == 0">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-label="lastTimeRead" value="the_meter.lastReadDate" label="上次抄表时间" date-format="yyyy-MM-dd"></div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row" ng-if="the_meter.item">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="thisTimeRead" min="{{the_meter.lastTimeRead}}" value="the_meter.thisTimeRead" label="本次抄表读数" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div daterange-select="meter_read_date" value="meterReadDate" label="本次抄表时间" icon="fa fa-calendar" single="true" max-date="maxDate" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+    </div>
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="meterForm.$invalid">保存</button>
+        <button type="button" class="button btn-primary" ng-click="save(true)" ng-disabled="meterForm.$invalid">保存并继续添加</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

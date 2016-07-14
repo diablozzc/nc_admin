@@ -1,0 +1,64 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <!--<div class="btn-group">-->
+        <!--<button type="button" class="btn btn-default light">-->
+        <!--<i class="fa fa-refresh"></i>-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-success light" ng-click="add()">-->
+        <!--<i class="fa fa-plus pr5"></i>-->
+        <!--新增住户-->
+        <!--</button>-->
+        <!--</div>-->
+      </div>
+
+      <div class="btn-group">
+      </div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <!--<button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="add()">住户</button>-->
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <!--<table id="message-table" class="table admin-form theme-warning tc-checkbox-1" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:adInfosListPromise,message:'请稍候...'}">-->
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:ownerListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-left w50 mnw50" data-title="'身份'">
+            {{item.idType | statesName:"idType"}}
+          </td>
+          <td class="mnw75" data-title="'用户名'">{{item.username}}</td>
+          <td class="mnw75" data-title="'真实姓名'">{{item.realName}}</td>
+          <td class="mnw175" data-title="'入驻房间'">{{item.communityName}}#{{item.room}}</td>
+          <td class="w150" data-title="'联系电话'">{{item.mobile}}</td>
+          <td class="w150 mnw125" data-title="'提交时间'">{{item.createTime | date:"yyyy-MM-dd HH:mm"}}</td>
+          <td class="w100" data-title="'过期时间'">{{item.expire | date:"yyyy-MM-dd"}}</td>
+          <td class="w100" data-title="'状态'">{{item.status | statesName:"enteringStatus"}}</td>
+
+          <td class="w100" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'audit_entering',func:audit,param:item})" ng-disabled="!flag.audit_entering" ng-if="item.status == 0">审核</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

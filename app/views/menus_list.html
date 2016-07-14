@@ -1,0 +1,106 @@
+<!--<script type="text/ng-template" id="menu_tree.html">-->
+  <!--<div ui-tree-handle class="tree-node tree-node-content" data-nodrag ng-class="{'tree-node-group':node.type == 'group','tree-node-fold':node.type == 'fold','tree-node-sub':node.type == 'sub','tree-node-menu':node.type == 'menu'}">-->
+    <!--<a class="btn btn-success btn-xs" ng-if="node.menus && node.menus.length > 0" data-nodrag ng-click="toggle(this)">-->
+      <!--<span class="glyphicon" ng-class="{'fa fa-caret-right': collapsed,'fa fa-caret-down': !collapsed}"></span>-->
+    <!--</a>-->
+    <!--<span ng-class="node.icon"></span>-->
+    <!--{{node.name}} - {{node.path}}-->
+
+    <!--<a class="pull-right btn btn-danger btn-xs mr5" data-nodrag ng-click="del(node)"><span class="glyphicon glyphicon-remove"></span></a>-->
+    <!--<a class="pull-right btn btn-primary btn-xs mr5" data-nodrag ng-click="edit(node)"><span class="glyphicon glyphicon-pencil"></span></a>-->
+    <!--<a class="pull-right btn btn-primary btn-xs mr5" data-nodrag ng-click="add(node)" ng-if="node.type=='group' || node.type=='fold'">-->
+      <!--<span class="glyphicon glyphicon-plus"></span>-->
+    <!--</a>-->
+  <!--</div>-->
+  <!--<ol ui-tree-nodes="" ng-model="node.menus" ng-class="{hidden: collapsed}">-->
+    <!--<li ng-repeat="node in node.menus" ui-tree-node ng-include="'menu_tree.html'">-->
+    <!--</li>-->
+  <!--</ol>-->
+<!--</script>-->
+
+<!-- 构建菜单 -->
+<script type="text/ng-template" id="menu_builder.html">
+  <div ui-tree-handle class="tree-node tree-node-content" data-nodrag ng-class="{'tree-node-group':node.selected}" ng-if="!node.roleName">
+    <a class="btn btn-success btn-xs" ng-if="node.menus && node.menus.length > 0 || node.roleKey && node.roleKey.length > 0" data-nodrag ng-click="toggle(this)">
+      <span class="glyphicon" ng-class="{'fa fa-caret-right': collapsed,'fa fa-caret-down': !collapsed}"></span>
+    </a>
+    <span ng-class="node.icon"></span>
+    {{node.name}}
+
+    <a class="pull-right btn btn-success btn-xs mr5" data-nodrag ng-click="toggleSelected(node)" ><span ng-class="{'fa fa-check':node.selected,'fa fa-square':!node.selected}"></span></a>
+  </div>
+
+  <!-- roleKey list -->
+  <div ui-tree-handle class="tree-node tree-node-content" ng-class="{'tree-node-action':node.selected}" data-nodrag ng-if="node.roleName">
+    <span ng-class="{'fa fa-dot-circle-o':node.selected,'fa fa-circle-o':!node.selected}"></span>
+    {{node.roleName}}
+    <a class="pull-right btn btn-success btn-xs mr5" data-nodrag ng-click="toggleSelected(node)" ><span ng-class="{'fa fa-check':node.selected,'fa fa-square':!node.selected}"></span></a>
+  </div>
+
+  <ol ui-tree-nodes="" ng-model="node.menus" ng-class="{hidden: collapsed}">
+    <li ng-repeat="node in node.menus" ui-tree-node ng-include="'menu_builder.html'">
+    </li>
+  </ol>
+
+  <ol ui-tree-nodes="" ng-model="node.roleKey" ng-class="{hidden: collapsed}">
+    <li ng-repeat="node in node.roleKey" ui-tree-node ng-include="'menu_builder.html'">
+    </li>
+  </ol>
+
+</script>
+
+
+
+<div class="row mt5">
+
+  <!--<div class="col-md-5">-->
+    <!--<div class="row">-->
+      <!--<button type="button" class="btn btn-info" ng-click="add()">添加菜单栏</button>-->
+    <!--</div>-->
+
+    <!--<div ui-tree id="tree-root" ng-if="menus.length > 0">-->
+      <!--<ol ui-tree-nodes ng-model="menus">-->
+        <!--<li ng-repeat="node in menus" ui-tree-node ng-include="'menu_tree.html'"></li>-->
+      <!--</ol>-->
+    <!--</div>-->
+
+  <!--</div>-->
+
+  <div class="col-md-3">
+    <div class="row">
+      <button type="button" class="btn btn-info mb15" ng-click="ucauth.isAccess({key:'add_menugroup',func:addMenuGroup})" ng-disabled="!flag.add_menugroup">添加菜单组</button>
+    </div>
+
+
+    <div class="row" ng-repeat="group in menuGroups">
+      <!--holder-active-->
+      <div class="holder-style p15 mr20 mb15" href="" ng-click="selectGroup(group)" ng-class="{'holder-active':group.isActive}">
+        {{group.groupName}}<br>[{{group.code}}]
+        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="ucauth.isAccess({key:'del_menugroup',func:delMenuGroup,param:group})" ng-disabled="!flag.del_menugroup"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="pull-right btn btn-primary btn-xs mr5" data-nodrag ng-click="ucauth.isAccess({key:'edit_menugroup',func:editMenuGroup,param:group})" ng-disabled="!flag.edit_menugroup"><span class="glyphicon glyphicon-pencil"></span></a>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+  <div class="col-md-4" ng-if="selectedGroup">
+    <div class="row">
+      <button type="button" class="btn btn-warning" ng-click="resetMenuGroup()">重置</button>
+      <button type="button" class="btn btn-info" ng-click="ucauth.isAccess({key:'save_menugroup',func:saveMenuGroup})" ng-disabled="menuGroupsSaved || !flag.save_menugroup">保存</button>
+    </div>
+
+
+    <div ui-tree id="menu-tree">
+      <ol ui-tree-nodes ng-model="menus_builder">
+        <li ng-repeat="node in menus_builder" ui-tree-node ng-include="'menu_builder.html'"></li>
+      </ol>
+    </div>
+
+
+  </div>
+
+
+</div>

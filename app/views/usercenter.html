@@ -1,0 +1,48 @@
+<section id="content" class="table-layout">
+
+  <!-- begin: .tray-center -->
+  <div class="tray tray-center">
+
+    <!-- list table -->
+    <div class="panel">
+      <div class="panel-heading">
+        <ul class="nav panel-tabs-border panel-tabs">
+          <li class="" ng-class="{'active':$state.includes('admin.usercenter.userinfo')}">
+            <a ui-sref="admin.usercenter.userinfo">账户信息</a>
+          </li>
+          <li class="" ng-class="{'active':$state.includes('admin.usercenter.password')}">
+            <a ui-sref="admin.usercenter.password">密码管理</a>
+          </li>
+          <li class="" ng-class="{'active':$state.includes('admin.usercenter.withdraw')}" ng-if="user.userTag === 0 && flag.withdraw">
+            <a ui-sref="admin.usercenter.withdraw">提现管理</a>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body p20 pb10">
+        <div class="tab-content pn br-n admin-form">
+          <div id="tab1_1" class="tab-pane active" ui-view="table">
+
+            <div class="section row mbn">
+              <div class="col-md-12 pl15"></div>
+
+            </div>
+            <!-- end section row -->
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- form panel -->
+    <div class="panel mb25 mt5" ui-view="forms">
+
+    </div>
+
+
+
+  </div>
+  <!-- end: .tray-center -->
+
+</section>

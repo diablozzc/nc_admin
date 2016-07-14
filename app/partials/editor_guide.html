@@ -1,0 +1,106 @@
+<div class="admin-form theme-primary">
+  <div class="panel heading-border panel-primary">
+    <form id="bylawForm" ng-submit="save()" name="guideForm">
+      <div class="panel-body bg-light">
+
+        <div class="section-divider mb30">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="the_guide.community" title="所在小区" name-key="name" val-key="code"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+
+                  <div class="form-group">
+                    <div input-text="name" value="the_guide.title" label="标题" required="true"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component" ng-class="{'has-error':guideForm.remark.$invalid}">
+                        <div text-angular="" name="remark" ng-model="guideRemark" placeholder="备注" required encode-text="the_guide.remark"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+                        <button type="button" class="btn btn-default" ng-disabled="guideForm.$invalid" ng-click="addContent()">添加内容</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ui-sortable="sortableOptions" ng-model="guide_content_list">
+              <div class="row" ng-repeat="item in guide_content_list">
+                <div class="col-md-11">
+                  <div class="section">
+
+                    <div class="form-group">
+                      <div input-text="item{{item.sort}}" value="item.content" label="{{item.sort}}" required="true" auto-action="item" on-action="saveContent">
+                        <button type="button" class="btn btn-xs btn-alert float-btn" ng-click="deleteContent(item)">删除</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+
+        </div>
+        <!-- end .section -->
+      </div>
+      <!-- end .form-body section -->
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="guideForm.$invalid">保存</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+    </form>
+    <!-- end .form-footer section -->
+  </div>
+
+</div>

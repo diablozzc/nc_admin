@@ -1,0 +1,49 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group">
+          <span action-btn="add_building" action="onAdd" btn-class="btn btn-success btn-sm" btn-name="新增小区" btn-icon="fa fa-plus pr5" value="" value-type="any"></span>
+          <span action-btn="edit_community" action="onEdit" btn-class="btn btn-primary btn-sm" btn-name="编辑" btn-icon="fa fa-edit pr5" value="selectedDataItem" value-type="object"></span>
+          <span action-btn="del_community" action="onDel" btn-class="btn btn-danger btn-sm" btn-name="删除" btn-icon="fa fa-minus pr5" value="selectedDataItem" value-type="object" confirm="true" title="删除小区" content="确实要删除小区吗?"></span>
+
+        </div>
+
+      </div>
+
+
+      <!--<div class="col-md-6 text-right">-->
+        <!--<div class="btn-group mr10">-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:communitiesListPromise,message:'请稍候...'}" select-container="$data" multi-select="false">
+        <tbody>
+        <tr ng-repeat="item in $data" ng-class="{'selected':item.selected}" ng-click="checkIt(item)">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
+          <td class="w100" data-title="'小区代码'" sortable="'code'">{{item.code}}</td>
+          <td class="mnw100" data-title="'小区名称'" sortable="'name'">{{item.name}}</td>
+          <td class="mnw150" data-title="'所在地'">{{item.provinceName}}/{{item.cityName}}/{{item.areaName}}</td>
+          <td class="mnw100" data-title="'详细地址'">{{item.address}}</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="publishAfficheForm" ng-submit="save()" name="publishAfficheForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40">
+          <span>{{form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+                        <div class="well author-well">
+                          <p ng-bind-html="the_affiche.content">
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="accept_type_list" selected-value="the_publish.acceptType" title="发布到" name-key="name" val-key="val" on-change="onAcceptTypeChange"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3" ng-if="the_publish.acceptType > 0">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="current.community" title="选择小区" name-key="name" val-key="code" on-change="onCommunityChange"></div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3" ng-if="the_publish.acceptType > 1">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="building_list" selected-value="current.buildingId" title="选择楼宇" name-key="name" val-key="autoId" on-change="onBuildingChange"></div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3" ng-if="the_publish.acceptType > 2">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="unit_list" selected-value="current.unit" title="选择单元" name-key="name" val-key="val" on-change="onUnitChange"></div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div class="checkbox-custom checkbox-primary checkbox-inline" ng-repeat="accepter in accepter_list">
+                      <input type="checkbox" ng-model="accepter.selected" name="accepter.name" id="accepter_{{accepter.name}}" ng-change="changeBox($index)">
+                      <label for="accepter_{{accepter.name}}">{{accepter.name}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+                        <div class="input-group">
+                          <span class="input-group-addon">编号列表</span>
+                          <input type="text" name="name" id="name" class="gui-input" ng-model="the_publish.accepter" required disabled>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <!--<div class="col-md-4">-->
+          <!--<div class="section ">-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+    </div>
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="publishAfficheForm.$invalid">发布</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

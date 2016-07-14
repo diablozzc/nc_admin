@@ -1,0 +1,27 @@
+<section id="content" class="table-layout">
+
+  <!-- begin: .tray-center -->
+  <div class="tray tray-center">
+
+    <!-- list table -->
+    <div class="" ui-view="table">
+
+    </div>
+
+    <!-- form panel -->
+    <div class="panel mb25 mt5" ui-view="forms">
+
+    </div>
+
+
+  </div>
+  <!-- end: .tray-center -->
+
+  <!-- begin: .tray-right -->
+  <aside class="tray tray-right tray290" data-tray-height="match" ui-view="searcher" ng-if="$state.includes('admin.repairs.list')">
+
+  </aside>
+  <!-- end: .tray-right -->
+
+</section>
+

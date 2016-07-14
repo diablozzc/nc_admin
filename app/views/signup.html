@@ -1,0 +1,84 @@
+<div class="admin-form theme-primary mw600" style="margin-top: 3%;" id="register">
+
+  <!-- Registration Logo -->
+  <div class="row table-layout">
+    <a href="" title="Return to Dashboard">
+      <img src="images/property-logo.png" title="AdminDesigns Logo" class="center-block img-responsive" style="max-width: 275px;">
+    </a>
+  </div>
+
+  <!-- Registration Panel/Form -->
+  <div class="panel mt40">
+
+    <form id="contact" name="signupForm" ng-submit="signup()">
+      <div class="panel-body bg-light p25 pb15">
+
+        <div class="section">
+          <label for="username" class="field prepend-icon" ng-class="{'state-error':signupForm.username.$invalid && signupForm.username.$dirty,'state-success':signupForm.username.$valid}">
+            <input type="text" name="username" id="username" class="gui-input" placeholder="用户名" ng-model="user.username" ensure-unique="username" required>
+            <label for="username" class="field-icon">
+              <i class="fa fa-user"></i>
+            </label>
+          </label>
+          <em for="username" class="state-error" ng-if="signupForm.username.$error.required && signupForm.username.$dirty">请输入用户名</em>
+          <em for="username" class="state-error" ng-if="signupForm.username.$error.format && signupForm.username.$$success.required">{{errorInfo.username.error}} - {{errorInfo.username.info}}</em>
+          <em for="username" class="state-error" ng-if="signupForm.username.$error.unique && signupForm.username.$$success.required">用户名已存在</em>
+        </div>
+
+        <!-- end section -->
+
+        <hr class="alt short">
+
+        <div class="section">
+          <label for="password" class="field prepend-icon" ng-class="{'state-error':signupForm.password.$invalid && signupForm.password.$dirty,'state-success':signupForm.password.$valid}">
+            <input type="password" name="password" id="password" class="gui-input" placeholder="登录密码" ng-model="user.password" ng-minlength="6" required>
+            <label for="password" class="field-icon">
+              <i class="fa fa-unlock-alt"></i>
+            </label>
+          </label>
+          <em for="password" class="state-error" ng-if="signupForm.password.$error.required && signupForm.password.$dirty">请输入登录密码</em>
+          <em for="password" class="state-error" ng-if="signupForm.password.$error.minlength">密码不少于6位</em>
+        </div>
+        <!-- end section -->
+
+        <div class="section">
+          <label for="confirmPassword" class="field prepend-icon" ng-class="{'state-error':signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty,'state-success':signupForm.confirmPassword.$valid}">
+            <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="重复密码" ng-model="repassword" ui-validate="'$value==user.password'" ui-validate-watch="'validator.user.password'" ng-minlength="6" required>
+            <label for="confirmPassword" class="field-icon">
+              <i class="fa fa-lock"></i>
+            </label>
+          </label>
+          <em for="password" class="state-error" ng-if="signupForm.confirmPassword.$error.validator">重复密码不一致</em>
+        </div>
+        <!-- end section -->
+
+      </div>
+
+      <div class="panel-footer clearfix">
+        <button type="submit" class="button btn-primary mr10 pull-right">注册</button>
+        <button type="button" class="button btn-danger mr10 pull-right" ng-dialog="test_tpl">Test</button>
+
+        <label class="option ib mt10" ng-class="{'state-error':signupForm.terms.$invalid && signupForm.terms.$dirty,'state-success':signupForm.terms.$valid}">
+          <input type="checkbox" name="terms" required ng-model="terms">
+          <span class="checkbox mr10"></span>同意
+          <a href="" class="theme-link"> 服务条款. </a>
+        </label>
+      </div>
+
+    </form>
+  </div>
+
+  <!--  Divider -->
+  <hr class="alt mt40 mb30 mh70">
+
+
+  <!-- Registration Links -->
+  <div class="login-links">
+    <p>已有账号?
+      <a ui-sref="pages.signin" class="active" title="登录">登录</a>
+    </p>
+  </div>
+
+
+</div>
+

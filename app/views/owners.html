@@ -1,0 +1,69 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <div class="btn-group">
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_owner',func:add})" ng-disabled="!flag.add_owner">
+            <i class="fa fa-plus pr5"></i>
+            新增业主
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+      </div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_owner',func:add})" ng-disabled="!flag.add_owner">新增业主</button>
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:ownerListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="mnw200" data-title="'所在房间'">{{item.communityName}}/{{item.buildingName}}/{{item.unit}}单元/{{item.houseNumber}}号</td>
+          <td class="w75" data-title="'业主'">{{item.name}}</td>
+          <td class="w100" data-title="'联系电话'">{{item.mobile}}</td>
+          <td class="w100" data-title="'房屋状态'">{{item.saleState}}</td>
+          <td class="w100" data-title="'使用状态'">{{item.useState}}</td>
+
+          <td class="w150" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_owner',func:edit,param:item})" ng-disabled="!flag.edit_owner">编辑</button>
+
+            <span confirm-popover title="迁出业主" content="确定要迁出{{item.houseNumber}}号业主{{item.name}} 么?" on-action="ucauth.isAccess" value="{key:'del_owner',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="迁出" disabled="!flag.del_owner"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="custom/pager">
+
+  <div style="text-align: center">
+    <table-pager></table-pager>
+  </div>
+
+</script>
+
+
+
+

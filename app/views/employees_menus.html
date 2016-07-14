@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="panel-icon">
+          <i class="fa fa-pencil"></i>
+        </span>
+        <span class="panel-title">{{profile_title}}</span>
+      </div>
+      <div class="panel-body pb5">
+
+        <h6>基本信息</h6>
+
+        <h4>{{the_profile.name}}({{the_profile.username}})</h4>
+        <p class="text-muted">
+          所在小区:{{the_profile.community}}<br>
+        </p>
+
+        <hr class="short br-lighter">
+
+        <h6>联系方式</h6>
+
+        <h4>手机:{{the_profile.mobile}}</h4>
+        <p class="text-muted">
+          Email:{{the_profile.email}}
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+
+    <div class="panel mnw300">
+      <div class="panel-heading">
+        <span class="panel-icon">
+          <i class="fa fa-pencil"></i>
+        </span>
+        <span class="panel-title">分配菜单组</span>
+
+        <div class="widget-menu pull-right mr10">
+          <button type="button" class="btn btn-xs btn-primary" ng-click="save()" ng-disabled="saved">
+            <span class="glyphicon glyphicon-floppy-disk fs11 mr5"></span>保存</button>
+
+          <button type="button" class="btn btn-xs btn-warning" ng-click="reset()">
+            <span class="glyphicon glyphicon-repeat fs11 mr5"></span>重置</button>
+
+        </div>
+
+      </div>
+      <div class="panel-body pb5">
+
+        <div class="row" ng-repeat="group in menuGroups">
+          <!--holder-active-->
+          <div class="holder-style p15 ml20 mr20 mb15" href="" ng-click="selectGroup(group)" ng-class="{'holder-active':group.isActive}">
+            {{group.groupName}}<br>[{{group.code}}]
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

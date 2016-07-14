@@ -1,0 +1,162 @@
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel" ng-class="{'panel-info':the_activity.status == 0,'panel-success':the_activity.status == 1,'panel-warning':the_activity.status ==2}">
+      <div class="panel-heading">
+    <span class="panel-icon">
+      <i class="imoon imoon-gift"></i>
+    </span>
+        <span class="panel-title"> {{the_activity.title}}</span>
+        <span class="panel-controls">{{the_activity.status | statesName:'activityStatus'}}</span>
+      </div>
+
+      <div class="panel-body">
+        <h4>活动内容:</h4>
+        <div ng-bind-html="the_activity.content">
+
+        </div>
+        <hr class="short alt">
+        <h4>活动总结:</h4>
+        <div ng-bind-html="the_activity.activitySummary" ng-if="!is_edit_summary">
+
+        </div>
+
+        <div class="well author-well" ng-if="is_edit_summary">
+          <div text-angular="" ng-model="activitySummary" required placeholder="活动总结" encode-text="the_activity.activitySummary">
+
+          </div>
+          <button class="btn btn-sm btn-success" type="button" ng-click="saveSummary()">保存</button>
+        </div>
+
+        <hr class="short alt">
+        <h4>活动图片展示:</h4>
+
+        <div class="media-body">
+          <h5 class="media-heading mb20">最后更新时间
+            <small> - {{the_activity.modifyTime | amDateFormat:'ll'}}</small>
+          </h5>
+
+          <div class="upload-image mw140 mr20 mb20" ng-repeat="f in files" ng-show="files.length > 0">
+            <!--<img ngf-src="f" ng-show="f.type.indexOf('image') > -1" ngf-accept="'image/*'">-->
+            <img ng-src="{{f.fileName | fullImageUrl}}" ng-if="f.fileName"/>
+            <div class="progress" ng-show="f.progress >= 0 && !f.uploaded">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{f.progress}}%;">
+                <span class="sr-only">{{f.progress}}% Complete</span>
+              </div>
+            </div>
+            <a class="badge badge-danger" ng-if="f.uploaded && flag.edit_activity" ng-click="deleteUploadFile($index,f)">x</a>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="panel-footer clearfix">
+        <div class="pull-left">
+              <button class="btn btn-sm btn-primary" ng-click="editSummary()" ng-click="ucauth.isAccess({key:'edit_activity',func:editSummary,param:item})" ng-disabled="!flag.edit_activity">编辑活动总结</button>
+              <div upload-queue maxfiles="10" fields="upload_param" title="上传活动图片" selected="files" result="the_activity.activityImg" required="true" is-button="true" style="display:inline-block" ng-if="flag.edit_activity"></div>
+              <button class="btn btn-sm btn-primary hidden" ng-click="saveActivityImage()" ng-disabled="saved">保存图片</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" ng-show="the_activity_entry_list.length > 0">
+      <div class="panel-heading">
+        <span class="panel-icon">
+          <i class="imoon imoon-gift"></i>
+        </span>
+        <span class="panel-title"> 报名列表</span>
+        <span class="panel-controls"></span>
+      </div>
+      <div class="panel-menu admin-form ">
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="smart-widget sm-left sml-50">
+              <label class="field">
+                <input type="text" id="keyword" class="gui-input" placeholder="搜索" ng-model="keyword" searcher key="activities_entry">
+              </label>
+              <label for="keyword" class="button btn-primary">
+                <i class="fa fa-search"></i>
+              </label>
+            </div>
+            <!-- end .smart-widget section -->
+
+          </div>
+        </div>
+      </div>
+      <div class="panel-body pn">
+        <div class="table-responsive">
+          <table class="table admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:activitiesDetailsPromise,message:'请稍候...'}">
+
+            <tbody>
+            <tr ng-repeat="item in $data">
+              <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
+              <td class="w100" data-title="'报名用户'" sortable="'username'">{{item.username}}</td>
+              <td class="mnw150" data-title="'手机号'">{{item.mobile}}</td>
+              <td class="mnw100" data-title="'报名时间'" sortable="'signUpTime'">{{item.signUpTime | date:"yyyy-MM-dd HH:mm"}}</td>
+              <td class="mnw100" data-title="'状态'">{{item.status | statesName:'activityConfirmStatus'}}</td>
+
+              <td class="w150" data-title="'操作'">
+                <button class="btn btn-xs btn-success" ng-click="ucauth.isAccess('confirm_join_activity',confirm,item)" ng-disabled="!flag.confirm_join_activity" ng-if="item.status == 0">确认报名</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-md-2">
+
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="panel-icon"></span>
+        <span class="panel-title">活动海报</span>
+      </div>
+      <div class="panel-body">
+        <img ng-src="{{the_activity.imgPoster | fullImageUrl}}" class="thumb thumbnail" ng-if="the_activity.imgPoster"/>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="panel-icon"></span>
+        <span class="panel-title">活动信息</span>
+      </div>
+      <div class="panel-body">
+        <ul class="icon-list">
+          <li>
+            <i class="imoon imoon-calendar2 imoon-lg text-success"></i>
+            <b> 开始时间:</b> {{the_activity.startTime | date:'yyyy-MM-dd'}}
+          </li>
+          <li>
+            <i class="imoon imoon-calendar2 imoon-lg text-warning"></i>
+            <b> 结束时间:</b> {{the_activity.endTime | date:'yyyy-MM-dd'}}
+          </li>
+          <li>
+            <i class="imoon imoon-users imoon-lg text-info"></i>
+            <b> 报名人数:</b> {{the_activity.signUpCount}}人
+
+          </li>
+          <li>
+            <i class="imoon imoon-location imoon-lg text-danger"></i>
+            <b> 活动地点:</b> {{the_activity.address}}
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/ng-template" id="custom/pager">
+
+  <div style="text-align: center">
+    <table-pager></table-pager>
+  </div>
+
+</script>
+

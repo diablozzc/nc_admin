@@ -1,0 +1,72 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <div class="btn-group">
+          <!--<button type="button" class="btn btn-default light">-->
+            <!--<i class="fa fa-refresh"></i>-->
+          <!--</button>-->
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_affiche',func:add})" ng-disabled="!flag.add_affiche">
+            <i class="fa fa-plus pr5"></i>
+            新增公告
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group"></div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_affiche',func:add})" ng-disabled="!flag.add_affiche">新增公告</button>
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:affichesListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50 autocut" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="autocut" data-title="'公告标题'" sortable="'title'">{{item.title}}</td>
+          <td class="autocut" data-title="'类型'">{{item.typeName}}</td>
+          <td class="autocut" data-title="'状态'">{{item.statusName}}</td>
+          <td class="autocut" data-title="'创建时间'">{{item.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
+
+          <td class="mnw200" data-title="'操作'">
+            <button class="btn btn-xs btn-warning" ng-click="ucauth.isAccess({key:'details_affiche',func:details,param:item})" ng-disabled="!flag.details_affiche" ng-if="item.status==1">详情</button>
+            <button class="btn btn-xs btn-success" ng-click="ucauth.isAccess({key:'publish_affiche',func:publish,param:item})" ng-disabled="!flag.publish_affiche" ng-if="item.status!=2">发布</button>
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_affiche',func:edit,param:item})" ng-disabled="!flag.edit_affiche" ng-if="item.status==0">修改</button>
+
+            <span confirm-popover title="撤销公告" content="确定要撤销公告{{item.title}}么?" on-action="ucauth.isAccess" value="{key:'cancel_affiche',func:cancel,param:item}" btn-class="btn-xs btn-danger" btn-name="撤销" ng-if="item.status==1" disabled="!flag.cancel_affiche"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="custom/pager">
+
+  <div style="text-align: center">
+    <table-pager></table-pager>
+  </div>
+
+</script>
+
+
+
+

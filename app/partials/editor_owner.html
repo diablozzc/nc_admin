@@ -1,0 +1,158 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="ownerForm" ng-submit="save()" name="ownerForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<div item-select item-data="community_list" selected-value="current.community" title="所属小区" name-key="name" val-key="code" on-change="onCommunityChange"></div>-->
+                    <div input-label label="所属小区" value="the_room.communityName"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<div item-select item-data="building_list" selected-value="current.buildingId" title="所属楼宇" name-key="name" val-key="autoId" on-change="onBuildingChange"></div>-->
+                    <div input-label label="所属楼宇" value="the_room.buildingName"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<div item-select item-data="unit_list" selected-value="current.unit" title="所属单元" name-key="name" val-key="val" on-change="onUnitChange"></div>-->
+                    <div input-label label="所属单元" value="the_room.unitName"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<div item-select item-data="room_list" selected-value="the_owner.room" title="所属房间" name-key="houseNumber" val-key="code" on-change="onRoomChange"></div>-->
+                    <div input-label label="所属房间" value="the_room.houseNumber"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="owner_type_list" selected-value="the_owner.ownerType" title="住户类型" name-key="name" val-key="val"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-text="name" value="the_owner.name" label="住户姓名" required="true"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="gender_list" selected-value="the_owner.gender" title="性别" name-key="name" val-key="val"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="national" value="the_owner.national" label="民族" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div datetime-select select-id="dropBirthday" select-value="the_owner.birthday" format="yyyy-MM-dd" min-view="day" label="出生日期" icon="fa fa-calendar" required="false"></div>
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="idNumber" value="the_owner.idNumber" icon="glyphicons glyphicons-vcard" label="身份证号" pattern="^(\d{17}[\dxX]|\d{15})$" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="mobile" value="the_owner.mobile" icon="glyphicons glyphicons-iphone" label="手机号" pattern="^1[3|4|5|8][0-9]\d{8}$" required="true"></div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div datetime-select select-id="dropCheckInTime" select-value="the_owner.checkInTime" format="yyyy-MM-dd" min-view="day" label="入驻时间" icon="fa fa-calendar"></div>
+
+
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="button btn-primary" ng-disabled="ownerForm.$invalid">保存</button>
+      <button type="button" class="button" ng-click="close()">关闭</button>
+    </div>
+    <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

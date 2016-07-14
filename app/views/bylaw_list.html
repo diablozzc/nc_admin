@@ -1,0 +1,54 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="btn-group">
+          <!--<button type="button" class="btn btn-default light">-->
+            <!--<i class="fa fa-refresh"></i>-->
+          <!--</button>-->
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_bylaw',func:add})" ng-disabled="!flag.add_bylaw">
+            <i class="fa fa-plus pr5"></i>
+            新增管理规定
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+      </div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+
+        <!--<div class="btn-group mr10">-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:bylawListPromise,message:'请稍候...'}">
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
+          <td class="mnw200" data-title="'标题'">{{item.title}}</td>
+          <td class="mnw100" data-title="'适用范围'">{{item.scope}}</td>
+          <td class="mnw100" data-title="'所属小区'">{{item.communityName}}</td>
+          <td class="mnw100" data-title="'更新时间'">{{item.modifyTime | date:'yyyy-MM-dd HH:mm'}}</td>
+
+          <td class="w150" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_bylaw',func:edit,param:item})" ng-disabled="!flag.edit_bylaw">编辑</button>
+
+            <span confirm-popover title="删除管理规定" content="确定要删除{{item.title}}么?" on-action="ucauth.isAccess" value="{key:'del_bylaw',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.del_bylaw"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

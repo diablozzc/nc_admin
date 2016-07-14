@@ -1,0 +1,12 @@
+<div class="col-md-4" ng-repeat="item in data">
+  <div class="section">
+    <label class="field select">
+      <select class="span2"
+              ng-model="values[$index]"
+              ng-options="item.code as item.name for item in data[$index]"
+              ng-change="change($index,values[$index],item)"
+              required></select>
+      <i class="arrow"></i>
+    </label>
+  </div>
+</div>

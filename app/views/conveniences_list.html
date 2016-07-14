@@ -1,0 +1,62 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <div class="btn-group">
+          <!--<button type="button" class="btn btn-default light">-->
+          <!--<i class="fa fa-refresh"></i>-->
+          <!--</button>-->
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_convenience',func:add})" ng-disabled="!flag.add_convenience">
+          <i class="fa fa-plus pr5"></i>
+            新增便民信息
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group"></div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_convenience',func:add})" ng-disabled="!flag.add_convenience">新增便民信息</button>
+
+        <!--<div class="btn-group mr10" data-toggle="buttons">-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">待受理</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">待反馈</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="2">已反馈</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:conveniencesListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="mnw100" data-title="'所属小区'">{{item.communityName}}</td>
+          <td class="mnw150" data-title="'便民标题'">{{item.title}}</td>
+          <td class="mnw100" data-title="'联系人'">{{item.linkMan}}</td>
+          <td class="mnw150" data-title="'联系电话'">{{item.phone}}</td>
+          <td class="mnw100" data-title="'手机号'">{{item.mobile}}</td>
+          <td class="mnw150" data-title="'点击次数'">{{item.clickTimes}}</td>
+          <td class="mnw100 w100" data-title="'拨打次数'">{{item.dialNumber}}</td>
+
+          <td class="mnw150 w150" data-title="'操作'">
+
+            <button class="btn btn-xs btn-primary" ng-click="edit(item)" ng-click="ucauth.isAccess({key:'edit_convenience',func:edit,param:item})" ng-disabled="!flag.edit_convenience">编辑</button>
+            <span confirm-popover title="删除便民信息" content="确定要删除{{item.title}}么?" on-action="ucauth.isAccess" value="{key:'del_convenience',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.del_convenience"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

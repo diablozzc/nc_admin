@@ -1,0 +1,65 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <div class="btn-group">
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_items',func:add})" ng-disabled="!flag.add_items">
+            <i class="fa fa-plus pr5"></i>
+            新增缴费项目
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group"></div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_items',func:add})" ng-disabled="!flag.add_items">新增缴费项目</button>
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:itemsListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="" data-title="'缴费项目'">{{item.name}}</td>
+          <td class="mnw75" data-title="'费用类型'">{{item.categoryName}}</td>
+          <td class="mnw75" data-title="'费率类型'">{{item.rateType | statesName:"rateType"}}</td>
+          <td class="mnw50" data-title="'生成方式'">{{item.billTypeName}}</td>
+          <td class="mnw100" data-title="'所属小区'">{{item.communityName}}</td>
+          <td class="mnw75" data-title="'账单周期'">{{item.months}}</td>
+          <td class="" data-title="'生成日期'">{{item.billTime | date:"yyyy-MM-dd"}}</td>
+
+          <td class="mnw150" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_items',func:edit,param:item})" ng-disabled="!flag.edit_items">修改</button>
+
+            <span confirm-popover title="删除缴费项目" content="确定要删除{{item.communityName}}的{{item.name}}项目么?" on-action="ucauth.isAccess" value="{key:'del_items',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.del_items"></span>
+
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'item_appends',func:appends,param:item})" ng-disabled="!flag.item_appends">附加</button>
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'item_specials',func:special,param:item})" ng-disabled="!flag.item_specials">特殊</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+

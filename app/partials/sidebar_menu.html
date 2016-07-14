@@ -1,0 +1,26 @@
+<ul class="nav sidebar-menu">
+
+
+  <li ng-repeat="menu in menus" ng-class="{'sidebar-label pt20':menu.is_group,'active':$state.includes(menu.path)}" ng-if="menu.isShow">
+    <span ng-if="menu.is_group">{{menu.name}}</span>
+
+    <a ui-sref="{{menu.path}}" ng-if="menu.is_menu">
+      <span class="mr20" ng-class="menu.icon"></span>
+      <span class="sidebar-title">{{menu.name}}</span>
+    </a>
+
+    <a class="accordion-toggle" href="#" ng-if="menu.is_fold" ng-class="{'menu-open':menu.isOpen}">
+      <span class="mr20" ng-class="menu.icon"></span>
+      <span class="sidebar-title">{{menu.name}}</span>
+      <span class="caret"></span>
+    </a>
+
+    <ul class="nav sub-nav" ng-if="menu.is_fold">
+      <li ng-repeat="sub in menu.menus" ng-class="{'active':subActive(sub)}">
+        <a ui-sref="{{sub.path}}">
+          <span ng-class="sub.icon"></span> {{sub.name}} </a>
+      </li>
+
+    </ul>
+  </li>
+</ul>

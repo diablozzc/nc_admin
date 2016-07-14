@@ -1,0 +1,17 @@
+<div class="topbar-left">
+  <ol class="breadcrumb">
+    <li class="crumb-active">
+      <a ui-sref="{{current_node.href}}">{{current_node.text}}</a>
+    </li>
+    <li class="crumb-icon">
+      <a ui-sref="dashboard">
+        <span class="glyphicon glyphicon-home"></span>
+      </a>
+    </li>
+
+    <li ng-repeat="crumb in bread" ng-class="{'crumb-link':!is_trail($index),'crumb-trail':is_trail($index)}">
+      <a ui-sref="{{crumb.href}}" ng-if="!is_trail($index)">{{crumb.text}}</a>
+      <span ng-if="is_trail($index)">{{crumb.text}}</span>
+    </li>
+  </ol>
+</div>

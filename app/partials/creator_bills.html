@@ -1,0 +1,69 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="createbillsForm" ng-submit="create()" name="createbillsForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="the_creator.community" title="所属小区" name-key="name" val-key="code" on-change="onCommunityChange"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" ng-if="the_creator.community">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="item_list" selected-value="the_creator.item" title="缴费项目" name-key="name" val-key="autoId" on-change="onItemChange"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      <div class="row">
+        <div class="col-md-6" ng-if="the_item.prePayment">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="section">
+                <div class="form-group">
+                  <div daterange-select value="datePicker.date" label="账期范围" icon="fa fa-calendar" min-date="minDate" limit="dateLimit"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+    </div>
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="createbillsForm.$invalid">生成账单</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

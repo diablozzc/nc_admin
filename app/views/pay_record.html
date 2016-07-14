@@ -1,0 +1,77 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu admin-form">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6 mnw350">
+              <div daterange-select value="datePicker.date" label="时间范围" icon="fa fa-calendar" time-picker="true" on-change="dateChange"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 text-right">
+
+          <!--<div class="btn-group mr10">-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+          <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+          <!--</div>-->
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-success btn-xs light" ng-click="showAllList()" ng-if="!showAll">
+              显示全部
+            </button>
+            <button type="button" class="btn btn-success btn-xs light" ng-click="ucauth.isAccess({key:'download_record',func:download})" ng-disabled="!flag.download_record">
+              <i class="imoon imoon-arrow-down"></i>
+              下载为Excel文档
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:payRecordListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="" data-title="'物业'">{{item.propertyName}}</td>
+          <td class="" data-title="'小区'">{{item.communityName}}</td>
+          <td class="" data-title="'缴费渠道'">{{item.payChannelName}}</td>
+          <td class="" data-title="'缴费金额(元)'">{{item.payAmt | currency:'￥'}}</td>
+          <td class="" data-title="'付款人'">{{item.payMan}}</td>
+          <td class="" data-title="'操作人'">{{item.operMan}}</td>
+          <td class="mnw150" data-title="'缴费时间'">{{item.payTime | date:'yyyy-MM-dd HH:mm'}}</td>
+          <td class="mnw75" data-title="'状态'">
+            <span class="label" ng-class="{'label-success':item.status==10,'label-danger':item.status==9}">{{item.statusName}}</span>
+            <button class="btn btn-primary btn-xs" ng-click="ucauth.isAccess({key:'print_payment',func:print,param:item})" ng-disabled="!flag.print_payment">打印凭证</button>
+          </td>
+
+          <!--<td data-title="'操作'" width="200">-->
+            <!--<button class="btn btn-xs btn-warning" ng-click="details(item)" ng-if="item.status==1">详情</button>-->
+            <!--<button class="btn btn-xs btn-success" ng-click="publish(item)" ng-if="item.status!=2">发布</button>-->
+            <!--<button class="btn btn-xs btn-primary" ng-click="edit(item)" ng-if="item.status==0">修改</button>-->
+            <!--<button class="btn btn-xs btn-danger" ng-click="del(item)" ng-if="item.status==1">撤销</button>-->
+          <!--</td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<iframe id="ifile" class="hidden" ng-src="{{the_link}}"></iframe>
+<div print-preview></div>
+

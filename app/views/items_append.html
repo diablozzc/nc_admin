@@ -1,0 +1,61 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="btn-group">
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_append_item',func:add})" ng-disabled="!flag.add_append_item">
+          <i class="fa fa-plus pr5"></i>
+          新增附加项目
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group"></div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:itemAppendListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.itemAppend.autoId}}
+          </td>
+          <td class="mnw200" data-title="'附加项目名称'">{{item.itemAppend.appendName}}</td>
+          <td class="mnw100" data-title="'所属小区'">{{item.communityName}}</td>
+          <td class="mnw100" data-title="'范围类型'">{{item.typeName}}</td>
+          <td class="mnw100" data-title="'费率类型'">{{item.rateTypeName}}</td>
+          <td class="mnw100" data-title="'费率值'" ng-bind-html="item.rateValue">
+
+          </td>
+
+          <td class="mnw150" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_append_item',func:edit,param:item})" ng-disabled="!flag.edit_append_item">修改</button>
+
+            <span confirm-popover title="删除附加项目" content="确定要删除{{item.communityName}}的{{item.itemAppend.appendName}}项目么?" on-action="ucauth.isAccess" value="{key:'del_append_item',func:del,param:item}" value="item" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.del_append_item"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+

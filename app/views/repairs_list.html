@@ -1,0 +1,60 @@
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="hidden-xs hidden-sm col-md-3">
+        <div class="btn-group">
+        </div>
+      </div>
+
+      <div class="btn-group"></div>
+
+      <div class="col-xs-12 col-md-9 text-right">
+        <!--<button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="add()">新增公告</button>-->
+
+        <div class="btn-group mr10" data-toggle="buttons">
+          <label class="btn btn-default light" ng-model="statusModel" btn-radio="0">待受理</label>
+          <label class="btn btn-default light" ng-model="statusModel" btn-radio="1">待反馈</label>
+          <label class="btn btn-default light" ng-model="statusModel" btn-radio="2">已反馈</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:repairListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="mnw100" data-title="'小区'">{{item.communityName}}</td>
+          <td class="mnw150" data-title="'报修内容'">{{item.content}}</td>
+          <td class="mnw100" data-title="'报修人'">{{item.createUser}}</td>
+          <td class="mnw100" data-title="'报修时间'">{{item.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
+          <!--<td class="mnw100 w100" data-title="'受理人'">{{item.acceptMan}}</td>-->
+          <!--<td class="mnw150" data-title="'受理时间'">{{item.acceptTime | date:'yyyy-MM-dd HH:mm'}}</td>-->
+          <!--<td class="mnw100 w100" data-title="'反馈人'">{{item.feedbackMan}}</td>-->
+          <!--<td class="mnw150" data-title="'反馈时间'">{{item.feedbackTime | date:'yyyy-MM-dd HH:mm'}}</td>-->
+          <!--<td class="mnw75 w100" data-title="'状态'">{{item.statusName}}</td>-->
+
+          <td class="w75" data-title="'操作'">
+            <!--<button class="btn btn-xs btn-primary" ng-click="accept(item)" ng-if="item.status==0">受理</button>-->
+
+            <span confirm-popover title="受理投诉" content="确定要受理{{item.autoId}}号报修么?" on-action="ucauth.isAccess" value="{key:'accept_repair',func:accept,param:item}" btn-class="btn-xs btn-primary" btn-name="受理" ng-if="item.status==0" disabled="!flag.accept_repair"></span>
+
+            <button class="btn btn-xs btn-danger" ng-click="ucauth.isAccess({key:'feedback_repair',func:feedback,param:item})" ng-disabled="!flag.feedback_repair" ng-if="item.status==1">反馈</button>
+            <button class="btn btn-xs btn-success" ng-click="check(item)" ng-click="ucauth.isAccess({key:'check_repair',func:check,param:item})" ng-disabled="!flag.check_repair" ng-if="item.status==2">查看</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

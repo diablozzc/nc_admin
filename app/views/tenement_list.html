@@ -1,0 +1,84 @@
+<div class="panel mb10">
+  <div class="panel-menu admin-form">
+    <div class="row">
+      <div class="col-md-4">
+        <div input-text="name" value="the_search.name" label="住户姓名" required="false" auto-action="the_search" on-action="onSearch" col-class="false" size-class="input-sm">
+          <i class="fa fa-times fix-btn" ng-if="the_search.name" ng-click="the_search.name=''"></i>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div input-text="mobile" value="the_search.mobile" label="联系电话" required="false" auto-action="the_search" on-action="onSearch" col-class="false" size-class="input-sm">
+          <i class="fa fa-times fix-btn" ng-if="the_search.mobile" ng-click="the_search.mobile=''"></i>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div input-text="idNumber" value="the_search.idNumber" label="身份证号" required="false" auto-action="the_search" on-action="onSearch" col-class="false" size-class="input-sm">
+          <i class="fa fa-times fix-btn" ng-if="the_search.idNumber" ng-click="the_search.idNumber=''"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <!-- message toolbar header -->
+  <div class="panel-menu">
+    <div class="row">
+      <div class="col-md-12">
+        <span action-btn="add_owner" action="onAddOwner" btn-class="btn btn-success btn-sm" btn-name="新增业主" btn-icon="fa fa-plus pr5" value="selectedRoom" value-type="object"></span>
+        <span action-btn="add_owner" action="onAddFamily" btn-class="btn btn-success btn-sm" btn-name="新增家属" btn-icon="fa fa-plus pr5" value="selectedRoom" value-type="object"></span>
+        <span action-btn="add_owner" action="onAddLessee" btn-class="btn btn-success btn-sm" btn-name="新增租户" btn-icon="fa fa-plus pr5" value="selectedRoom" value-type="object"></span>
+        <span action-btn="edit_owner" action="onEdit" btn-class="btn btn-primary btn-sm" btn-name="编辑" btn-icon="fa fa-edit pr5" value="selectedDataItem" value-type="object"></span>
+        <span action-btn="del_owner" action="onDel" btn-class="btn btn-danger btn-sm" btn-name="迁出" btn-icon="fa fa-minus pr5" value="selectedDataItem" value-type="object" confirm="true" title="删除住户" content="确实要删除该住户吗?"></span>
+
+      </div>
+
+      <!--<div class="col-xs-12 col-md-9 text-right">-->
+
+        <!--<div class="btn-group mr10">-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+        <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    </div>
+  </div>
+
+  <!-- message listings table -->
+  <div class="panel-body pn">
+
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="blank/pager" cg-busy="{promise:ownerListPromise,message:'请稍候...'}" select-container="$data" multi-select="false">
+
+        <tbody>
+        <tr ng-repeat="item in $data" ng-class="{'selected':item.selected}" ng-click="checkIt(item)">
+          <td class="text-center w50" sortable="'autoId'" data-title="'#'">
+            {{item.autoId}}
+          </td>
+          <td class="autocut" data-title="'所在房间'">
+            {{item.communityName}}/{{item.buildingName}}/{{item.unit}}单元/{{item.houseNumber}}号
+            <a href="" ng-click="showRoomTenement(item,$event)" title="查看该房间住户"><i class="glyphicons glyphicons-search"></i></a>
+          </td>
+          <td class="autocut" data-title="'住户姓名'">{{item.name}}</td>
+          <td class="autocut" data-title="'住户身份'">{{item.ownerType | statesName:'ownerType'}}</td>
+          <td class="autocut" data-title="'联系电话'">{{item.mobile}}</td>
+          <td class="autocut" data-title="'身份证'">{{item.idNumber}}</td>
+          <!--<td class="autocut" data-title="'房屋状态'">{{item.saleState}}</td>-->
+          <!--<td class="autocut" data-title="'使用状态'">{{item.useState}}</td>-->
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <div style="text-align: center">
+      <ola-pager tp="pager.tp" cp="pager.cp" ms="pager.ms" table="tableParams"></ola-pager>
+    </div>
+  </div>
+</div>

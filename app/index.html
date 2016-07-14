@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html ng-app="propertyAdminApp" lang="zh_CN">
+
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <title>偶啦物业管理平台</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="muranyun.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/" />
+
+  <!-- Font CSS (Via CDN) -->
+  <link rel='stylesheet' type='text/css' href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700'>
+
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+  <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
+  <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
+  <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css" />
+  <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+  <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
+  <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
+  <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+  <link rel="stylesheet" href="bower_components/nanoscroller/bin/css/nanoscroller.css" />
+  <link rel="stylesheet" href="bower_components/c3/c3.css" />
+  <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-layout/src/ui-layout.css" />
+  <!-- endbower -->
+  <link rel="stylesheet" href="vendor/zTree_v3/css/zTreeStyle/zTreeStyle.css">
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+
+  <!-- endbuild -->
+  <!-- Glyphicons Pro CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/glyphicons-pro/glyphicons-pro.css">
+  <!-- Icomoon CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/icomoon/icomoon.css">
+  <!-- Admin Forms CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
+
+
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body ng-class="{'external-page external-alt sb-l-m sb-r-c invoice-page':$state.includes('pages')}">
+
+<!-- Start: Main -->
+<div id="main" class="fill" ui-view="">
+
+</div>
+<!-- End: Main -->
+
+<!-- Baidu Map -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lFkpGTxh4BR67pxSU7AHMKWx"></script>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/angular-notify/dist/angular-notify.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
+<script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+<script src="bower_components/angular-ui-utils/validate.js"></script>
+<script src="bower_components/js-md5/js/md5.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.min.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+<script src="bower_components/ngDialog/js/ngDialog.js"></script>
+<script src="bower_components/rangy/rangy-core.js"></script>
+<script src="bower_components/rangy/rangy-classapplier.js"></script>
+<script src="bower_components/rangy/rangy-highlighter.js"></script>
+<script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+<script src="bower_components/rangy/rangy-serializer.js"></script>
+<script src="bower_components/rangy/rangy-textrange.js"></script>
+<script src="bower_components/textAngular/dist/textAngular.js"></script>
+<script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+<script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
+<script src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/c3/c3.js"></script>
+<script src="bower_components/angular-chart/angular-chart.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="bower_components/angular-ui-sortable/sortable.js"></script>
+<script src="bower_components/countUp.js/dist/countUp.min.js"></script>
+<script src="bower_components/angularPrint/angularPrint.js"></script>
+<script src="bower_components/angular-ui-layout/src/ui-layout.js"></script>
+<!-- endbower -->
+<script src="vendor/moment/zh-cn.js"></script>
+<!-- endbuild -->
+
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/services/common.js"></script>
+<script src="scripts/services/app.tpl.js"></script>
+<script src="scripts/services/routers.js"></script>
+<script src="scripts/services/config.js"></script>
+<script src="scripts/services/models.js"></script>
+<script src="scripts/services/ucauth.js"></script>
+<script src="scripts/services/errorReport.js"></script>
+
+<script src="scripts/directives/uploadqueue.js"></script>
+<script src="scripts/directives/sidebarmenu.js"></script>
+<script src="scripts/directives/baidumap.js"></script>
+<script src="scripts/directives/tablepager.js"></script>
+<script src="scripts/directives/pager.js"></script>
+<script src="scripts/directives/searcher.js"></script>
+<script src="scripts/directives/ensureunique.js"></script>
+<script src="scripts/directives/addressresolve.js"></script>
+<script src="scripts/directives/areaselect.js"></script>
+<script src="scripts/directives/itemselect.js"></script>
+<script src="scripts/directives/datetimeselect.js"></script>
+<script src="scripts/directives/uploadpreview.js"></script>
+<script src="scripts/directives/inputcontrol.js"></script>
+<script src="scripts/directives/daterangeselect.js"></script>
+<script src="scripts/directives/confirmpopover.js"></script>
+<script src="scripts/directives/listfilter.js"></script>
+
+<script src="scripts/filters/filters.js"></script>
+
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/upload.js"></script>
+<script src="scripts/controllers/communities.js"></script>
+<script src="scripts/controllers/editorcommunity.js"></script>
+<script src="scripts/controllers/breadcrumb.js"></script>
+<script src="scripts/controllers/signin.js"></script>
+<script src="scripts/controllers/signup.js"></script>
+<script src="scripts/controllers/welcome.js"></script>
+<script src="scripts/controllers/admin.js"></script>
+<script src="scripts/controllers/buildings.js"></script>
+<script src="scripts/controllers/editorbuilding.js"></script>
+<script src="scripts/controllers/rooms.js"></script>
+<script src="scripts/controllers/editorroom.js"></script>
+<script src="scripts/controllers/owners.js"></script>
+<script src="scripts/controllers/editorowner.js"></script>
+<script src="scripts/controllers/lessee.js"></script>
+<script src="scripts/controllers/items.js"></script>
+<script src="scripts/controllers/editoritems.js"></script>
+<script src="scripts/controllers/meters.js"></script>
+<script src="scripts/controllers/editormeter.js"></script>
+<script src="scripts/controllers/bills.js"></script>
+<script src="scripts/controllers/creatorbills.js"></script>
+<script src="scripts/controllers/editorbill.js"></script>
+<script src="scripts/controllers/employees.js"></script>
+<script src="scripts/controllers/editoremployee.js"></script>
+<script src="scripts/controllers/affiches.js"></script>
+<script src="scripts/controllers/editoraffiche.js"></script>
+<script src="scripts/controllers/suggestions.js"></script>
+<script src="scripts/controllers/checksuggestion.js"></script>
+<script src="scripts/controllers/feedbacksuggestion.js"></script>
+<script src="scripts/controllers/activities.js"></script>
+<script src="scripts/controllers/editoractivity.js"></script>
+<script src="scripts/controllers/activityentry.js"></script>
+<script src="scripts/controllers/repairs.js"></script>
+<script src="scripts/controllers/checkrepair.js"></script>
+<script src="scripts/controllers/feedbackrepair.js"></script>
+<script src="scripts/controllers/conveniences.js"></script>
+<script src="scripts/controllers/editorconvenience.js"></script>
+<script src="scripts/controllers/publishaffiche.js"></script>
+<script src="scripts/controllers/affichesdetails.js"></script>
+<script src="scripts/controllers/entering.js"></script>
+<script src="scripts/controllers/tenement.js"></script>
+<script src="scripts/controllers/tenementsearcher.js"></script>
+<script src="scripts/controllers/menus.js"></script>
+<script src="scripts/controllers/assignmenus.js"></script>
+<script src="scripts/controllers/bylaw.js"></script>
+<script src="scripts/controllers/editorbylaw.js"></script>
+<script src="scripts/controllers/family.js"></script>
+<script src="scripts/controllers/payrecord.js"></script>
+
+<script src="scripts/controllers/checkin.js"></script>
+<script src="scripts/controllers/meterreport.js"></script>
+<script src="scripts/controllers/roomgenerator.js"></script>
+<script src="scripts/controllers/suggestionssearcher.js"></script>
+<script src="scripts/controllers/repairssearcher.js"></script>
+<script src="scripts/controllers/guide.js"></script>
+<script src="scripts/controllers/editorguide.js"></script>
+<script src="scripts/controllers/userinfo.js"></script>
+<script src="scripts/controllers/password.js"></script>
+<script src="scripts/controllers/withdraw.js"></script>
+<script src="scripts/directives/countup.js"></script>
+<script src="scripts/controllers/usercenter.js"></script>
+<script src="scripts/directives/tabledolly.js"></script>
+<script src="scripts/controllers/itemappend.js"></script>
+<script src="scripts/controllers/editorappenditem.js"></script>
+<script src="scripts/controllers/itemspecial.js"></script>
+<script src="scripts/controllers/editorspecialitem.js"></script>
+<script src="scripts/directives/printpreview.js"></script>
+<script src="scripts/directives/selectcontainer.js"></script>
+<script src="scripts/directives/olatree.js"></script>
+<!-- endbuild -->
+
+<!-- Theme Javascript -->
+<!--<script src="assets/js/utility/utility.js"></script>-->
+<script src="assets/js/utility/json2.js"></script>
+<script src="assets/js/utility/fullscreen.js"></script>
+<script src="assets/js/demo/demo.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+
+
+<input type="text" ng-model="username"/>
+<button ngf-select
+        ngf-multiple="true"
+        ng-model="files"
+        class="btn btn-default">
+  上传
+</button>
+
+<hr/>
+
+<div upload-queue multiple="true" maxfiles="3"></div>
+
+<hr/>
+
+<button ng-click="create_file()">Test POST</button>
+
+

@@ -1,0 +1,78 @@
+<div class="admin-form theme-primary">
+  <div class="panel heading-border panel-primary">
+    <form id="bylawForm" ng-submit="save()" name="bylawForm">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section ">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="the_bylaw.community" title="所在小区" name-key="name" val-key="code"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+
+                  <div class="form-group">
+                    <div input-text="name" value="the_bylaw.title" label="标题" required="true"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+
+                  <div class="form-group">
+                    <div input-text="name" value="the_bylaw.scope" label="适用范围" required="true"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component" ng-class="{'has-error':bylawForm.content.$invalid}">
+                        <div text-angular="" name="content" ng-model="bylawContent" placeholder="规章内容" required encode-text="the_bylaw.content"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+        <!-- end .section -->
+    </div>
+    <!-- end .form-body section -->
+    <div class="panel-footer">
+      <button type="submit" class="button btn-primary" ng-disabled="bylawForm.$invalid">保存</button>
+      <button type="button" class="button" ng-click="close()">关闭</button>
+    </div>
+    </form>
+    <!-- end .form-footer section -->
+  </div>
+
+</div>

@@ -1,0 +1,113 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="billForm" ng-submit="save()" name="billForm" class="form-horizontal">
+    <div class="panel-body bg-light">
+
+        <div class="section-divider mb40" id="spy1">
+          <span>{{::form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="community_list" selected-value="current.community" title="所属小区" name-key="name" val-key="code" on-change="onCommunityChange"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="building_list" selected-value="current.buildingId" title="所属楼宇" name-key="name" val-key="autoId" on-change="onBuildingChange"></div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="unit_list" selected-value="current.unit" title="所属单元" name-key="name" val-key="val" on-change="onUnitChange"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="room_list" selected-value="the_bill.room" title="所属房间" name-key="houseNumber" val-key="code" on-change="onRoomChange"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" ng-if="the_bill.room">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="item_list" selected-value="the_bill.item" title="缴费项目" name-key="name" val-key="autoId" ></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-number="paymentAmt" value="the_bill.paymentAmt" label="账单金额" required="true" min="0"></div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="section">
+                  <div class="form-group">
+
+
+                    <div datetime-select select-id="billPeriod" select-value="the_bill.period" format="yyyy-MM-dd" min-view="day" label="账期" icon="fa fa-calendar"></div>
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="button btn-primary" ng-disabled="billForm.$invalid">保存</button>
+      <button type="button" class="button btn-primary" ng-click="save(true)" ng-disabled="billForm.$invalid">保存并继续添加</button>
+      <button type="button" class="button" ng-click="close()">关闭</button>
+    </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>
