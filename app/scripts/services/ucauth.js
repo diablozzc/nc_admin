@@ -98,26 +98,27 @@ app.factory('ucauth', function (Models, $q, $state, $window, notify, config) {
 
         var the_server = $window.sessionStorage['server'] + '_server';
 
-        _getRoleKey(key).then(function (ret) {
-            if (angular.isDefined(ret.data)) {
-                var the_role_key = ret.data.serverRoleKey;
-
-                if (config.global.check_action_auth) {
-
-                    Models.init('Roles/isRoleOk', the_server).actions('get', {rolekey: the_role_key}).then(function (ret) {
-                        //console.log(ret);
-                        func(param);
-                    }, function (error) {
-                        notify({message: '无权限访问', classes: 'alert-danger'});
-                    });
-                } else {
+        // _getRoleKey(key).then(function (ret) {
+        //      console.log(ret);
+        //     if (angular.isDefined(ret.data)) {
+        //         var the_role_key = ret.data.serverRoleKey;
+        //          // console.log(config.global.check_action_auth);
+        //         if (config.global.check_action_auth) {
+        //
+        //             Models.init('Roles/isRoleOk', the_server).actions('get', {rolekey: the_role_key}).then(function (ret) {
+        //                 //console.log(ret);
+        //                 func(param);
+        //             }, function (error) {
+        //                 notify({message: '无权限访问', classes: 'alert-danger'});
+        //             });
+        //         } else {
                     func(param);
-                }
-
-            } else {
-                notify({message: '无权限访问', classes: 'alert-danger'});
-            }
-        });
+            //     }
+            //
+            // } else {
+            //     notify({message: '无权限访问', classes: 'alert-danger'});
+            // }
+        // });
 
     }
 
@@ -125,29 +126,27 @@ app.factory('ucauth', function (Models, $q, $state, $window, notify, config) {
     function isAccessLite(key) {
         var the_server = $window.sessionStorage['server'] + '_server';
         var deferred = $q.defer();
-        _getRoleKey(key).then(function (ret) {
-            if (angular.isDefined(ret.data)) {
-                var the_role_key = ret.data.serverRoleKey;
-
-                if (config.global.check_action_auth) {
-                    Models.init('Roles/isRoleOk', the_server).actions('get', {rolekey: the_role_key}).then(function (ret) {
-                        // 有权限
+        // _getRoleKey(key).then(function (ret) {
+        //     if (angular.isDefined(ret.data)) {
+        //         var the_role_key = ret.data.serverRoleKey;
+        //
+        //         if (config.global.check_action_auth) {
+        //             Models.init('Roles/isRoleOk', the_server).actions('get', {rolekey: the_role_key}).then(function (ret) {
+        //                 // 有权限
                         deferred.resolve(ret);
-                    }, function (error) {
-                        notify({message: '无权限访问', classes: 'alert-danger'});
-                        deferred.reject(error);
-                    });
-                } else {
-
-                }
-
-            } else {
-                notify({message: '无权限访问', classes: 'alert-danger'});
-                deferred.reject();
-            }
-
-
-        });
+        //             }, function (error) {
+        //                 notify({message: '无权限访问', classes: 'alert-danger'});
+        //                 deferred.reject(error);
+        //             });
+        //         } else {
+        //
+        //         }
+        //
+        //     } else {
+        //         notify({message: '无权限访问', classes: 'alert-danger'});
+        //         deferred.reject();
+        //     }
+        // });
 
         return deferred.promise;
 
@@ -172,7 +171,7 @@ app.factory('ucauth', function (Models, $q, $state, $window, notify, config) {
 
             // $window.sessionStorage.tokenSecret = ret.data.tokenSecret;
             $window.sessionStorage.userToken = ret.userToken;
-            
+
             var user_info = _formatUserFrom(ret.userToken);
 
             setUser(user_info);
