@@ -142,7 +142,7 @@
         //       {action:'signup',method:'POST',isArray:false}
         //     ],serverKey:'auth_server'
         // },
-       
+
         // 'Usernames':{
         //   name:'Usernames',uri:'usernames',actions:[
         //     {action:'check',method:'POST',isArray:false}
@@ -359,12 +359,12 @@
           ],serverKey:'prop_server'
         },
 
-        'Admins':{
-          name:'Admins',uri:'admins',actions:[
-            {action:'add',method:'POST',isArray:false},
-            {action:'list',method:'GET',isArray:false}
-          ],serverKey:'prop_server'
-        },
+        // 'Admins':{
+        //   name:'Admins',uri:'admins',actions:[
+        //     {action:'add',method:'POST',isArray:false},
+        //     {action:'list',method:'GET',isArray:false}
+        //   ],serverKey:'prop_server'
+        // },
         'Admins/id':{
           name:'Admins/id',uri:'admins/:autoId',actions:[
             {action:'get',method:'GET',isArray:false},
@@ -372,7 +372,7 @@
             {action:'delete',method:'DELETE',isArray:false}
           ],serverKey:'prop_server'
         },
-      
+
         'Affiches':{
           name:'Affiches',uri:'affiches',actions:[
             {action:'add',method:'POST',isArray:false},
@@ -615,7 +615,7 @@
             {action:'cancel',method:'PUT',isArray:false}
           ],serverKey:'as_server'
         },
-        
+
         //微信通
         'Users':{
           name:'Users',uri:'users',actions:[
@@ -642,11 +642,18 @@
             {action:'get',method:'GET',isArray:false}
           ],serverKey:'nc_server'
         },
+        'Admins':{
+          name:'Admins',uri:'admins',actions:[
+            {action:'add',method:'POST',isArray:false},
+            {action:'list',method:'GET',isArray:false}
+          ],serverKey:'nc_server'
+        },
         'Menus/UserMenus':{
           name:'Menus/UserMenus',uri:'v1/menus/usermenus',actions:[
             {action:'get',method:'GET',isArray:true}
           ],serverKey:'nc_server'
         },
+
       },
       states:{
         saleState:[
