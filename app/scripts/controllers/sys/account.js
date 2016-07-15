@@ -11,12 +11,12 @@ app.controller('AccountCtrl', function ($rootScope, $scope, $state, $stateParams
   $scope.flag.edit_employee = false;
   $scope.flag.del_employee = false;
   $scope.flag.save_menugroup = false;
-
+  $scope.flag.reset_pwd = false;
   ucauth.hasRole('add_employee', $scope.flag);
   ucauth.hasRole('edit_employee', $scope.flag);
   ucauth.hasRole('del_employee', $scope.flag);
   ucauth.hasRole('save_menugroup', $scope.flag);
-
+  ucauth.hasRole('reset_pwd',$scope.flag);
   // 获取分页数据
   $scope.getPageList = function () {
 
@@ -72,9 +72,9 @@ app.controller('AccountCtrl', function ($rootScope, $scope, $state, $stateParams
   };
 
   //重置密码
-  $scope.resetPwd=function (item) {
-    Models.init('Admins/AutoId').actions('delete', {}, {'autoId': item.autoId}).then(function (ret) {
-        notify({message: '该员工已删除', classes: 'alert-success'});
+  $scope.resetPwd = function (item) {
+    Models.init('Users/ResetPwd').actions('reset', {}, {'username': item.username}).then(function (ret) {
+        notify({message: '密码重置成功', classes: 'alert-success'});
         $scope.tableParams.reload();
       },
       function (err) {

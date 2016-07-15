@@ -621,16 +621,7 @@ app.value('config', {
       },
 
       //微信通
-      'Users':{
-        name:'Users',uri:'users',actions:[
-          {action:'signup',method:'POST',isArray:false}
-        ],serverKey:'nc_server'
-      },
-      'Usernames':{
-        name:'Usernames',uri:'usernames',actions:[
-          {action:'check',method:'POST',isArray:false}
-        ],serverKey:'nc_server'
-      },
+
       'Users/Username/Login':{
         name:'Users/Username/Login',uri:'users/login',actions:[
           {action:'signin',method:'POST',isArray:false}
@@ -639,6 +630,11 @@ app.value('config', {
       'Users/LoginOut':{
         name:'Menus/UserMenus',uri:'users/loginout',actions:[
           {action:'loginout',method:'POST',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'Users/ResetPwd':{
+        name:'Users/ResetPwd',uri:'users/:username/password/reset',actions:[
+          {action:'reset',method:'POST',isArray:false}
         ],serverKey:'nc_server'
       },
       'Admins/getByUsername/username':{
@@ -659,6 +655,7 @@ app.value('config', {
           {action:'update',method:'PUT',isArray:false}
         ],serverKey:'nc_server'
       },
+
       'Menus/UserMenus':{
         name:'Menus/UserMenus',uri:'v1/menus/usermenus',actions:[
           {action:'get',method:'GET',isArray:true}
