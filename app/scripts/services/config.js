@@ -134,7 +134,11 @@
 
         // 'admin.sys':{parent:'admin.welcome',text:'系统管理'},
         'admin.sys.account':{parent:'admin.welcome',text:'账户管理',href:'admin.sys.account'},
+        'admin.sys.add':{parent:'admin.sys.account',text:'新增员工',href:'admin.sys.add'},
+        'admin.sys.edit':{parent:'admin.sys.account',text:'修改员工',href:'admin.sys.edit'},
+
         'admin.sys.role':{parent:'admin.welcome',text:'权限管理',href:'admin.sys.role'},
+        
       },
       resources:{
         // 'Users':{
@@ -644,8 +648,15 @@
         },
         'Admins':{
           name:'Admins',uri:'admins',actions:[
-            {action:'add',method:'POST',isArray:false},
+            {action:'add',method:'POST',isArray:false,requestType:'json'},
             {action:'list',method:'GET',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Admins/AutoId':{
+          name:'Admins/AutoId',uri:'admins/:autoId',actions:[
+            {action:'get',method:'GET',isArray:false},
+            {action:'delete',method:'DELETE',isArray:false},
+            {action:'update',method:'PUT',isArray:false}
           ],serverKey:'nc_server'
         },
         'Menus/UserMenus':{

@@ -162,6 +162,20 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       }
     })
+    .state('admin.sys.edit', {
+      url: '/{itemId:[0-9]{1,4}}/{action:edit}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'forms': {
+          templateUrl: 'partials/editor_employee.html',
+          controller: 'EditoremployeeCtrl'
+        }
+      }
+    })
     .state('admin.sys.role', {
       url: '/role',
       resolve: {
