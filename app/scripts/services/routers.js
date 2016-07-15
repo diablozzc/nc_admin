@@ -190,20 +190,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       }
     }
   })
-    .state('admin.sys.column', {
-      url: '/column',
-      resolve: {
-        auth: function (authService) {
-          return authService.auth();
-        }
-      },
-      views: {
-        'forms': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
-        }
-      }
-    })
+
+    //文章管理
     .state('admin.article', {
       url: 'article',
       resolve: {
@@ -274,6 +262,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       }
     })
+
+    //信息反馈
     .state('admin.comment', {
       url: 'comment/list',
       resolve: {
@@ -302,6 +292,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       }
     })
+
+    //活动管理
     .state('admin.activity', {
       url: 'activity',
       resolve: {
