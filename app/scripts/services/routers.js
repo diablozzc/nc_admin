@@ -2,122 +2,165 @@
  * Created by zhangzhichao on 15/10/19.
  */
 
-  // 配置路由
-app.config(function ($stateProvider,$urlRouterProvider,$httpProvider,$locationProvider) {
+// 配置路由
+app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
-  $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 
-  $urlRouterProvider.otherwise('/signin');
+    $urlRouterProvider.otherwise('/signin');
 
-  $stateProvider
-  // 页面路由
-    .state('pages',{
-      templateUrl:'views/pages.html'
-    })
-    // 登录
-    .state('pages.signin',{
-      url:'/signin',
-      views:{
-        '':{
-          templateUrl:'views/signin.html',
-          controller:'SigninCtrl'
-        }
-      }
-    })
-    // 注册
-    .state('pages.signup',{
-      url:'/signup',
-      views:{
-        '':{
-          templateUrl:'views/signup.html',
-          controller:'SignupCtrl'
-        }
-      }
-    })
+    $stateProvider
+    // 页面路由
+        .state('pages', {
+            templateUrl: 'views/pages.html'
+        })
+        // 登录
+        .state('pages.signin', {
+            url: '/signin',
+            views: {
+                '': {
+                    templateUrl: 'views/signin.html',
+                    controller: 'SigninCtrl'
+                }
+            }
+        })
+        // 注册
+        .state('pages.signup', {
+            url: '/signup',
+            views: {
+                '': {
+                    templateUrl: 'views/signup.html',
+                    controller: 'SignupCtrl'
+                }
+            }
+        })
 
-    // 后台路由
-    .state('admin',{
-      abstract:true,
-      url:'/',
-      resolve:{
-        auth:function(authService){
-          return authService.auth();
-        }
-      },
-      templateUrl:'views/admin.html',
-      controller:'AdminCtrl'
-    })
-    // 欢迎屏
-    .state('admin.welcome',{
-      url:'welcome',
-      resolve:{
-        auth:function(authService){
-          return authService.auth();
-        }
-      },
-      views:{
-        'content':{
-          templateUrl:'views/welcome.html',
-          controller:'WelcomeCtrl'
-        }
-      }
-    })
-    // 小区管理
-    .state('admin.communities',{
-      url:'communities',
-      resolve:{
-        auth:function(authService){
-          return authService.auth();
-        }
-      },
-      views:{
-        'content':{
-          templateUrl:'views/communities.html',
-          controller:'CommunitiesCtrl'
-        }
-      }
-    })
-    .state('admin.communities.list',{
-      url:'/list',
-      resolve:{
-        auth:function(authService){
-          return authService.auth();
-        }
-      },
-      views:{
-        'table':{
-          templateUrl:'views/communities_list.html',
-        }
-      }
-    })
-    .state('admin.communities.add',{
-      url:'/{action:add}',
-      resolve:{
-        auth:function(authService){
-          return authService.auth();
-        }
-      },
-      views:{
-        'forms':{
-          templateUrl:'partials/editor_community.html',
-          controller:'EditorcommunityCtrl'
-        }
-      }
-    })
-    .state('admin.communities.edit',{
-      url:'/{itemId:[0-9]{1,4}}/{action:edit}',
-      resolve:{
-        auth:function(authService){
-          return authService.auth();
-        }
-      },
-      views:{
-        'forms':{
-          templateUrl:'partials/editor_community.html',
-          controller:'EditorcommunityCtrl'
-        }
-      }
-    })
+        // 后台路由
+        .state('admin', {
+            abstract: true,
+            url: '/',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            templateUrl: 'views/admin.html',
+            controller: 'AdminCtrl'
+        })
+        // 欢迎屏
+        .state('admin.welcome', {
+            url: 'welcome',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'content': {
+                    templateUrl: 'views/welcome.html',
+                    controller: 'WelcomeCtrl'
+                }
+            }
+        })
+        // 小区管理
+        .state('admin.communities', {
+            url: 'communities',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'content': {
+                    templateUrl: 'views/communities.html',
+                    controller: 'CommunitiesCtrl'
+                }
+            }
+        })
+        .state('admin.communities.list', {
+            url: '/list',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'table': {
+                    templateUrl: 'views/communities_list.html',
+                }
+            }
+        })
+        .state('admin.communities.add', {
+            url: '/{action:add}',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'forms': {
+                    templateUrl: 'partials/editor_community.html',
+                    controller: 'EditorcommunityCtrl'
+                }
+            }
+        })
+        .state('admin.communities.edit', {
+            url: '/{itemId:[0-9]{1,4}}/{action:edit}',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'forms': {
+                    templateUrl: 'partials/editor_community.html',
+                    controller: 'EditorcommunityCtrl'
+                }
+            }
+        })
+
+        //系统管理
+        .state('admin.sys', {
+            url: 'sys',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'content': {
+                    templateUrl: 'views/sys/sys.html'
+                }
+            }
+        })
+        .state('admin.sys.account', {
+            url: '/account',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'content': {
+                    templateUrl: 'views/sys/account.html',
+                    controller: 'AccountCtrl'
+                }
+            }
+        })
+        .state('admin.sys.role', {
+            url: '/role',
+            resolve: {
+                auth: function (authService) {
+                    return authService.auth();
+                }
+            },
+            views: {
+                'content': {
+                    templateUrl: 'views/communities.html',
+                    controller: 'CommunitiesCtrl'
+                }
+            }
+        })
     // 楼宇管理
     // .state('admin.buildings',{
     //   url:'buildings',
@@ -1202,52 +1245,52 @@ app.config(function ($stateProvider,$urlRouterProvider,$httpProvider,$locationPr
     //     }
     //   }
     // })
-    // .state('admin.usercenter',{
-    //   url:'usercenter',
-    //   resolve:{
-    //     auth:function(authService){
-    //       return authService.auth();
-    //     }
-    //   },
-    //   views:{
-    //     'breadcrumb':{
-    //       templateUrl:'views/breadcrumb.html',
-    //       controller:'BreadcrumbCtrl'
-    //     },
-    //     'content':{
-    //       templateUrl:'views/usercenter.html',
-    //       controller:'UsercenterCtrl'
-    //     }
-    //   }
-    // })
-    // .state('admin.usercenter.userinfo',{
-    //   url:'/userinfo',
-    //   resolve:{
-    //     auth:function(authService){
-    //       return authService.auth();
-    //     }
-    //   },
-    //   views:{
-    //     'table':{
-    //       templateUrl:'views/userinfo.html',
-    //       controller:'UserinfoCtrl'
-    //     }
-    //   }
-    // })
-    // .state('admin.usercenter.password',{
-    //   url:'/password',
-    //   resolve:{
-    //     auth:function(authService){
-    //       return authService.auth();
-    //     }
-    //   },
-    //   views:{
-    //     'table':{
-    //       templateUrl:'views/password.html',
-    //       controller:'PasswordCtrl'
-    //     }
-    //   }
-    // })
+    .state('admin.usercenter',{
+      url:'usercenter',
+      resolve:{
+        auth:function(authService){
+          return authService.auth();
+        }
+      },
+      views:{
+        'breadcrumb':{
+          templateUrl:'views/breadcrumb.html',
+          controller:'BreadcrumbCtrl'
+        },
+        'content':{
+          templateUrl:'views/usercenter.html',
+          controller:'UsercenterCtrl'
+        }
+      }
+    })
+    .state('admin.usercenter.userinfo',{
+      url:'/userinfo',
+      resolve:{
+        auth:function(authService){
+          return authService.auth();
+        }
+      },
+      views:{
+        'table':{
+          templateUrl:'views/userinfo.html',
+          controller:'UserinfoCtrl'
+        }
+      }
+    })
+    .state('admin.usercenter.password',{
+      url:'/password',
+      resolve:{
+        auth:function(authService){
+          return authService.auth();
+        }
+      },
+      views:{
+        'table':{
+          templateUrl:'views/password.html',
+          controller:'PasswordCtrl'
+        }
+      }
+    })
     // .state('admin.usercenter.withdraw',{
     //   url:'/list',
     //   resolve:{
@@ -1264,8 +1307,7 @@ app.config(function ($stateProvider,$urlRouterProvider,$httpProvider,$locationPr
     // })
 
 
-
-  $httpProvider.interceptors.push('authInterceptor');
+    $httpProvider.interceptors.push('authInterceptor');
 
 
 });

@@ -1,0 +1,72 @@
+<div class="panel">
+    <!-- message toolbar header -->
+    <div class="panel-menu">
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-md-3">
+                <div class="btn-group">
+                    <!--<button type="button" class="btn btn-default light">-->
+                    <!--<i class="fa fa-refresh"></i>-->
+                    <!--</button>-->
+                    <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_activity',func:add})" ng-disabled="!flag.add_activity">
+                        <i class="fa fa-plus pr5"></i>
+                        新增活动
+                    </button>
+                </div>
+            </div>
+
+            <div class="btn-group">
+            </div>
+
+            <div class="col-xs-12 col-md-9 text-right">
+                <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_activity',func:add})" ng-disabled="!flag.add_activity">新增活动</button>
+
+                <!--<div class="btn-group mr10">-->
+                <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
+                <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="0">未审核</label>-->
+                <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="1">已审核</label>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- message listings table -->
+    <div class="panel-body pn">
+        <div class="table-responsive">
+            <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/pager" cg-busy="{promise:activitiesListPromise,message:'请稍候...'}">
+
+                <tbody>
+                <tr ng-repeat="item in $data">
+                    <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
+                    <td class="w100" data-title="'活动标题'" sortable="'title'">{{item.title}}</td>
+                    <td class="mnw150" data-title="'所在地'">{{item.provinceName}}/{{item.cityName}}/{{item.areaName}}</td>
+                    <td class="mnw100" data-title="'开始时间'" sortable="'startTime'">{{item.startTime | date:"yyyy-MM-dd"}}</td>
+                    <td class="mnw100" data-title="'结束时间'" sortable="'endTime'">{{item.endTime | date:"yyyy-MM-dd"}}</td>
+                    <td class="mnw100" data-title="'报名截止时间'" sortable="'closeTime'">{{item.closeTime | date:"yyyy-MM-dd"}}</td>
+
+                    <td class="w150" data-title="'操作'">
+                        <!--<button class="btn btn-xs btn-success" ng-click="ucauth.isAccess({key:'entry_activities',func:entry,param:item})">详情</button>-->
+                        <button class="btn btn-xs btn-success" ng-click="ucauth.isAccess({key:'entry_activity',func:entry,param:item})" ng-disabled="!flag.entry_activity">详情</button>
+                        <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'edit_activity',func:edit,param:item})" ng-disabled="!flag.edit_activity">编辑</button>
+
+                        <span confirm-popover title="删除活动" content="确定要删除{{item.title}}么?" on-action="ucauth.isAccess" value="{key:'remove_activity',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除" disabled="!flag.remove_activity"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="custom/pager">
+
+    <div style="text-align: center">
+        <table-pager></table-pager>
+    </div>
+
+</script>
+
+
+
+
+

@@ -23,7 +23,7 @@ app.controller('SigninCtrl', function ($scope,$state,localStorageService,notify,
     $scope.signined = true;
 
     $scope.signinPromise = ucauth.login($scope.user.user,md5($scope.user.password)).then(function(ret){
-      if(ret.meta.code === 200){
+
         if($scope.remember){
           localStorageService.set('last_user',$scope.user.user);
         }else{
@@ -32,12 +32,9 @@ app.controller('SigninCtrl', function ($scope,$state,localStorageService,notify,
 
         notify({message:'登录成功',classes:'alert-success'});
         $state.go("admin.welcome");
-      }else{
-        notify({message:ret.meta.error,classes:'alert-danger'});
-        $scope.signined = false;
-      }
+     
     },function(error){
-      notify({message:'服务器错误',classes:'alert-danger'});
+      notify({message:error.data.info,classes:'alert-danger'});
       $scope.signined = false;
     });
   };

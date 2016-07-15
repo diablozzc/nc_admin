@@ -58,12 +58,12 @@ app.controller('CommunitiesCtrl', function ($rootScope, $scope, $state, $statePa
           the_param.sorting = sort_param;
         }
 
-        $scope.communitiesListPromise = Models.init('Communities').actions('list', the_param).then(function (ret) {
-          if (ret.meta.code == 200) {
-            params.total(ret.data.totalRecord);
-            $defer.resolve(ret.data.data);
-          }
-        });
+        // $scope.communitiesListPromise = Models.init('Communities').actions('list', the_param).then(function (ret) {
+        //   if (ret.meta.code == 200) {
+        //     params.total(ret.data.totalRecord);
+        //     $defer.resolve(ret.data.data);
+        //   }
+        // });
       }
     });
 

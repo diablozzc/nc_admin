@@ -16,6 +16,7 @@
 
         //处理菜单数据扁平化
         function flatMenu(menus){
+          
           var flat = [];
           angular.forEach(menus,function(value,key){
             if(value.type === 'group'){
@@ -117,9 +118,9 @@
           //
           //getRoles(ret.data,my_roles);
           //console.log(my_roles);
-          ucauth.setRoleFromMenus(ret.data);
+          ucauth.setRoleFromMenus(ret);
 
-          scope.menus = flatMenu(ret.data);
+          scope.menus = flatMenu(ret);
           lodash.map(scope.menus,function(menu){
             scope.linkMenu(menu);
           });

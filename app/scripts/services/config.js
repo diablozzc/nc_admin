@@ -10,16 +10,6 @@
 // var server = 'http://file.muranyun.com/';
   app.value('config', {
     global:{
-      // server_domain:server,
-      //auth_server:'http://auth.muranyun.com:8080/api/v1/',
-      //prop_server:'http://pp.muranyun.com:8081/api/v1/',
-      //sys_server:'http://sys.muranyun.com:8082/api/v1/',
-      //fs_server:'http://fs.muranyun.com:8084/api/v1/',
-      //ad_server:'http://ad.muranyun.com:8085/api/v1/',
-      //ps_server:'http://ps.muranyun.com:8087/api/v1/',
-      //as_server:'http://as.muranyun.com:8088/api/v1/',
-      //sc_server:'http://sc.muranyun.com:8090/api/v1/',
-
       auth_server:'http://auth.muranyun.com/api/v1/',
       prop_server:'http://pp.muranyun.com/api/v1/',
       sys_server:'http://sys.muranyun.com/api/v1/',
@@ -34,8 +24,8 @@
       download_payrecords:'payrecords/reports/excel',
       download_bills:'bills/reports/excel',
       qiniu_pub_domain:'http://7xjr8j.com1.z0.glb.clouddn.com/',
-      user_sys:'property',
-      check_action_auth:true
+      user_sys:'admin',
+      check_action_auth:false
     },
     data:{
       menus:[
@@ -63,7 +53,7 @@
         ]}
       ],
       breadcrumb:{
-        'admin.welcome':{parent:'',text:'物业管理系统',href:'admin.welcome'},
+        'admin.welcome':{parent:'',text:'微信通管理平台',href:'admin.welcome'},
         'admin.communities.list':{parent:'admin.welcome',text:'小区管理',href:'admin.communities.list'},
         'admin.communities.add':{parent:'admin.communities.list',text:'新增小区',href:'admin.communities.add'},
         'admin.communities.edit':{parent:'admin.communities.list',text:'修改小区',href:'admin.communities.edit'},
@@ -142,29 +132,32 @@
         'admin.usercenter.password':{parent:'admin.welcome',text:'密码管理',href:'admin.usercenter.password'},
         'admin.usercenter.withdraw':{parent:'admin.welcome',text:'提款管理',href:'admin.usercenter.withdraw'},
 
-
+        // 'admin.sys':{parent:'admin.welcome',text:'系统管理'},
+        'admin.sys.account':{parent:'admin.welcome',text:'账户管理',href:'admin.sys.account'},
+        'admin.sys.role':{parent:'admin.welcome',text:'权限管理',href:'admin.sys.role'},
       },
       resources:{
-        'Users':{
-            name:'Users',uri:'users',actions:[
-              {action:'signup',method:'POST',isArray:false}
-            ],serverKey:'auth_server'
-        },
-        'Usernames':{
-          name:'Usernames',uri:'usernames',actions:[
-            {action:'check',method:'POST',isArray:false}
-          ],serverKey:'auth_server'
-        },
-        'Usertokens':{
-          name:'Usertokens',uri:'usertokens',actions:[
-            {action:'signin',method:'POST',isArray:false},
-            {action:'signout',method:'DELETE',isArray:false}
-          ],serverKey:'auth_server'
-        },
+        // 'Users':{
+        //     name:'Users',uri:'users',actions:[
+        //       {action:'signup',method:'POST',isArray:false}
+        //     ],serverKey:'auth_server'
+        // },
+       
+        // 'Usernames':{
+        //   name:'Usernames',uri:'usernames',actions:[
+        //     {action:'check',method:'POST',isArray:false}
+        //   ],serverKey:'auth_server'
+        // },
+        // 'Usertokens':{
+        //   name:'Usertokens',uri:'usertokens',actions:[
+        //     {action:'signin',method:'POST',isArray:false},
+        //     {action:'signout',method:'DELETE',isArray:false}
+        //   ],serverKey:'auth_server'
+        // },
         'Passwords/Update':{
-          name:'Passwords/Update',uri:'passwords/update',actions:[
+          name:'Passwords/Update',uri:'users/:username/password',actions:[
             {action:'update',method:'POST',isArray:false}
-          ],serverKey:'auth_server'
+          ],serverKey:'nc_server'
         },
 
         'Properties/getbycode':{
@@ -379,11 +372,7 @@
             {action:'delete',method:'DELETE',isArray:false}
           ],serverKey:'prop_server'
         },
-        'Admins/getByUsername/username':{
-          name:'Admins/getByUsername/username',uri:'admins/getbyusername/:username',actions:[
-            {action:'get',method:'GET',isArray:false}
-          ],serverKey:'prop_server'
-        },
+      
         'Affiches':{
           name:'Affiches',uri:'affiches',actions:[
             {action:'add',method:'POST',isArray:false},
@@ -534,11 +523,11 @@
           ],serverKey:'prop_server'
         },
 
-        'Menus/UserMenus':{
-          name:'Menus/UserMenus',uri:'menus/usermenus',actions:[
-            {action:'get',method:'GET',isArray:false}
-          ],serverKey:'prop_server'
-        },
+        // 'Menus/UserMenus':{
+        //   name:'Menus/UserMenus',uri:'menus/usermenus',actions:[
+        //     {action:'get',method:'GET',isArray:false}
+        //   ],serverKey:'prop_server'
+        // },
         'MenuGroups':{
           name:'MenuGroups',uri:'menugroups',actions:[
             {action:'add',method:'POST',isArray:false},
@@ -579,7 +568,7 @@
         'RoleRelations/getByKey/clientKey':{
           name:'RoleRelations/getByKey/clientKey',uri:'rolerelations/getbykey/:clientKey',actions:[
             {action:'get',method:'GET',isArray:false}
-          ],serverKey:'sys_server'
+          ],serverKey:'nc_server'
         },
 
         'Provinces/getchild':{
@@ -625,8 +614,39 @@
           name:'WdApplys/Cancel',uri:'wdapplys/cancle/:autoId',actions:[
             {action:'cancel',method:'PUT',isArray:false}
           ],serverKey:'as_server'
-        }
-
+        },
+        
+        //微信通
+        'Users':{
+          name:'Users',uri:'users',actions:[
+            {action:'signup',method:'POST',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Usernames':{
+          name:'Usernames',uri:'usernames',actions:[
+            {action:'check',method:'POST',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Users/Username/Login':{
+          name:'Users/Username/Login',uri:'users/login',actions:[
+            {action:'signin',method:'POST',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Users/LoginOut':{
+          name:'Menus/UserMenus',uri:'users/loginout',actions:[
+            {action:'loginout',method:'POST',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Admins/getByUsername/username':{
+          name:'Admins/getByUsername/username',uri:'admins/getbyusername/:username',actions:[
+            {action:'get',method:'GET',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Menus/UserMenus':{
+          name:'Menus/UserMenus',uri:'v1/menus/usermenus',actions:[
+            {action:'get',method:'GET',isArray:true}
+          ],serverKey:'nc_server'
+        },
       },
       states:{
         saleState:[

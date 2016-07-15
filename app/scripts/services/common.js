@@ -53,15 +53,15 @@
         }
 
         var userToken = $window.sessionStorage.userToken;
-        var time = Date.now();
-        var tokenSecret = $window.sessionStorage.tokenSecret;
-        var signStr = userToken + time + data_string + req_url + tokenSecret;
-        var signCode = md5(signStr);
+        // var time = Date.now();
+        // var tokenSecret = $window.sessionStorage.tokenSecret;
+        // var signStr = userToken + time + data_string + req_url + tokenSecret;
+        // var signCode = md5(signStr);
 
 
         config.headers.UserToken = userToken;
-        config.headers.Time = time;
-        config.headers.SignCode = signCode;
+        // config.headers.Time = time;
+        // config.headers.SignCode = signCode;
         config.headers.UserSys = conf.global.user_sys;
 
         //console.log(req_count,config);

@@ -63,7 +63,8 @@ app.controller('MenusCtrl', function ($scope, $state, $stateParams, $location, n
 
 
     Models.init('Menus/UserMenus').actions('get',{}).then(function(ret){
-      $scope.menus = ret.data;
+      
+      $scope.menus = ret;
     });
 
   };
