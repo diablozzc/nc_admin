@@ -73,9 +73,9 @@
         return response || $q.when(response);
       },
       'responseError': function (rejection) {
-        if (rejection.status > 400) {
-          $location.path('/signin');
-        }
+        // if (rejection.status > 400) {
+        //   $location.path('/signin');
+        // }
         return $q.reject(rejection);
       }
 
