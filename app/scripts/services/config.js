@@ -135,6 +135,7 @@
         // 'admin.sys':{parent:'admin.welcome',text:'系统管理'},
         'admin.sys.account':{parent:'admin.welcome',text:'账户管理',href:'admin.sys.account'},
         'admin.sys.role':{parent:'admin.welcome',text:'权限管理',href:'admin.sys.role'},
+        'admin.sys.column':{parent:'admin.welcome',text:'栏目管理',href:'admin.sys.column'},
       },
       resources:{
         // 'Users':{
@@ -421,12 +422,12 @@
             {action:'feedback',method:'PUT',isArray:false}
           ],serverKey:'prop_server'
         },
-        'Activities':{
-          name:'Activities',uri:'activities',actions:[
-            {action:'add',method:'POST',isArray:false},
-            {action:'list',method:'GET',isArray:false}
-          ],serverKey:'prop_server'
-        },
+        // 'Activities':{
+        //   name:'Activities',uri:'activities',actions:[
+        //     {action:'add',method:'POST',isArray:false},
+        //     {action:'list',method:'GET',isArray:false}
+        //   ],serverKey:'prop_server'
+        // },
         'Activities/id':{
           name:'Activities/id',uri:'activities/:autoId',actions:[
             {action:'get',method:'GET',isArray:false},
@@ -653,7 +654,104 @@
             {action:'get',method:'GET',isArray:true}
           ],serverKey:'nc_server'
         },
-
+        //栏目管理接口配置
+        'Columns/Posters':{
+          name:'Columns/Posters',uri:'columns/posters',actions:[
+            {action:'get',method:'GET',isArray:true}
+          ],serverKey:'nc_server'
+        },
+        'Columns/ColumnKey/Posters':{
+          name:'Columns/ColumnKey/Posters',uri:'columns/:columnKey/posters',actions:[
+            {action:'get',method:'GET',isArray:false},
+            {action:'put',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        'Columns/Communities':{
+          name:'Columns/Communities',uri:'columns/communities',actions:[
+            {action:'get',method:'GET',isArray:false},
+            {action:'put',method:'PUT',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        //活动接口配置
+        'Activities':{
+          name:'Activities',uri:'activities',actions:[
+            {action:'add',method:'POST',isArray:false},
+            {action:'list',method:'GET',isArray:true}
+          ],serverKey:'nc_server'
+        },
+        'Activities/autoId':{
+          name:'Activities/autoId',uri:'activities/:autoId',actions:[
+            {action:'delete',method:'DELETE',isArray:false},
+            {action:'update',method:'PUT',isArray:false},
+            {action:'info',method:'GET',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Activities/back':{
+          name:'Activities/back',uri:'activities/:autoId/back',actions:[
+            {action:'back',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        'Activities/publish':{
+          name:'Activities/publish',uri:'activities/:autoId/publish',actions:[
+            {action:'publish',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        //文章资讯接口配置
+        'Articles':{
+          name:'Articles',uri:'articles',actions:[
+            {action:'add',method:'POST',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        'Articles/list':{
+          name:'Articles/list',uri:'articles/web/list',actions:[
+            {action:'list',method:'GET',isArray:true}
+          ],serverKey:'nc_server'
+        },
+        'Articles/autoId':{
+          name:'Articles/autoId',uri:'articles/:autoId',actions:[
+            {action:'delete',method:'DELETE',isArray:false},
+            {action:'update',method:'PUT',isArray:false},
+            {action:'info',method:'GET',isArray:false}
+          ],serverKey:'nc_server'
+        },
+        'Articles/back':{
+          name:'Articles/back',uri:'articles/:autoId/back',actions:[
+            {action:'back',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        'Articles/publish':{
+          name:'Articles/publish',uri:'articles/:autoId/publish',actions:[
+            {action:'publish',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        //留言评论接口
+        'Comments/autoId':{
+          name:'Comments/autoId',uri:'comments/:autoId',actions:[
+            {action:'audit',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        'Comments/list':{
+          name:'Comments/list',uri:'comments/web',actions:[
+            {action:'list',method:'GET',isArray:true},
+          ],serverKey:'nc_server'
+        },
+        //我有话说 接口
+        'Feedback/list':{
+          name:'Feedback/list',uri:'feedbacks/web',actions:[
+            {action:'list',method:'GET',isArray:true},
+          ],serverKey:'nc_server'
+        },
+        //回复或追问接口
+        'Replies/reply':{
+          name:'Feedback/reply',uri:'replies',actions:[
+            {action:'reply',method:'POST',isArray:false},
+          ],serverKey:'nc_server'
+        },
+        'Replies/audit':{
+          name:'Feedback/audit',uri:'replies/:autoId',actions:[
+            {action:'audit',method:'PUT',isArray:false},
+          ],serverKey:'nc_server'
+        },
       },
       states:{
         saleState:[
