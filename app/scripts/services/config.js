@@ -899,7 +899,7 @@ app.value('config', {
         {val:1,name:'已发布'},
         {val:2,name:'已收回'},
       ],
-      ],
+      
 
       publishStatus:[
         {val:0,name:'未发布'},
