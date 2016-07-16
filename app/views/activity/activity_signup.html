@@ -1,0 +1,22 @@
+<div class="panel">
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams"
+             template-pagination="custom/pager" cg-busy="{promise:signupListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="mnw100 text-left" data-title="'姓名'">{{item.name}}</td>
+          <td class="mnw75" data-title="'性别'">{{item.gender|statesName:'gender'}}</td>
+          <td class="mnw75" data-title="'联系电话'">{{item.mobile}}</td>
+          <td class="mnw75" data-title="'备注'">{{item.remark}}</td>
+          <td class="mnw75" data-title="'报名时间'">{{item.signupTime | date:'yyyy-MM-dd'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

@@ -139,6 +139,10 @@ app.value('config', {
 
       'admin.sys.role':{parent:'admin.welcome',text:'权限管理',href:'admin.sys.role'},
       'admin.sys.column':{parent:'admin.welcome',text:'栏目管理',href:'admin.sys.column'},
+      'admin.activity.list':{parent:'admin.welcome',text:'已发布活动',href:'admin.activity.list'},
+      'admin.activity.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.activity.listedit'},
+      'admin.activity.search':{parent:'admin.welcome',text:'活动搜索',href:'admin.activity.search'},
+      'admin.activity.signupinfo':{parent:'admin.activity.search',text:'报名信息',href:'admin.activity.signupinfo'},
     },
     resources:{
       // 'Users':{
@@ -667,7 +671,7 @@ app.value('config', {
       //栏目管理接口配置
       'Columns/Posters':{
         name:'Columns/Posters',uri:'columns/posters',actions:[
-          {action:'get',method:'GET',isArray:true}
+          {action:'list',method:'GET',isArray:true}
         ],serverKey:'nc_server'
       },
       'Columns/ColumnKey/Posters':{
@@ -686,7 +690,7 @@ app.value('config', {
       'Activities':{
         name:'Activities',uri:'activities',actions:[
           {action:'add',method:'POST',isArray:false},
-          {action:'list',method:'GET',isArray:true}
+          {action:'list',method:'GET',isArray:false}
         ],serverKey:'nc_server'
       },
       'Activities/autoId':{
@@ -698,12 +702,17 @@ app.value('config', {
       },
       'Activities/back':{
         name:'Activities/back',uri:'activities/:autoId/back',actions:[
-          {action:'back',method:'PUT',isArray:false},
+          {action:'back',method:'PUT',isArray:false,requestType:'json'},
         ],serverKey:'nc_server'
       },
       'Activities/publish':{
         name:'Activities/publish',uri:'activities/:autoId/publish',actions:[
           {action:'publish',method:'PUT',isArray:false},
+        ],serverKey:'nc_server'
+      },
+      'Activities/Signup':{
+        name:'Activities/Signup',uri:'activities/:autoId/web/signupinfo',actions:[
+          {action:'signup',method:'GET',isArray:false},
         ],serverKey:'nc_server'
       },
       //文章资讯接口配置
@@ -868,8 +877,16 @@ app.value('config', {
       accountType:[
         {val:'alipay',name:'支付宝'},
         {val:'bank',name:'银行'}
-      ]
-
+      ],
+       TrueOrFalse:[
+        {val:true,name:'是'},
+        {val:false,name:'否'}
+      ],
+      ActivityStatus:[
+        {val:0,name:'未发布'},
+        {val:1,name:'已发布'},
+        {val:2,name:'已收回'},
+      ],
     },
     //operation: [
     //  {clientOperKey:'add_community',clientOperName:'新增小区',serverRoleKey:'property_community_add',serverRoleName:''},

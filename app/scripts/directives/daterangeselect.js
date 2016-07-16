@@ -48,7 +48,7 @@
                       '</span>' +
                       '<label class="field input-text">' +
                         '<span class="label label-danger" ng-if="isRequired" ng-show="error.required">必填</span>' +
-                        '<input  date-range-picker type="text" name="{{attrs.inputText}}" id="{{attrs.inputText}}" class="form-control date-picker" ng-model="value" ng-required="isRequired" test-date options="options"/> ' +
+                        '<input  date-range-picker type="text" name="{{attrs.inputText}}" id="{{attrs.inputText}}" class="form-control date-picker" ng-model="value" ng-required="isRequired"  test-date options="options"/> ' +
                       '</label>' +
                       '<span class="input-group-addon"><i ng-class="icon"></i></span>' +
                     '</div>' +
@@ -74,6 +74,13 @@
           'singleDatePicker': false,
           'eventHandlers':{
             'apply.daterangepicker':function(e,picker){
+              if($scope.change()){
+                $scope.change()($scope.value);
+              }
+              $scope.$emit('updateDate',$scope.value);
+            },
+            'cancel.daterangepicker':function(e,picker){
+              $scope.value={startDate:undefined,endDate:undefined};
               if($scope.change()){
                 $scope.change()($scope.value);
               }

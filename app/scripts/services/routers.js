@@ -198,12 +198,27 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       }
     },
     views: {
-      'forms': {
-        templateUrl: 'partials/editor_employee.html',
-        controller: 'EditoremployeeCtrl'
+      'column': {
+        templateUrl: 'views/column/columns.html',
+        controller: 'ColumnCtrl'
       }
     }
   })
+
+    .state('admin.sys.setposter', {
+      url: '/setposter?itemKey',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'setposter': {
+          templateUrl: 'views/column/setposter.html',
+          controller: 'SetPosterCtrl'
+        }
+      }
+    })
 
     //文章管理
     .state('admin.article', {
@@ -317,8 +332,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       },
       views: {
         'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+          templateUrl: 'views/activity/activity.html',
+          controller: 'ActivityCtrl'
         }
       }
     })
@@ -330,37 +345,65 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       },
       views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
-        }
-      }
-    })
-    .state('admin.activity.listedit', {
-      url: '/listedit',
-      resolve: {
-        auth: function (authService) {
-          return authService.auth();
-        }
-      },
-      views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+        'add': {
+          templateUrl: 'views/activity/editor_activity.html',
+          controller: 'EditoractivityCtrl'
         }
       }
     })
     .state('admin.activity.list', {
-      url: '/list',
+      url: '/published/list',
       resolve: {
         auth: function (authService) {
           return authService.auth();
         }
       },
       views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+        'list': {
+          templateUrl: 'views/activity/activitylist.html',
+          controller: 'ActivityCtrl'
+        }
+      }
+    })
+    .state('admin.activity.listedit', {
+      url: '/edit/list',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/activity/activitylist.html',
+          controller: 'ActivityCtrl'
+        }
+      }
+    })
+    .state('admin.activity.search', {
+      url: '/search/list',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/activity/activitylist.html',
+          controller: 'ActivityCtrl'
+        }
+      }
+    })
+    .state('admin.activity.signupinfo', {
+      url: '/signupinfo?activityId',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/activity/activity_signup.html',
+          controller: 'ActivitySignupCtrl'
         }
       }
     })

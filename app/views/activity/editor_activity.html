@@ -71,11 +71,11 @@
               </div>
 
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="section">
                     <div class="form-group">
 
-                      <div input-text="address" value="the_activity.address" label="活动地址" required="true"></div>
+                      <div input-text="address" value="the_activity.address" label="详细地址" required="true"></div>
 
                     </div>
                   </div>
@@ -87,7 +87,7 @@
                   <div class="section">
                     <div class="form-group">
 
-                      <div input-text="hostUnit" value="the_activity.hostUnit" label="主办单位" required="true"></div>
+                      <div input-text="hostUnit" value="the_activity.hostUnit" label="举办单位" required="true"></div>
 
                     </div>
                   </div>
@@ -142,6 +142,7 @@
       </div>
       <div class="panel-footer">
         <button type="submit" class="button btn-primary" ng-disabled="activityForm.$invalid">保存</button>
+        <button type="submit" class="button btn-success" ng-disabled="activityForm.$invalid">保存并发布</button>
         <button type="button" class="button" ng-click="close()">关闭</button>
       </div>
       <!-- end .form-footer section -->

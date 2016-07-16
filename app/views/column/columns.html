@@ -1,0 +1,52 @@
+<div class="panel">
+
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams"
+             template-pagination="custom/pager" cg-busy="{promise:columnListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <!--<td class="text-center w150" sortable="'columnKey'" data-title="'#'">{{item.columnKey}}</td>-->
+          <td class="w100" data-title="'栏目名称'" sortable="'name'">{{item.name}}</td>
+          <td class="w100" data-title="'是否显示海报'">{{item.isShowPoster|statesName:'TrueOrFalse'}}</td>
+          <td class="mnw150" data-title="'海报地址'" sortable="'posterUrl'">{{item.posterUrl}}</td>
+
+          <td class="w150" data-title="'操作'">
+            <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'set_poster',func:set,param:item})"
+                    ng-disabled="!flag.set_poster">设置
+            </button>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="panel">
+  <div class="panel-body pn">
+    <div class="table-responsive">
+
+      <form id="contact" name="setOutUrlForm" ng-submit="setUrl()">
+
+        <div class="panel-body bg-light p25 pb15">
+
+          <div class="form-group form-group-lg">
+
+            <label class="help-block" for="outUrl">小区概况外部链接设置:</label>
+            <label for="outUrl" class="field prepend-icon col-sm-6">
+              <input type="text" name="outUrl" id="outUrl" class="form-control " placeholder="外部链接" ng-model="outUrl">
+            </label>
+              <button class="btn btn-success btn-md ph25" type="submit"
+                      ng-disabled="!flag.set_poster">保存</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="custom/pager">
+</script>
+

@@ -1,0 +1,64 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="SetPosterForm" ng-submit="save()" name="SetPosterForm" class="form-horizontal">
+      <div class="panel-body bg-light">
+
+        <div class="section-divider mb40">
+          <span>栏目海报设置:{{column.name}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="section">
+                  <div class="form-group">
+
+                    <!--<div input-text="name" value="column.posterUrl" label="海报地址" required="true"></div>-->
+
+                    <div item-select item-data="TrueOrFalse_list" selected-value="column.isShowPoster" title="是否开启"
+                         name-key="name" val-key="val"></div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="name" value="column.posterUrl" label="海报地址" ></div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <!-- end .section -->
+
+        <!-- end .form-body section -->
+
+      </div>
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary" ng-disabled="SetPosterForm.$invalid">保存</button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>
