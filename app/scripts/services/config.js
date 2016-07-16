@@ -20,7 +20,7 @@ app.value('config', {
     sc_server:'http://sc.muranyun.com/api/v1/',
     nc_server:'http://nc.mrshare.cn/api/',
 
-    upload_service:'files',
+    upload_service:'upload/stream',
     download_payrecords:'payrecords/reports/excel',
     download_bills:'bills/reports/excel',
     qiniu_pub_domain:'http://7xjr8j.com1.z0.glb.clouddn.com/',
@@ -143,6 +143,15 @@ app.value('config', {
       'admin.activity.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.activity.listedit'},
       'admin.activity.search':{parent:'admin.welcome',text:'活动搜索',href:'admin.activity.search'},
       'admin.activity.signupinfo':{parent:'admin.activity.search',text:'报名信息',href:'admin.activity.signupinfo'},
+
+
+      'admin.article.search':{parent:'admin.welcome',text:'搜索',href:'admin.article.search'},
+      'admin.article.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.article.listedit'},
+      'admin.article.list':{parent:'admin.welcome',text:'已发布内容',href:'admin.article.list'},
+      'admin.article.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.article.new'},
+
+
+
     },
     resources:{
       // 'Users':{
@@ -625,16 +634,7 @@ app.value('config', {
       },
 
       //微信通
-      'Users':{
-        name:'Users',uri:'users',actions:[
-          {action:'signup',method:'POST',isArray:false}
-        ],serverKey:'nc_server'
-      },
-      'Usernames':{
-        name:'Usernames',uri:'usernames',actions:[
-          {action:'check',method:'POST',isArray:false}
-        ],serverKey:'nc_server'
-      },
+
       'Users/Username/Login':{
         name:'Users/Username/Login',uri:'users/login',actions:[
           {action:'signin',method:'POST',isArray:false}
@@ -643,6 +643,11 @@ app.value('config', {
       'Users/LoginOut':{
         name:'Menus/UserMenus',uri:'users/loginout',actions:[
           {action:'loginout',method:'POST',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'Users/ResetPwd':{
+        name:'Users/ResetPwd',uri:'users/:username/password/reset',actions:[
+          {action:'reset',method:'POST',isArray:false}
         ],serverKey:'nc_server'
       },
       'Admins/getByUsername/username':{
@@ -663,6 +668,7 @@ app.value('config', {
           {action:'update',method:'PUT',isArray:false}
         ],serverKey:'nc_server'
       },
+
       'Menus/UserMenus':{
         name:'Menus/UserMenus',uri:'v1/menus/usermenus',actions:[
           {action:'get',method:'GET',isArray:true}
@@ -723,7 +729,7 @@ app.value('config', {
       },
       'Articles/list':{
         name:'Articles/list',uri:'articles/web/list',actions:[
-          {action:'list',method:'GET',isArray:true}
+          {action:'list',method:'GET',isArray:false}
         ],serverKey:'nc_server'
       },
       'Articles/autoId':{
@@ -769,6 +775,12 @@ app.value('config', {
       'Replies/audit':{
         name:'Feedback/audit',uri:'replies/:autoId',actions:[
           {action:'audit',method:'PUT',isArray:false},
+        ],serverKey:'nc_server'
+      },
+      //删除文件
+      'Upload':{
+        name:'Upload',uri:'/upload',actions:[
+          {action:'delete',method:'DELETE',isArray:false}
         ],serverKey:'nc_server'
       },
     },
@@ -887,6 +899,27 @@ app.value('config', {
         {val:1,name:'已发布'},
         {val:2,name:'已收回'},
       ],
+      ],
+
+      publishStatus:[
+        {val:0,name:'未发布'},
+        {val:1,name:'已发布'},
+        {val:2,name:'已收回'}
+      ],
+
+      columnName:[
+        {val:'column_news',name:'小区新闻'},
+        {val:'column_notices',name:'各类通知'},
+        {val:'column_service_guide',name:'办事指南'},
+        {val:'column_convenience',name:'便民服务'}
+      ],
+      showType:[
+        {val:'text',name:'无图'},
+        {val:'singleImage',name:'单幅图片通屏'},
+        {val:'multiImage',name:'多幅图片通屏'},
+        {val:'imageText',name:'左文右图'},
+        {val:'video',name:'视频 '}
+      ]
     },
     //operation: [
     //  {clientOperKey:'add_community',clientOperName:'新增小区',serverRoleKey:'property_community_add',serverRoleName:''},

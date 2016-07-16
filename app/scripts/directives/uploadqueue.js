@@ -72,7 +72,7 @@
                 if (files[i].uploaded !== true) {
                   Upload.upload({
                     // 上传服务器地址
-                    url: config.global.fs_server + config.global.upload_service,
+                    url: config.global.nc_server + config.global.upload_service,
                     fields: scope.fields,
                     sendFieldAs: 'form',
                     file: files[i]

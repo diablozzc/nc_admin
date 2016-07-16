@@ -52,7 +52,7 @@
           <td class="mnw100" data-title="'手机号'">{{item.mobile}}</td>
           <td class="mnw100" data-title="'邮箱'">{{item.email}}</td>
 
-          <td class="w150" data-title="'操作'">
+          <td class="w200" data-title="'操作'">
             <!--<button class="btn btn-xs btn-success" ng-click="ucauth.isAccess({key:'entry_activities',func:entry,param:item})">详情</button>-->
             <!--<button class="btn btn-xs btn-success"-->
                     <!--ng-click="ucauth.isAccess({key:'entry_activity',func:entry,param:item})"-->
@@ -66,10 +66,10 @@
             <span confirm-popover title="删除员工" content="确定要删除{{item.name}}么?" on-action="ucauth.isAccess"
                   value="{key:'del_employee',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除"
                   disabled="!flag.del_employee"></span>
-            <button class="btn btn-xs btn-primary"
-                    ng-click="ucauth.isAccess({key:'reset_pwd',func:resetPwd,param:item})"
-                    ng-disabled="!flag.reset_pwd">重置密码
-            </button>
+            <span confirm-popover title="重置密码" content="确定要重置密码么?" on-action="ucauth.isAccess"
+                  value="{key:'reset_pwd',func:resetPwd,param:item}" btn-class="btn-xs btn-danger" btn-name="重置密码"
+                  disabled="!flag.reset_pwd"></span>
+
           </td>
         </tr>
         </tbody>
