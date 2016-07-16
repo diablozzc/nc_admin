@@ -139,6 +139,15 @@ app.value('config', {
 
       'admin.sys.role':{parent:'admin.welcome',text:'权限管理',href:'admin.sys.role'},
       'admin.sys.column':{parent:'admin.welcome',text:'栏目管理',href:'admin.sys.column'},
+
+
+      'admin.article.search':{parent:'admin.welcome',text:'搜索',href:'admin.article.search'},
+      'admin.article.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.article.listedit'},
+      'admin.article.list':{parent:'admin.welcome',text:'已发布内容',href:'admin.article.list'},
+      'admin.article.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.article.new'},
+
+
+
     },
     resources:{
       // 'Users':{
@@ -711,7 +720,7 @@ app.value('config', {
       },
       'Articles/list':{
         name:'Articles/list',uri:'articles/web/list',actions:[
-          {action:'list',method:'GET',isArray:true}
+          {action:'list',method:'GET',isArray:false}
         ],serverKey:'nc_server'
       },
       'Articles/autoId':{
@@ -865,8 +874,27 @@ app.value('config', {
       accountType:[
         {val:'alipay',name:'支付宝'},
         {val:'bank',name:'银行'}
-      ]
+      ],
 
+      publishStatus:[
+        {val:0,name:'未发布'},
+        {val:1,name:'已发布'},
+        {val:2,name:'已收回'}
+      ],
+
+      columnName:[
+        {val:'column_news',name:'小区新闻'},
+        {val:'column_notices',name:'各类通知'},
+        {val:'column_service_guide',name:'办事指南'},
+        {val:'column_convenience',name:'便民服务'}
+      ],
+      showType:[
+        {val:'text',name:'无图'},
+        {val:'singleImage',name:'单幅图片通屏'},
+        {val:'multiImage',name:'多幅图片通屏'},
+        {val:'imageText',name:'左文右图'},
+        {val:'video',name:'视频 '}
+      ]
     },
     //operation: [
     //  {clientOperKey:'add_community',clientOperName:'新增小区',serverRoleKey:'property_community_add',serverRoleName:''},

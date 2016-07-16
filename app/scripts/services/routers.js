@@ -215,8 +215,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       },
       views: {
         'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+          templateUrl: 'views/articles/articles.html',
+
         }
       }
     })
@@ -228,51 +228,51 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       },
       views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+        'forms': {
+          templateUrl: 'views/articles/edit_article.html',
+          controller: 'EditorarticleCtrl'
         }
       }
     })
     .state('admin.article.listedit', {
-      url: '/listedit',
+      url: '/{action:listedit}',
       resolve: {
         auth: function (authService) {
           return authService.auth();
         }
       },
       views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+        'editList': {
+          templateUrl: 'views/articles/articles_search.html',
+          controller: 'ArticlesSearchCtrl'
         }
       }
     })
     .state('admin.article.list', {
-      url: '/list',
+      url: '/{action:list}',
       resolve: {
         auth: function (authService) {
           return authService.auth();
         }
       },
       views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+        'articleList': {
+          templateUrl: 'views/articles/articles_search.html',
+          controller: 'ArticlesSearchCtrl'
         }
       }
     })
     .state('admin.article.search', {
-      url: '/search',
+      url: '/{action:search}',
       resolve: {
         auth: function (authService) {
           return authService.auth();
         }
       },
       views: {
-        'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+        'searchlist': {
+          templateUrl: 'views/articles/articles_search.html',
+          controller: 'ArticlesSearchCtrl'
         }
       }
     })
