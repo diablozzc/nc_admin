@@ -20,7 +20,7 @@ app.value('config', {
     sc_server:'http://sc.muranyun.com/api/v1/',
     nc_server:'http://nc.mrshare.cn/api/',
 
-    upload_service:'files',
+    upload_service:'upload/stream',
     download_payrecords:'payrecords/reports/excel',
     download_bills:'bills/reports/excel',
     qiniu_pub_domain:'http://7xjr8j.com1.z0.glb.clouddn.com/',
@@ -766,6 +766,12 @@ app.value('config', {
       'Replies/audit':{
         name:'Feedback/audit',uri:'replies/:autoId',actions:[
           {action:'audit',method:'PUT',isArray:false},
+        ],serverKey:'nc_server'
+      },
+      //删除文件
+      'Upload':{
+        name:'Upload',uri:'/upload',actions:[
+          {action:'delete',method:'DELETE',isArray:false}
         ],serverKey:'nc_server'
       },
     },

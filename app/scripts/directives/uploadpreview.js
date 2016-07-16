@@ -28,11 +28,11 @@
           data.pub = file.pub;
           data.fileType = file.fileType;
 
-          Models.init('Files').actions('delete',data).then(function(ret){
-            if(ret.meta.code == 200){
-
-            }
-          });
+          // Models.init('Files').actions('delete',data).then(function(ret){
+          //   if(ret.meta.code == 200){
+          //
+          //   }
+          // });
           scope.files.splice(index,1);
           $rootScope.$broadcast('updateResult');
 

@@ -75,11 +75,9 @@ app.controller('EditorarticleCtrl', function ($rootScope,$scope,$state,$statePar
     data.pub = file.pub;
     data.fileType = file.fileType;
 
-    Models.init('Files').actions('delete',data).then(function(ret){
-      if(ret.meta.code == 200){
-
-      }
-    });
+    // Models.init('Upload').actions('delete',data).then(function(ret){
+    //
+    // });
     $scope.files.splice(index,1);
     $scope.$broadcast('updateResult');
     $scope.saved = false;
