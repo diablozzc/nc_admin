@@ -9,200 +9,190 @@
  */
 
 
-  app.controller('EditoractivityCtrl', function ($rootScope,$scope,$state,$stateParams,localStorageService,uiGridConstants,Models,notify,config,ucauth) {
+app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ucauth) {
 
-    // 初始化数据
-    //$scope.type_list = config.data.states.afficheType;
-    //$scope.user_tag_list = config.data.states.userTag;
-    //$scope.errorInfo = [];
-    $scope.community_list = [];
+  // 初始化数据
+  //$scope.type_list = config.data.states.afficheType;
+  //$scope.user_tag_list = config.data.states.userTag;
+  //$scope.errorInfo = [];
 
-    $scope.user = ucauth.getUser();
-    // 获取小区列表
-    Models.init('Communities').actions('list',{}).then(
-      function(ret){
-        $scope.community_list = ret.data;
-        $scope.community_list.unshift({name:'请选择...'});
-      }
-    );
+  //$scope.user = ucauth.getUser();
 
 
-    var action = $stateParams.action;
-    $scope.action = $stateParams.action;
+  var action = $stateParams.action;
+  $scope.action = $stateParams.action;
 
-    $scope.datePicker = {
-      date:{startDate: undefined, endDate: undefined},
-      closeTime:{startDate: undefined, endDate: undefined}
-    };
+  //console.log(action);
+  console.log($stateParams.itemId);
 
-    var init = function(){
-      $scope.the_activity = {};
-      $scope.the_activity.province = "410000";
-      $scope.the_activity.city = "410300";
-      $scope.the_activity.area = '';
+  $scope.datePicker = {
+    date: {startDate: undefined, endDate: undefined},
+    closeTime: {startDate: undefined, endDate: undefined}
+  };
 
-      if($scope.user.userTag == 1 && $scope.user.community){
-        $scope.the_activity.community = $scope.user.community;
-      }
+  $scope.upload_param = {pub: 'pub', fileType: 'activity_poster'};
 
-      //$scope.datePicker = {
-      //  date:{startDate: undefined, endDate: undefined},
-      //  closeTime:{startDate: undefined, endDate: undefined}
-      //};
-    };
+  switch (action) {
+    case 'add':
+      $scope.form_title = '活动发布';
+      // $scope.datePicker = {
+      //   closeTime: {
+      //     startDate: moment(),
+      //     endDate: moment()
+      //   }
+      // };
+      break;
+    case 'edit':
+      $scope.form_title = '编辑活动';
 
-    $scope.upload_param = {pub:'pub',fileType:'activity_poster'};
+      Models.init('Activities/autoId').actions('info', {'autoId': $stateParams.itemId}).then(
+        function (ret) {
+          //console.log($stateParams.itemId);
+          $scope.the_activity = ret;
+          $scope.activityContent = $scope.the_activity.content;
 
-    switch (action){
-      case 'add':
-        $scope.form_title = '新增活动';
-        init();
+          $scope.datePicker = {
+            date: {
+              startDate: moment($scope.the_activity.startTime),
+              endDate: moment($scope.the_activity.endTime)
+            },
+            closeTime: {
+              startDate: moment($scope.the_activity.signupEndTime),
+              endDate: moment($scope.the_activity.signupEndTime)
+            }
+          };
+          $scope.the_activity.coverUrl = $scope.the_activity.overUrl;
+          //var files = [];
+          //if($scope.the_activity.imgPoster){
+          //  var imgs = $scope.the_activity.imgPoster.split(',');
+          //  lodash.forEach(imgs,function(key){
+          //    var obj = {};
+          //    obj.fileName = key;
+          //    obj.uploaded = true;
+          //    obj.old = true;
+          //    obj.pub = $scope.upload_param.pub;
+          //    obj.fileType = $scope.upload_param.fileType;
+          //    files.push(obj);
+          //  });
+          //}
+          //$scope.files = files;
+        }
+      );
+      break;
+  }
 
-        break;
-      case 'edit':
-        $scope.form_title = '修改活动信息';
+  $scope.deleteUploadFile = function (index, file) {
+    var data = {};
+    data.fileName = file.fileName;
+    data.pub = file.pub;
+    data.fileType = file.fileType;
 
-        Models.init('Activities/id').actions('get',{'autoId':$stateParams.itemId}).then(
-          function(ret){
-            $scope.the_activity = ret.data;
-            $scope.activityContent = $scope.the_activity.content;
+    //删除方法暂时不用
+    // Models.init('Files').actions('delete',data).then(function(ret){
+    //   if(ret.meta.code == 200){
+    //
+    //   }
+    // });
+    $scope.files.splice(index, 1);
+    $scope.$broadcast('updateResult');
+    $scope.saved = false;
+  };
 
-            $scope.datePicker = {
-              date:{
-                startDate: moment($scope.the_activity.startTime),
-                endDate: moment($scope.the_activity.endTime)
-              },
-              closeTime:{
-                startDate: moment($scope.the_activity.closeTime),
-                endDate: moment($scope.the_activity.closeTime)
-              }
-            };
 
-            //var files = [];
-            //if($scope.the_activity.imgPoster){
-            //  var imgs = $scope.the_activity.imgPoster.split(',');
-            //  lodash.forEach(imgs,function(key){
-            //    var obj = {};
-            //    obj.fileName = key;
-            //    obj.uploaded = true;
-            //    obj.old = true;
-            //    obj.pub = $scope.upload_param.pub;
-            //    obj.fileType = $scope.upload_param.fileType;
-            //    files.push(obj);
-            //  });
-            //}
-            //$scope.files = files;
-          }
-        );
-        break;
+  $scope.save = function (keep) {
+    //状态
+    if (keep) {
+      //保存并发布
+      $scope.the_activity.status = 1;
+    } else {
+      //保存
+      $scope.the_activity.status = 0;
     }
 
-    $scope.deleteUploadFile = function(index,file){
-      var data = {};
-      data.fileName = file.fileName;
-      data.pub = file.pub;
-      data.fileType = file.fileType;
+    if ($scope.activityForm.$valid) {
+      switch (action) {
+        case 'add':
 
-      Models.init('Files').actions('delete',data).then(function(ret){
-        if(ret.meta.code == 200){
+          if (angular.isDate($scope.the_activity.startTime)) {
+            $scope.the_activity.startTime = (Date.parse($scope.the_activity.startTime));
+          }
+          if (angular.isDate($scope.the_activity.endTime)) {
+            $scope.the_activity.endTime = (Date.parse($scope.the_activity.endTime));
+          }
+          if (angular.isDate($scope.the_activity.signupEndTime)) {
+            $scope.the_activity.signupEndTime = (Date.parse($scope.the_activity.signupEndTime));
+          }
+          // $scope.the_activity.property = ucauth.getUser().property;
+          //if($scope.the_affiche.type == 1){
+          //  $scope.community = '';
+          //}
+          //
+          //
 
-        }
-      });
-      $scope.files.splice(index,1);
-      $scope.$broadcast('updateResult');
-      $scope.saved = false;
-    };
-
-
-    $scope.save = function(keep){
-      if($scope.activityForm.$valid){
-        switch (action){
-          case 'add':
-
-            if(angular.isDate($scope.the_activity.startTime)) {
-              $scope.the_activity.startTime = (Date.parse($scope.the_activity.startTime));
+           //console.log($scope.the_activity.content);
+          Models.init('Activities').actions('add', $scope.the_activity).then(function (ret) {
+            notify({message: '添加成功', classes: 'alert-success'});
+            if (keep) {
+              //保存并发布
+              $state.go('admin.activity.list');
+            } else {
+              //保存
+              $state.go('admin.activity.listedit');
             }
-            if(angular.isDate($scope.the_activity.endTime)){
-              $scope.the_activity.endTime = (Date.parse($scope.the_activity.endTime));
-            }
-            if(angular.isDate($scope.the_activity.closeTime)){
-              $scope.the_activity.closeTime = (Date.parse($scope.the_activity.closeTime));
-            }
-            $scope.the_activity.property = ucauth.getUser().property;
-            //if($scope.the_affiche.type == 1){
-            //  $scope.community = '';
-            //}
-            //
-            //
 
-            Models.init('Activities').actions('add',$scope.the_activity).then(function(ret){
-              if(ret.meta.code !== 200){
-                notify({message:ret.meta.error , classes:'alert-danger'});
-              }else{
-                notify({message:'添加成功',classes:'alert-success'});
+          }, function (err) {
+            notify({message: err.data.info, classes: 'alert-danger'});
+          });
+          break;
+        case 'edit':
+
+          if (angular.isDate($scope.the_activity.startTime)) {
+            $scope.the_activity.startTime = (Date.parse($scope.the_activity.startTime));
+          }
+          if (angular.isDate($scope.the_activity.endTime)) {
+            $scope.the_activity.endTime = (Date.parse($scope.the_activity.endTime));
+          }
+          if (angular.isDate($scope.the_activity.signupEndTime)) {
+            $scope.the_activity.signupEndTime = (Date.parse($scope.the_activity.signupEndTime));
+          }
+          Models.init('Activities/autoId').actions('update', $scope.the_activity, {'autoId': $scope.the_activity.autoId}).then(
+            function (ret) {
+              notify({message: '修改成功', classes: 'alert-success'});
+
+              if (keep) {
+                //保存并发布
+                $state.go('admin.activity.list');
+              } else {
+                //保存
+                $state.go('admin.activity.listedit');
               }
-
-              if(keep){
-                init();
-              }else{
-                $state.go('admin.activities.list');
-              }
-            });
-            break;
-          case 'edit':
-
-            if(angular.isDate($scope.the_activity.startTime)) {
-              $scope.the_activity.startTime = (Date.parse($scope.the_activity.startTime));
+            }, function (err) {
+              notify({message: err.data.info, classes: 'alert-danger'});
             }
-            if(angular.isDate($scope.the_activity.endTime)){
-              $scope.the_activity.endTime = (Date.parse($scope.the_activity.endTime));
-            }
-            if(angular.isDate($scope.the_activity.closeTime)){
-              $scope.the_activity.closeTime = (Date.parse($scope.the_activity.closeTime));
-            }
-            Models.init('Activities/id').actions('update',$scope.the_activity,{'autoId':$scope.the_activity.autoId}).then(
-              function(ret){
-
-                if(ret.meta.code == 200){
-                  notify({message:'修改成功',classes:'alert-success'});
-                }else{
-                  notify({message:ret.meta.error , classes:'alert-danger'});
-                }
-
-                if(keep){
-                  $state.go('admin.activities.add', {action:'add'});
-                }else{
-                  $state.go('admin.activities.list');
-                }
-              }
-            );
-            break;
-        }
-
+          );
+          break;
       }
 
-    };
+    }
 
-    $scope.close = function(){
-      $state.go('admin.activities.list');
-    };
+  };
 
-    $scope.dateChange = function(){
-      $scope.the_activity.startTime = $scope.datePicker.date.startDate.valueOf();
-      $scope.the_activity.endTime = $scope.datePicker.date.endDate.valueOf();
-      $scope.the_activity.closeTime = $scope.datePicker.closeTime.startDate.valueOf();
-    };
+  $scope.close = function () {
+    $state.go('admin.activity.list');
+  };
+
+  $scope.dateChange = function () {
+    $scope.the_activity.startTime = angular.isUndefined($scope.datePicker.date.startDate)?null: $scope.datePicker.date.startDate.valueOf();
+    $scope.the_activity.endTime = angular.isUndefined($scope.datePicker.date.endDate)?null:$scope.datePicker.date.endDate.valueOf();
+    $scope.the_activity.signupEndTime = angular.isUndefined($scope.datePicker.closeTime.startDate)?null:$scope.datePicker.closeTime.startDate.valueOf();
+  };
 
 
-    $scope.$on('updateNames',function(e,data){
-      if(data[0]){
-        $scope.the_activity.provinceName = data[0];
-      }
-      if(data[1]){
-        $scope.the_activity.cityName = data[1];
-      }
-      if(data[2]){
-        $scope.the_activity.areaName = data[2];
-      }
-    });
-  });
+
+  $scope.$on('updateDate', function (e, value) {
+    $scope.the_activity.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
+    $scope.the_activity.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
+    $scope.the_activity.signupEndTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
+    $scope.the_activity.signupEndTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
+  })
+});

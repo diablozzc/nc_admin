@@ -28,7 +28,7 @@
                     <div class="form-group">
                       <div class="col-lg-12">
                         <div class="bs-component" ng-class="{'has-error':activityForm.activityContent.$invalid}">
-                          <div text-angular="" name="activityContent" ng-model="activityContent" required placeholder="活动内容" encode-text="the_activity.content"></div>
+                          <div text-angular="" name="activityContent" ng-model="the_activity.content" required placeholder="活动内容" ></div>
                         </div>
                       </div>
                     </div>
@@ -62,11 +62,14 @@
 
 
               <div class="row">
-                <div area-select
-                     province="the_activity.province"
-                     city="the_activity.city"
-                     area="the_activity.area"
-                     names="areaNames">
+                <div class="col-md-12">
+                  <div class="section">
+                    <div class="form-group">
+
+                      <div input-text="location" value="the_activity.location" label="详细地址" required="true" ></div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -75,46 +78,42 @@
                   <div class="section">
                     <div class="form-group">
 
-                      <div input-text="address" value="the_activity.address" label="详细地址" required="true"></div>
+                      <div input-text="hoster" value="the_activity.hoster" label="举办单位" required="true"></div>
 
                     </div>
                   </div>
                 </div>
-              </div>
+                <!--<div class="col-md-6">-->
+                  <!--<div class="section">-->
+                    <!--<div class="form-group">-->
 
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="section">
-                    <div class="form-group">
+                      <!--<div input-text="assistUnit" value="the_activity.keywords" label="关键字"></div>-->
 
-                      <div input-text="hostUnit" value="the_activity.hostUnit" label="举办单位" required="true"></div>
-
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="section">
-                    <div class="form-group">
-
-                      <div input-text="assistUnit" value="the_activity.assistUnit" label="关键字"></div>
-
-                    </div>
-                  </div>
-                </div>
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
               </div>
 
             </div>
             <div class="col-md-4">
-
-              <!--<div class="row">-->
-                <!--<div class="col-md-12">-->
-                  <!--<div class="section">-->
-                    <!--<div class="form-group">-->
-                      <!--<div item-select item-data="community_list" selected-value="the_activity.community" title="所属小区" name-key="name" val-key="code" disabled="{{user.userTag == 1}}"></div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="section">
+                    <div class="form-group">
+                      <div input-number="signupTop"  value="the_activity.signupTop" label="限制人数" required="true"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="section">
+                    <div class="form-group">
+                      <div input-text="keywords" value="the_activity.keywords" label="关键字" required="true"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-12">
 
@@ -123,10 +122,10 @@
                       <div class="col-lg-12">
                         <div class="bs-component">
 
-                          <div upload-queue maxfiles="1" fields="upload_param" title="上传活动海报" selected="files" result="the_activity.imgPoster" required="true"></div>
+                          <div upload-queue maxfiles="1" fields="upload_param" title="上传活动海报" selected="files" result="the_activity.coverUrl" required="true"></div>
 
 
-                          <div upload-preview files="files" urls="the_activity.imgPoster" upload-param="upload_param"></div>
+                          <div upload-preview files="files" urls="the_activity.coverUrl" upload-param="upload_param"></div>
 
                         </div>
                       </div>
@@ -141,8 +140,8 @@
           <!-- end .form-body section -->
       </div>
       <div class="panel-footer">
-        <button type="submit" class="button btn-primary" ng-disabled="activityForm.$invalid">保存</button>
-        <button type="submit" class="button btn-success" ng-disabled="activityForm.$invalid">保存并发布</button>
+        <button type="button" class="button btn-primary" ng-click="save(false)" ng-disabled="activityForm.$invalid">保存</button>
+        <button type="button" class="button btn-success" ng-click="save(true)" ng-disabled="activityForm.$invalid">保存并发布</button>
         <button type="button" class="button" ng-click="close()">关闭</button>
       </div>
       <!-- end .form-footer section -->

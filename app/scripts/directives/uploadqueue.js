@@ -57,6 +57,7 @@
             }
           });
           scope.result = tmp.join(',');
+          console.log(scope.result);
         }
 
         scope.$on('updateResult', function () {
