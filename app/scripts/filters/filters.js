@@ -23,6 +23,7 @@ app.filter('fullImageUrl',function(config){
     if(angular.isUndefined(input)){
       return false;
     }
-    return config.global.qiniu_pub_domain + input;
+    // return config.global.qiniu_pub_domain + input;
+    return input;
   }
 });

@@ -236,7 +236,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       }
     })
     .state('admin.article.new', {
-      url: '/new',
+      url: '/{action:new}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'forms': {
+          templateUrl: 'views/articles/edit_article.html',
+          controller: 'EditorarticleCtrl'
+        }
+      }
+    })
+    .state('admin.article.edit', {
+      url: '/{itemId:[0-9]{1,4}}/{action:edit}',
       resolve: {
         auth: function (authService) {
           return authService.auth();

@@ -12,12 +12,15 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   $scope.the_article = {};
   $scope.flag.add_article = false;//添加文章
   $scope.flag.edit_article = false;//修改
-  $scope.flag.del_article= false;//删除
+  $scope.flag.del_article = false;//删除
   $scope.flag.see_article = false;//详情
-  $scope.flag.disabled="false";
-  $scope.flag.list=false;//已发布
-  $scope.flag.listedit=false;//继续编辑
-  $scope.flag.search=false;//搜索
+  $scope.flag.publish_article = false;//发布
+  $scope.flag.back_article = false;//收回
+
+  $scope.flag.disabled = "false";
+  $scope.flag.list = false;//已发布
+  $scope.flag.listedit = false;//继续编辑
+  $scope.flag.search = false;//搜索
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
 
@@ -25,6 +28,9 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   ucauth.hasRole('edit_article', $scope.flag);
   ucauth.hasRole('del_article', $scope.flag);
   ucauth.hasRole('see_article', $scope.flag);
+  ucauth.hasRole('publish_article', $scope.flag);
+  ucauth.hasRole('back_article', $scope.flag);
+
 
   $scope.datePicker = {
     date: {startDate: undefined, endDate: undefined}
@@ -34,6 +40,10 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
     $scope.the_article.endTime = $scope.datePicker.date.endDate.valueOf();
   };
 
+  $scope.$on('updateDate', function (e, value) {
+    $scope.search.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
+    $scope.search.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
+  })
   $scope.getStatusList = function () {
     //状态
     $scope.status_list = lodash.clone(config.data.states.publishStatus);
@@ -63,22 +73,22 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
       }
     });
   };
-  switch (action){
+  switch (action) {
     case 'search':
-      $scope.flag.disabled="false";
-      $scope.flag.search=true;
+      $scope.flag.disabled = "false";
+      $scope.flag.search = true;
       console.log($scope.flag.disabled);
       break;
     case 'list':
-      $scope.flag.disabled="true";
-      $scope.flag.list=true
-      $scope.the_article.status=1;
+      $scope.flag.disabled = "true";
+      $scope.flag.list = true
+      $scope.the_article.status = 1;
       console.log($scope.flag.disabled);
       break;
     case 'listedit':
-      $scope.flag.listedit=true;
-      $scope.flag.disabled="true";
-      $scope.the_article.status=0;
+      $scope.flag.listedit = true;
+      $scope.flag.disabled = "true";
+      $scope.the_article.status = 0;
       console.log($scope.flag.disabled);
       break;
 
@@ -95,6 +105,27 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   $scope.del = function (item) {
     Models.init('Articles/autoId').actions('delete', {}, {'autoId': item.autoId}).then(function (ret) {
         notify({message: '删除成功', classes: 'alert-success'});
+        $scope.tableParams.reload();
+      },
+      function (err) {
+        notify({message: err.data.info, classes: 'alert-danger'});
+      });
+  };
+  //发布
+  $scope.publish = function (item) {
+    console.log(item);
+    Models.init('Articles/publish').actions('publish',{}, {'autoId': item.autoId}).then(function (ret) {
+        notify({message: '发布成功', classes: 'alert-success'});
+        $scope.tableParams.reload();
+      },
+      function (err) {
+        notify({message: err.data.info, classes: 'alert-danger'});
+      });
+  };
+//收回
+  $scope.back = function (item) {
+    Models.init('Articles/back').actions('back',{},{'autoId': item.autoId}).then(function (ret) {
+        notify({message: '收回成功', classes: 'alert-success'});
         $scope.tableParams.reload();
       },
       function (err) {

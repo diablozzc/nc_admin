@@ -23,7 +23,7 @@ app.value('config', {
     upload_service:'upload/stream',
     download_payrecords:'payrecords/reports/excel',
     download_bills:'bills/reports/excel',
-    qiniu_pub_domain:'http://7xjr8j.com1.z0.glb.clouddn.com/',
+    qiniu_pub_domain:'http://nc.mrshare.cn/',
     user_sys:'admin',
     check_action_auth:false
   },
@@ -146,11 +146,10 @@ app.value('config', {
 
 
       'admin.article.search':{parent:'admin.welcome',text:'搜索',href:'admin.article.search'},
-      'admin.article.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.article.listedit'},
+      'admin.article.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.article.listedit({action:"listedit"})'},
       'admin.article.list':{parent:'admin.welcome',text:'已发布内容',href:'admin.article.list'},
       'admin.article.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.article.new'},
-
-
+      'admin.article.edit':{parent:'admin.article.listedit',text:'修改文章内容',href:'admin.article.edit'},
 
     },
     resources:{
@@ -724,7 +723,7 @@ app.value('config', {
       //文章资讯接口配置
       'Articles':{
         name:'Articles',uri:'articles',actions:[
-          {action:'add',method:'POST',isArray:false},
+          {action:'add',method:'POST',isArray:false,requestType:'json'},
         ],serverKey:'nc_server'
       },
       'Articles/list':{
@@ -735,18 +734,23 @@ app.value('config', {
       'Articles/autoId':{
         name:'Articles/autoId',uri:'articles/:autoId',actions:[
           {action:'delete',method:'DELETE',isArray:false},
-          {action:'update',method:'PUT',isArray:false},
+          {action:'update',method:'PUT',isArray:false,requestType:'json'},
           {action:'info',method:'GET',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'Articles/Web/autoId':{
+        name:'Articles/Web/autoId',uri:'articles/web/:autoId',actions:[
+          {action:'get',method:'GET',isArray:false}
         ],serverKey:'nc_server'
       },
       'Articles/back':{
         name:'Articles/back',uri:'articles/:autoId/back',actions:[
-          {action:'back',method:'PUT',isArray:false},
+          {action:'back',method:'PUT',isArray:false,requestType:'json'}
         ],serverKey:'nc_server'
       },
       'Articles/publish':{
         name:'Articles/publish',uri:'articles/:autoId/publish',actions:[
-          {action:'publish',method:'PUT',isArray:false},
+          {action:'publish',method:'PUT',isArray:false,requestType:'json'}
         ],serverKey:'nc_server'
       },
       //留言评论接口
@@ -899,7 +903,7 @@ app.value('config', {
         {val:1,name:'已发布'},
         {val:2,name:'已收回'},
       ],
-      
+
 
       publishStatus:[
         {val:0,name:'未发布'},

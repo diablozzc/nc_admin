@@ -48,7 +48,7 @@
                   <div class="section">
                     <div class="form-group">
                       <div item-select item-data="column_list" selected-value="the_article.columnKey" title="栏目"
-                           name-key="name" val-key="val" required="false" ></div>
+                           name-key="name" val-key="val" required="false"></div>
                     </div>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
                   <div class="section">
                     <div class="form-group">
                       <!--<div item-select item-data="status_list" selected-value="the_article.status" title="状态"-->
-                           <!--name-key="name" val-key="val" required="false" disabled="true" ng-if="flag.disabled"></div>-->
+                      <!--name-key="name" val-key="val" required="false" disabled="true" ng-if="flag.disabled"></div>-->
                       <div item-select item-data="status_list" selected-value="the_article.status" title="状态"
                            name-key="name" val-key="val" required="false" disabled="false" ng-if="flag.disabled"></div>
                     </div>
@@ -98,29 +98,31 @@
         <tbody>
         <tr ng-repeat="item in $data">
           <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
-          <td class="" data-title="'标题'" >{{item.title}}</td>
+          <td class="" data-title="'标题'">{{item.title}}</td>
           <td class="w75" data-title="'栏目'">{{item.columnKey|statesName:"columnName"}}</td>
           <!--<td class="mw150" data-title="'关键字'">{{item.keywords}}</td>-->
           <td class="w75" data-title="'来源'">{{item.source}}</td>
-          <td class="w75" data-title="'状态'" ng-class="{'text-danger':item.status==0,'text-success':item.status==1,'text-info':item.status==2}" >{{item.status|statesName:"publishStatus"}}</td>
+          <td class="w75" data-title="'状态'"
+              ng-class="{'text-danger':item.status==0,'text-success':item.status==1,'text-info':item.status==2}">
+            {{item.status|statesName:"publishStatus"}}
+          </td>
           <td class="w150" data-title="'发布时间'">{{item.publishTime| date:"yyyy-MM-dd HH:mm"}}</td>
           <td class="w200" data-title="'操作'">
-            <button class="btn btn-xs btn-success"
+            <button class="btn btn-xs btn-default"
                     ng-click="ucauth.isAccess({key:'see_article',func:entry,param:item})"
                     ng-disabled="!flag.see_article">详情
             </button>
             <button class="btn btn-xs btn-primary"
                     ng-click="ucauth.isAccess({key:'edit_article',func:edit,param:item})"
-                    ng-disabled="!flag.edit_article">编辑
+                    ng-show="item.status==0">编辑
             </button>
-            <button class="btn btn-xs btn-primary"
-                    ng-click="ucauth.isAccess({key:'edit_article',func:edit,param:item})"
-                    ng-disabled="!flag.edit_article" ng-if="item.status==0">发布
-            </button>
-            <button class="btn btn-xs btn-error"
-                    ng-click="ucauth.isAccess({key:'edit_article',func:edit,param:item})"
-                    ng-disabled="!flag.edit_article" ng-if="item.status==1">收回
-            </button>
+              <span confirm-popover title="发布文章" content="确定要发布么?" on-action="ucauth.isAccess"
+                    value="{key:'publish_article',func:publish,param:item}" btn-class="btn-xs btn-success" btn-name="发布"
+                    ng-show="item.status==0"></span>
+              <span confirm-popover title="收回文章" content="确定要收回么?" on-action="ucauth.isAccess"
+                    value="{key:'back_article',func:back,param:item}" btn-class="btn-xs btn-warning" btn-name="收回"
+                    ng-show="item.status==1"></span>
+
             <span confirm-popover title="删除文章" content="确定要删除么?" on-action="ucauth.isAccess"
                   value="{key:'del_article',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除"
                   disabled="!flag.del_article"></span>
