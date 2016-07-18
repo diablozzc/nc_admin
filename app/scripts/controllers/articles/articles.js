@@ -41,8 +41,8 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   };
 
   $scope.$on('updateDate', function (e, value) {
-    $scope.search.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
-    $scope.search.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
+    $scope.the_article.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
+    $scope.the_article.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
   })
   $scope.getStatusList = function () {
     //状态
