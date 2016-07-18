@@ -695,14 +695,14 @@ app.value('config', {
       //活动接口配置
       'Activities':{
         name:'Activities',uri:'activities',actions:[
-          {action:'add',method:'POST',isArray:false},
+          {action:'add',method:'POST',isArray:false,requestType:'json'},
           {action:'list',method:'GET',isArray:false}
         ],serverKey:'nc_server'
       },
       'Activities/autoId':{
         name:'Activities/autoId',uri:'activities/:autoId',actions:[
           {action:'delete',method:'DELETE',isArray:false},
-          {action:'update',method:'PUT',isArray:false},
+          {action:'update',method:'PUT',isArray:false,requestType:'json'},
           {action:'info',method:'GET',isArray:false}
         ],serverKey:'nc_server'
       },
@@ -899,7 +899,7 @@ app.value('config', {
         {val:1,name:'已发布'},
         {val:2,name:'已收回'},
       ],
-      
+
 
       publishStatus:[
         {val:0,name:'未发布'},

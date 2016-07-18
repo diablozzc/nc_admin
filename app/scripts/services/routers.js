@@ -338,7 +338,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       }
     })
     .state('admin.activity.add', {
-      url: '/add',
+      url: '/{action:add}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'add': {
+          templateUrl: 'views/activity/editor_activity.html',
+          controller: 'EditoractivityCtrl'
+        }
+      }
+    })
+    .state('admin.activity.edit', {
+      url: '/{action:edit}?itemId',
       resolve: {
         auth: function (authService) {
           return authService.auth();

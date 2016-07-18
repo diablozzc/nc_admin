@@ -87,10 +87,10 @@ app.controller('ActivityCtrl', function ($rootScope, $scope, $state, $stateParam
 
   };
 
-  // // 编辑按钮
-  // $scope.edit = function (item) {
-  //   $state.go('admin.sys.edit', {itemId: item.autoId, action: 'edit'});
-  // };
+  // 编辑按钮
+  $scope.edit = function (item) {
+    $state.go('admin.activity.edit', {itemId: item.autoId, action: 'edit'});
+  };
   // // 添加按钮
   // $scope.add = function () {
   //   $state.go('admin.sys.add', {action: 'add'});
