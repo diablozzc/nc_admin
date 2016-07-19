@@ -18,8 +18,8 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
 
   var init = function () {
     $scope.the_article = {};
-    $scope.the_article.showType='text';
-    $scope.the_article.columnKey='column_news';
+    $scope.the_article.showType = 'text';
+    $scope.the_article.columnKey = 'column_news';
   };
 
   $scope.upload_param = {pub: 'pub', fileType: 'activity_poster'};
@@ -36,8 +36,25 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
         function (ret) {
           $scope.the_article = ret;
           $scope.articleContent = $scope.the_article.content;
+          $scope.the_article.attachUrl="";
+          Models.init('Attaches').actions('get', {'columnKey': ret.columnKey, 'itemId': $stateParams.itemId}).then(
+            function (att) {
+              console.log(att);
+              var attachs = att;
+              if (attachs && attachs.length) {
+                for (var i = 0; i < attachs.length; i++) {
+                  if (i == attachs.length - 1) {
+                    $scope.the_article.attachUrl += attachs[i].url;
+                  } else {
+                    $scope.the_article.attachUrl += attachs[i].url + ",";
+                  }
+                }
+              }
+            }
+          );
         }
       );
+
       break;
   }
 
@@ -69,20 +86,20 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
       //图片控制
       switch ($scope.the_article.showType) {
         case 'text':
-          $scope.the_article.coverUrl="";
-          $scope.the_article.videoUrl="";
+          $scope.the_article.coverUrl = "";
+          $scope.the_article.videoUrl = "";
           break;
         case 'singleImage':
         case 'imageText':
-          var imgs=$scope.the_article.coverUrl.split(',');
-          $scope.the_article.coverUrl=imgs[0];
-          $scope.the_article.videoUrl="";
+          var imgs = $scope.the_article.coverUrl.split(',');
+          $scope.the_article.coverUrl = imgs[0];
+          $scope.the_article.videoUrl = "";
           break;
         case 'multiImage':
-          $scope.the_article.videoUrl="";
+          $scope.the_article.videoUrl = "";
           break;
         case 'video':
-          $scope.the_article.coverUrl="";
+          $scope.the_article.coverUrl = "";
           break;
       }
       switch (action) {
@@ -111,7 +128,7 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
     $state.go('admin.article.search', {'action': 'search'});
   };
   //预览（手机端）
-  $scope.preview=function () {
-    
+  $scope.preview = function () {
+
   }
 });

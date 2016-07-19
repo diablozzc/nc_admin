@@ -150,7 +150,8 @@ app.value('config', {
       'admin.article.list':{parent:'admin.welcome',text:'已发布内容',href:'admin.article.list'},
       'admin.article.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.article.new'},
       'admin.article.edit':{parent:'admin.article.listedit',text:'修改文章内容',href:'admin.article.edit'},
-
+      'admin.feedback.list':{parent:'admin.welcome',text:'我有话说',href:'admin.feedback.list'},
+      'admin.feedback.detail':{parent:'admin.feedback.list',text:'详情',href:'admin.feedback.detail'},
     },
     resources:{
       // 'Users':{
@@ -767,13 +768,13 @@ app.value('config', {
       //我有话说 接口
       'Feedback/list':{
         name:'Feedback/list',uri:'feedbacks/web',actions:[
-          {action:'list',method:'GET',isArray:true},
+          {action:'list',method:'GET',isArray:false,requestType:'json'},
         ],serverKey:'nc_server'
       },
       //回复或追问接口
       'Replies/reply':{
         name:'Feedback/reply',uri:'replies',actions:[
-          {action:'reply',method:'POST',isArray:false},
+          {action:'reply',method:'POST',isArray:false ,requestType:'json'},
         ],serverKey:'nc_server'
       },
       'Replies/audit':{
@@ -783,10 +784,15 @@ app.value('config', {
       },
       //删除文件
       'Upload':{
-        name:'Upload',uri:'/upload',actions:[
+        name:'Upload',uri:'upload',actions:[
           {action:'delete',method:'DELETE',isArray:false}
         ],serverKey:'nc_server'
       },
+      'Attaches':{
+        name:'Attaches',uri:'attaches',actions:[
+          {action:'get',method:'GET',isArray:true,requestType:'json'}
+        ],serverKey:'nc_server'
+      }
     },
     states:{
       saleState:[

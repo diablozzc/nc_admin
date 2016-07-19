@@ -321,8 +321,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       }
     })
-    .state('admin.reply', {
-      url: 'reply/list',
+    .state('admin.feedback', {
+      url: 'feedback',
       resolve: {
         auth: function (authService) {
           return authService.auth();
@@ -330,11 +330,39 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       },
       views: {
         'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+          templateUrl: 'views/feedback/feedback.html'
         }
       }
     })
+    .state('admin.feedback.list', {
+      url: '/list',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'feedback': {
+          templateUrl: 'views/feedback/feedback_list.html',
+          controller: 'FeedbackCtrl'
+        }
+      }
+    })
+    .state('admin.feedback.detail', {
+      url: '/{itemId:[0-9]{1,4}}/{action:entry}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'feedback': {
+          templateUrl: 'views/feedback/feedback_detail.html',
+          controller: 'FeedbackDetailCtrl'
+        }
+      }
+    })
+
 
     //活动管理
     .state('admin.activity', {

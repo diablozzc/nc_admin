@@ -108,13 +108,13 @@
           </td>
           <td class="w150" data-title="'发布时间'">{{item.publishTime| date:"yyyy-MM-dd HH:mm"}}</td>
           <td class="w200" data-title="'操作'">
-            <button class="btn btn-xs btn-default"
-                    ng-click="ucauth.isAccess({key:'see_article',func:entry,param:item})"
-                    ng-disabled="!flag.see_article">详情
-            </button>
+            <!--<button class="btn btn-xs btn-default"-->
+                    <!--ng-click="ucauth.isAccess({key:'see_article',func:entry,param:item})"-->
+                    <!--ng-disabled="!flag.see_article">详情-->
+            <!--</button>-->
             <button class="btn btn-xs btn-primary"
                     ng-click="ucauth.isAccess({key:'edit_article',func:edit,param:item})"
-                    ng-show="item.status==0">编辑
+                    ng-show="item.status==0||item.status==2">编辑
             </button>
               <span confirm-popover title="发布文章" content="确定要发布么?" on-action="ucauth.isAccess"
                     value="{key:'publish_article',func:publish,param:item}" btn-class="btn-xs btn-success" btn-name="发布"

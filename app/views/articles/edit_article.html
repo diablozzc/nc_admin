@@ -87,9 +87,10 @@
                   <div class="form-group">
                     <div class="col-lg-12">
                       <div class="bs-component">
-                        <div upload-queue maxfiles="1" fields="upload_file" title="上传附件" selected="fileFiles"
+                        <div upload-queue maxfiles="3" fields="upload_file" title="上传附件" selected="fileFiles"
                              result="the_article.attachUrl" required="false"></div>
-                        <div upload-preview files="fileFiles" urls="the_article.attachUrl" upload-param="upload_file"></div>
+                        <div upload-preview-file files="fileFiles" urls="the_article.attachUrl"
+                             upload-param="upload_file"></div>
                       </div>
                     </div>
                   </div>
@@ -98,14 +99,16 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="row" ng-show="the_article.showType=='singleImage'||the_article.showType=='multiImage'||the_article.showType=='imageText'">
+            <div class="row"
+                 ng-show="the_article.showType=='singleImage'||the_article.showType=='multiImage'||the_article.showType=='imageText'">
               <div class="section ">
                 <div class="form-group">
                   <div class="col-lg-12">
                     <div class="bs-component">
                       <div upload-queue maxfiles="3" fields="upload_param" title="封面" selected="imgFiles"
                            result="the_article.coverUrl" required="false"></div>
-                      <div upload-preview files="imgFiles" urls="the_article.coverUrl" upload-param="upload_param"></div>
+                      <div upload-preview files="imgFiles" urls="the_article.coverUrl"
+                           upload-param="upload_param"></div>
                     </div>
                   </div>
                 </div>
@@ -118,7 +121,8 @@
                     <div class="bs-component">
                       <div upload-queue maxfiles="1" fields="upload_video" title="上传视频" selected="videoFiles"
                            result="the_article.videoUrl" required="false"></div>
-                      <div upload-preview-video files="videoFiles" urls="the_article.videoUrl" upload-param="upload_video"></div>
+                      <div upload-preview-video files="videoFiles" urls="the_article.videoUrl"
+                           upload-param="upload_video"></div>
                     </div>
                   </div>
                 </div>

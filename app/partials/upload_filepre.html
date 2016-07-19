@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="preview">
+  <div class="upload-image mw140 mr20 mb20" ng-repeat="f in files" ng-show="files.length > 0">
+    <!--<img ngf-src="../images/yeoman.png" ng-if="f.newupload"/>-->
+    <!--<img ng-src="../images/yeoman.png" ng-if="f.fileName && f.old"/>-->
+<!--<input type="file">-->
+      <!--{{f}}-->
+    <!--</input>-->
 
-</body>
-</html>
+  <div class="progress" ng-show="f.progress >= 0 && !f.uploaded">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{f.progress}}" aria-valuemin="0"
+         aria-valuemax="100" style="width: {{f.progress}}%;">
+      <span class="sr-only">{{f.progress}}% Complete</span>
+    </div>
+  </div>
+  <a class="badge badge-danger" ng-if="f.uploaded" ng-click="deleteUploadFile($index,f)">x</a>
+</div>
+</div>
