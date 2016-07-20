@@ -26,7 +26,7 @@
     "ng-file-upload-shim": "~5.0.6",
     "ng-table": "~0.8.0",
     "ng-tags-input": "~3.0.0",
-    "ngDialog": "~0.4.0",
+    "ngDialog": "~0.6.0",
     "textAngular": "~1.4.2",
     "angular-daterangepicker": "~0.2.0",
     "nanoscroller": "~0.8.7",

@@ -294,7 +294,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
 
     //信息反馈
     .state('admin.comment', {
-      url: 'comment/list',
+      url: 'comment',
       resolve: {
         auth: function (authService) {
           return authService.auth();
@@ -302,8 +302,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       },
       views: {
         'content': {
-          templateUrl: 'partials/editor_employee.html',
-          controller: 'EditoremployeeCtrl'
+          templateUrl: 'views/comment/comment.html',
+          controller: 'CommentCtrl'
+        }
+      }
+    })
+    .state('admin.comment.list', {
+      url: '/list',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/comment/commentlist.html',
+          controller: 'CommentCtrl'
         }
       }
     })
