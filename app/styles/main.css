@@ -546,3 +546,9 @@ tr.selected{
   width: 420px;
   height: auto;
 }
+.div-line-height-1{
+  line-height: 1.5;
+}
+.div-line-height-2{
+  line-height: 2;
+}
