@@ -762,7 +762,7 @@ app.value('config', {
       },
       'Comments/list':{
         name:'Comments/list',uri:'comments/web',actions:[
-          {action:'list',method:'GET',isArray:true},
+          {action:'list',method:'GET',isArray:false,requestType:'json'},
         ],serverKey:'nc_server'
       },
       //我有话说 接口
@@ -915,7 +915,11 @@ app.value('config', {
         {val:2,name:'已收回'},
       ],
 
-
+      auditStatus:[
+        {val:0,name:'未审核'},
+        {val:1,name:'审核通过'},
+        {val:2,name:'审核拒绝'},
+      ],
       publishStatus:[
         {val:0,name:'未发布'},
         {val:1,name:'已发布'},
@@ -934,6 +938,10 @@ app.value('config', {
         {val:'multiImage',name:'多幅图片通屏'},
         {val:'imageText',name:'左文右图'},
         {val:'video',name:'视频 '}
+      ],
+      replyType:[
+        {val:0,name:'居委回复'},
+        {val:1,name:'用户回复'}
       ]
     },
     //operation: [

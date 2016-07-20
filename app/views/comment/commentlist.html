@@ -1,0 +1,138 @@
+<div class="panel">
+  <!-- message listings table -->
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams"
+             template-pagination="custom/pager" cg-busy="{promise:commentListPromise,message:'请稍候...'}">
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <td class="mnw100 text-left" data-title="'所属栏目'">{{item.columnName}}</td>
+          <td class="mnw75" data-title="'标题'">{{item.itemTitle}}</td>
+          <td class="mnw300" data-title="'内容'">{{item.content}}</td>
+          <td class="mnw75" data-title="'留言微信昵称'">{{item.nickName}}</td>
+          <td class="mnw75" data-title="'留言时间'">{{item.commentTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+          <!--<td class="mnw75" data-title="'审核状态'">-->
+          <!--<div class="btn-group" ng-if="item.status==0">-->
+          <!--<span class="text-primary">{{item.status|statesName:'auditStatus'}}</span>-->
+          <!--</div>-->
+          <!--<div class="btn-group" ng-if="item.status==1">-->
+          <!--<span class="text-success">{{item.status|statesName:'auditStatus'}}</span>-->
+          <!--</div>-->
+          <!--<div class="btn-group" ng-if="item.status==2">-->
+          <!--<span class="text-danger">{{item.status|statesName:'auditStatus'}}</span>-->
+          <!--</div>-->
+          <!--</td>-->
+          <td class="w250" data-title="'操作'">
+
+            <!--<span confirm-popover title="删除活动" content="确定要删除活动'{{item.title}}'吗?" on-action="ucauth.isAccess"-->
+            <!--value="{key:'del_activity',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除"-->
+            <!--ng-if="item.status==0||item.status==2"></span>-->
+            <!--<button class="btn btn-xs btn-success" ng-if="item.status==0"-->
+            <!--ng-click="ucauth.isAccess({key:'audit_comment',func:audit,param:item})"-->
+            <!--&gt;审核-->
+            <!--</button>-->
+            <div class="btn-group">
+              <button type="button" class="btn br2 btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                      ng-class="{'btn-success':item.status==1,'btn-primary':item.status==0,'btn-danger':item.status==2}">
+                {{item.status|statesName:'auditStatus'}}
+                <span class="caret ml5"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="" ng-if="item.status==2||item.status==0"
+                       ng-click="ucauth.isAccess({key:'audit_comment',func:audit,param:{autoId:item.autoId,status:1}})">审核通过</a>
+                </li>
+                <li><a href="" ng-if="item.status==1||item.status==0"
+                       ng-click="ucauth.isAccess({key:'audit_comment',func:audit,param:{autoId:item.autoId,status:2}})">审核拒绝</a>
+                </li>
+              </ul>
+            </div>
+
+            <button class="btn btn-xs btn-primary"
+                    ng-click="ucauth.isAccess({key:'edit_activity',func:reply,param:item})"
+            >回复
+            </button>
+            <button class="btn btn-xs btn-info"
+                    ng-click="ucauth.isAccess({key:'show_reply',func:showReply,param:item.replies})"
+            >查看回复
+            </button>
+            <!--<button class="btn btn-xs btn-warning" ng-if="item.status==1" ng-click="ucauth.isAccess({key:'set_poster',func:set,param:item})"-->
+            <!--&gt;收回-->
+            <!--</button>-->
+            <!--<span confirm-popover title="收回活动" content="确定要收回活动'{{item.title}}'吗?" on-action="ucauth.isAccess"-->
+            <!--value="{key:'back_activity',func:back,param:item}" btn-class="btn-xs btn-warning" btn-name="收回"-->
+            <!--ng-if="item.status==1"></span>-->
+
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="commentReplyTpl">
+  <div class="admin-form theme-primary">
+
+    <div class="panel  panel-primary">
+      <form id="replyForm" ng-submit="save()" name="replyForm" class="form-horizontal">
+        <div class="panel-body bg-light">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="section">
+                <label class="field prepend-icon">
+                  <textarea class="gui-textarea" id="reply" name="reply" placeholder="回复信息" ng-model="the_reply.content" required="true"></textarea>
+                  <label for="reply" class="field-icon">
+                    <i class="fa fa-comments"></i>
+                  </label>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class=" row text-right">
+            <button type="submit" class="button btn-primary"  ng-disabled="replyForm.$invalid">保存</button>
+            <!--<button type="button" class="button" ng-click="close()">关闭</button>-->
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="showReplyTpl">
+
+  <div class="panel">
+    <div style="height: 40px;"></div>
+    <!-- message listings table -->
+    <div class="panel-body pn">
+      <div class="table-responsive">
+        <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams" template-pagination="custom/nopager"
+                cg-busy="{promise:replyListPromise,message:'请稍候...'}">
+          <tbody>
+          <tr ng-repeat="item in $data">
+            <td class="mnw100 text-left" data-title="'回复方'">{{item.replyType|statesName:'replyType'}}</td>
+            <td class="mnw300 text-left" data-title="'回复内容'">{{item.content}}</td>
+            <td class="mnw75" data-title="'回复人'">{{item.name}}</td>
+            <td class="mnw75" data-title="'回复时间'">{{item.replyTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <!--<td class="mnw75" data-title="'审核状态'">-->
+            <!--<div class="btn-group" ng-if="item.status==0">-->
+            <!--<span class="text-primary">{{item.status|statesName:'auditStatus'}}</span>-->
+            <!--</div>-->
+            <!--<div class="btn-group" ng-if="item.status==1">-->
+            <!--<span class="text-success">{{item.status|statesName:'auditStatus'}}</span>-->
+            <!--</div>-->
+            <!--<div class="btn-group" ng-if="item.status==2">-->
+            <!--<span class="text-danger">{{item.status|statesName:'auditStatus'}}</span>-->
+            <!--</div>-->
+            <!--</td>-->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</script>
+<script type="text/ng-template" id="custom/nopager">
+</script>
