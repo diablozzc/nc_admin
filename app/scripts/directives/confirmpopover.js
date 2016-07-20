@@ -44,7 +44,8 @@
         };
 
         scope.isDisable = function(){
-          return scope.disabled || scope.useless()?scope.useless()():false;
+          return scope.disabled || scope.useless() ? scope.useless()():false;
+           // return scope.disabled === 'true' ;
         }
 
       }

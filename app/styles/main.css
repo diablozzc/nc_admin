@@ -498,3 +498,51 @@ tr.selected{
   line-height: 2.5 !important;
 }
 
+.table-image{
+  position:relative;
+  /*float:left;*/
+  /*width:140px;*/
+  height: 100px;
+}
+.table-image img{
+  width:100%
+}
+.table-image .progress{
+  height:7px;
+  margin-bottom:0;
+}
+.table-image:hover .badge{
+  display:block;
+}
+.table-image .badge{
+  display:none;
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  padding: 3px 6px;
+  opacity: 0.95;
+}
+.div-md-4{
+  width: 450px;
+}
+.item-clip{
+  position: absolute;
+  /*clip: rect(0px,100px,100px,0px);*/
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
+.item-clip img{
+  width: 100%;
+}
+.item-f{
+  position: relative;
+  height: 110px;
+  width: 110px;
+}
+.img-feedback{
+  position: relative;
+  width: 420px;
+  height: auto;
+}

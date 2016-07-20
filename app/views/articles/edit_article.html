@@ -1,7 +1,7 @@
 <div class="admin-form theme-primary">
 
   <div class="panel heading-border panel-primary">
-    <form id="activityForm" ng-submit="save()" name="activityForm" class="form-horizontal">
+    <form id="articleForm" name="articleForm" class="form-horizontal">
       <div class="panel-body bg-light">
         <div class="section-divider mb40">
           <span>{{form_title}}</span>
@@ -15,9 +15,7 @@
               <div class="col-md-12">
                 <div class="section">
                   <div class="form-group">
-
                     <div input-text="title" value="the_article.title" label="文章标题" required="true"></div>
-
                   </div>
                 </div>
               </div>
@@ -27,7 +25,7 @@
                 <div class="section">
                   <div class="form-group">
                     <div item-select item-data="column_list" selected-value="the_article.columnKey" title="栏目"
-                         name-key="name" val-key="val" required="false" ></div>
+                         name-key="name" val-key="val" required="true"></div>
                   </div>
                 </div>
               </div>
@@ -35,38 +33,7 @@
                 <div class="section">
                   <div class="form-group">
                     <div item-select item-data="showType_list" selected-value="the_article.showType" title="类型"
-                         name-key="name" val-key="val" required="false" ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-
-                <div class="section ">
-                  <div class="form-group">
-                    <div class="col-lg-12">
-                      <div class="bs-component">
-
-                        <div upload-queue maxfiles="1" fields="upload_param" title="上传文章封面" selected="files" result="the_article.url" required="true"></div>
-                        <div upload-preview files="files" urls="the_article.url" upload-param="upload_param"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="section ">
-                  <div class="form-group">
-                    <div class="col-lg-12">
-                      <div class="bs-component">
-                        <div upload-queue maxfiles="1" fields="upload_param" title="上传附件" selected="files" result="the_activity.attach" required="false"></div>
-                      </div>
-                    </div>
+                         name-key="name" val-key="val" required="true"></div>
                   </div>
                 </div>
               </div>
@@ -76,7 +43,7 @@
                 <div class="section">
                   <div class="form-group">
 
-                    <div input-text="source" value="the_article.source" label="来源" required="true"></div>
+                    <div input-text="source" value="the_article.source" label="来源" required="false"></div>
 
                   </div>
                 </div>
@@ -94,7 +61,7 @@
                 <div class="section">
                   <div class="form-group">
 
-                    <div input-text="title" value="the_article.keyword" label="关键字" required="true"></div>
+                    <div input-text="title" value="the_article.keywords" label="关键字" required="true"></div>
 
                   </div>
                 </div>
@@ -105,8 +72,25 @@
                 <div class="section">
                   <div class="form-group">
                     <div class="col-lg-12">
-                      <div class="bs-component" ng-class="{'has-error':activityForm.activityContent.$invalid}">
-                        <div text-angular="" name="activityContent" ng-model="activityContent" required placeholder="文章内容" encode-text="the_activity.content"></div>
+                      <div class="bs-component" ng-class="{'has-error':articleForm.articleContent.$invalid}">
+                        <div text-angular="" name="articleContent" ng-model="articleContent" required placeholder="文章内容"
+                             value="the_article.content"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+                        <div upload-queue maxfiles="3" fields="upload_file" title="上传附件" selected="fileFiles"
+                             result="the_article.attachUrl" required="false"></div>
+                        <div upload-preview-file files="fileFiles" urls="the_article.attachUrl"
+                             upload-param="upload_file"></div>
                       </div>
                     </div>
                   </div>
@@ -115,7 +99,35 @@
             </div>
           </div>
           <div class="col-md-4">
-
+            <div class="row"
+                 ng-show="the_article.showType=='singleImage'||the_article.showType=='multiImage'||the_article.showType=='imageText'">
+              <div class="section ">
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <div class="bs-component">
+                      <div upload-queue maxfiles="3" fields="upload_param" title="封面" selected="imgFiles"
+                           result="the_article.coverUrl" required="false"></div>
+                      <div upload-preview files="imgFiles" urls="the_article.coverUrl"
+                           upload-param="upload_param"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-show="the_article.showType=='video'">
+              <div class="section ">
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <div class="bs-component">
+                      <div upload-queue maxfiles="1" fields="upload_video" title="上传视频" selected="videoFiles"
+                           result="the_article.videoUrl" required="false"></div>
+                      <div upload-preview-video files="videoFiles" urls="the_article.videoUrl"
+                           upload-param="upload_video"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -123,7 +135,13 @@
         <!-- end .form-body section -->
       </div>
       <div class="panel-footer">
-        <button type="submit" class="button btn-primary" ng-disabled="activityForm.$invalid">保存</button>
+        <button type="button" ng-click="preview()" class="button btn-primary" ng-disabled="articleForm.$invalid">预览
+        </button>
+        <button type="button" ng-click="save(false)" class="button btn-primary" ng-disabled="articleForm.$invalid">保存
+        </button>
+        <button type="button" ng-click="save(true)" class="button btn-success" ng-disabled="articleForm.$invalid">
+          保存并发布
+        </button>
         <button type="button" class="button" ng-click="close()">关闭</button>
       </div>
       <!-- end .form-footer section -->
