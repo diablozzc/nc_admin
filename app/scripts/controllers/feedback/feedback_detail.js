@@ -9,8 +9,14 @@ app.controller('FeedbackDetailCtrl', function ($rootScope, $scope, $state, $stat
   $scope.action = $stateParams.action;
   switch (action) {
     case 'entry':
-      $scope.the_feedback = localStorageService.get('the_feedback_' + $stateParams.itemId);
-      console.log( $scope.the_feedback );
+      // $scope.the_feedback = localStorageService.get('the_feedback_' + $stateParams.itemId);
+      Models.init('Feedback/AutoId').actions('get', {'autoId': $stateParams.itemId}).then(
+        function (ret) {
+          $scope.the_feedback = ret;
+        },
+        function (err) {
+          notify({message: err.data.info, classes: 'alert-danger'});
+        });
       break;
   }
   // 回复

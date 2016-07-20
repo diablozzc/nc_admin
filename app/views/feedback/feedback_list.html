@@ -98,8 +98,13 @@
         <tbody>
         <tr ng-repeat="item in $data">
           <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
-          <td class="table-image w140" data-title="'图片'">
-            <img src="{{item.image}}"/></td>
+          <td class="w100" data-title="'图片'">
+            <div class="item-f" >
+              <div class="item-clip" style="background-image: url('{{item.image}}')">
+                <!--<img  src="{{item.image}}"/>-->
+              </div>
+            </div>
+          </td>
           <td class="" data-title="'内容'">{{item.content}}</td>
 
           <td class="w75" data-title="'手机号'">{{item.mobile}}</td>

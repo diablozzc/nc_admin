@@ -1,22 +1,34 @@
-<div class="panel">
+<div class="panel div-md-4">
+
   <!-- message toolbar header -->
   <div class="admin-form theme-primary">
-
-    <div class="panel heading-border panel-primary">
+    <div class="panel  panel-primary">
       <div class="panel-body bg-light">
+        <div class="section-divider mb40">
+          <span>详情</span>
+        </div>
+        <div class="row">
+          <div class="">
+            <div class="row">
 
-        <div class="col-md-4">
-
-
-          <div class="row">
-            <div class="">
-              <div  value="the_feedback.content" label="">{{the_feedback.content}}</div>
+              <div class="col-md-8">
+                <div class="section">
+                  <div class="form-group">
+                    <!--<span>内容：</span>-->
+                    <div value="the_feedback.content">{{the_feedback.content}}</div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="row">
-
-            <div class="">
-              <img ng-src="{{the_feedback.image}}"/>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="section">
+                  <div class="form-group">
+                    <div class="img-feedback">
+                      <img  style="width:100% " ng-src="{{the_feedback.image}}"/></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -26,5 +38,33 @@
     </div>
   </div>
 </div>
-</div>
+
+<div class="panel div-md-4">
+  <!-- message toolbar header -->
+  <div class="admin-form theme-primary">
+    <div class="panel  panel-primary">
+      <div class="panel-body bg-light">
+        <div class="section-divider mb40">
+          <span>评论回复</span>
+        </div>
+        <div class="row">
+          <div class="">
+            <div class="row">
+              <div class="hpanel filter-item active" ng-repeat="item in the_feedback.replies">
+                <div class="panel-body">
+                  <div class="pull-right text-right">
+                    <small class="stat-label">{{item.replyTime|date:'yyyy-MM-dd HH:mm'}}</small>
+                  </div>
+                  <h4 class="m-b-xs">{{item.name}}</h4>
+                  <p class="small">{{item.content}}</p>
+                </div>
+                <hr/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

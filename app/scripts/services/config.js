@@ -771,6 +771,11 @@ app.value('config', {
           {action:'list',method:'GET',isArray:false,requestType:'json'},
         ],serverKey:'nc_server'
       },
+      'Feedback/AutoId':{
+        name:'Feedback/AutoId',uri:'feedbacks/:autoId',actions:[
+          {action:'get',method:'GET',isArray:false},
+        ],serverKey:'nc_server'
+      },
       //回复或追问接口
       'Replies/reply':{
         name:'Feedback/reply',uri:'replies',actions:[
