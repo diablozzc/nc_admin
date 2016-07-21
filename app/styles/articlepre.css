@@ -144,7 +144,7 @@
 }
 
 #pageletArticleContent.box .article-detail .article-content {
-/ / margin-bottom: 23 px;
+  /*margin-bottom: 23px;*/
   position: relative;
   overflow: hidden;
   clear: both
