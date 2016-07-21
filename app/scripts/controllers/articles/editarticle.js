@@ -127,7 +127,13 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
   $scope.close = function () {
     $state.go('admin.article.search', {'action': 'search'});
   };
-
+  $('#summernote').summernote({
+    height: 200,                 // set editor height
+    minHeight: null,             // set minimum height of editor
+    maxHeight: null,             // set maximum height of editor
+    focus: false ,                 // set focus to editable area after initializing summernote
+    lang:"zh-CN"
+  });
   //预览（手机端）
   $scope.preview = function (item,content) {
     item.content=content;
@@ -136,9 +142,7 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
       controller:'ArticlePreWindow',
       resolve: {
         item: function preFactory() {
-
           return item;
-
         }
       },
       preCloseCallback: function(value) {
@@ -156,7 +160,7 @@ app.controller('ArticlePreWindow',function($scope,Models,config,item,$sce){
   }
   $scope.the_article.publishTime= new Date();
   $scope.videoUrl= $sce.trustAsResourceUrl($scope.the_article.videoUrl);
-  console.log($scope.the_article.videoUrl);
+  // console.log($scope.the_article.videoUrl);
   $scope.close = function(){
     $scope.closeThisDialog();
   }
