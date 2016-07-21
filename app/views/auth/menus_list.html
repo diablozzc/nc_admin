@@ -102,5 +102,38 @@
 
   </div>
 
+  <div class="col-md-4" ng-if="selectedGroup">
 
+    <div class="panel mnw300">
+      <div class="panel-heading">
+        <span class="panel-icon">
+          <i class="fa fa-pencil"></i>
+        </span>
+        <span class="panel-title">管理权限组用户</span>
+
+        <div class="widget-menu pull-right mr10">
+          <button type="button" class="btn btn-xs btn-primary" ng-click="saveUserGroup()" ng-disabled="saved">
+            <span class="glyphicon glyphicon-floppy-disk fs11 mr5"></span>保存</button>
+
+          <button type="button" class="btn btn-xs btn-warning" ng-click="resetUserGroup()">
+            <span class="glyphicon glyphicon-repeat fs11 mr5"></span>重置</button>
+
+        </div>
+
+      </div>
+      <div class="panel-body pb5">
+
+        <div class="row" ng-repeat="user in userAdmins">
+          <!--holder-active-->
+          <div class="holder-style p15 ml20 mr20 mb15" href="" ng-click="selectUser(user)" ng-class="{'holder-active':user.isActive}">
+            {{user.username}}<span class="mr20"></span>[{{user.name}}]<span ng-if="user.isActive" class="fa fa-check text-success  fa-th-large fr fs24 "></span>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>

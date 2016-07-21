@@ -13,6 +13,7 @@ app.controller('SetPosterCtrl', function ($rootScope, $scope, $state, $statePara
   $scope.column={};
   $scope.column.columnKey=$stateParams.itemKey;
 
+  $scope.upload_param = {pub: 'pub', fileType: 'column_poster'};
   var the_param = {};
 
   Models.init('Columns/ColumnKey/Posters').actions('get', the_param,{columnKey:$scope.column.columnKey}).then(function (ret) {
@@ -21,6 +22,7 @@ app.controller('SetPosterCtrl', function ($rootScope, $scope, $state, $statePara
     $scope.column.name=ret.name;
     $scope.column.isShowPoster=ret.isShowPoster;
     $scope.column.posterUrl=ret.posterUrl;
+    $scope.column.posterImageUrl=ret.posterImageUrl;
   }, function () {
 
   });
@@ -31,7 +33,7 @@ app.controller('SetPosterCtrl', function ($rootScope, $scope, $state, $statePara
 
   $scope.save = function (keep) {
     if ($scope.SetPosterForm.$valid) {
-      var the_param = {isShowPoster:$scope.column.isShowPoster,posterUrl: $scope.column.posterUrl};
+      var the_param = {isShowPoster:$scope.column.isShowPoster,posterUrl: $scope.column.posterUrl,posterImageUrl: $scope.column.posterImageUrl};
           Models.init('Columns/ColumnKey/Posters').actions('put', the_param,{columnKey:$scope.column.columnKey}).then(function (ret) {
               notify({message: '设置成功', classes: 'alert-success'});
               $state.go('admin.sys.column');

@@ -35,7 +35,7 @@
                 <div class="section">
                   <div class="form-group">
 
-                    <div input-text="name" value="column.posterUrl" label="海报地址" ></div>
+                    <div input-text="name" value="column.posterUrl" label="链接地址" ></div>
 
                   </div>
                 </div>
@@ -43,6 +43,27 @@
               </div>
             </div>
 
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="section ">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+
+                        <div upload-queue maxfiles="1" fields="upload_param" title="上传海报" selected="files" result="column.posterImageUrl" required="true"></div>
+
+
+                        <div upload-preview files="files" urls="column.posterImageUrl" upload-param="upload_param"></div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
 
           </div>
 
