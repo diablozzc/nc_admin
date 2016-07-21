@@ -185,11 +185,44 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       },
       views: {
         'role': {
-          templateUrl: 'views/communities.html',
-          controller: 'CommunitiesCtrl'
+          templateUrl: 'views/auth/menus_list.html',
+          controller: 'RoleCtrl'
         }
       }
     })
+    // // 菜单管理
+    // .state('admin.menus',{
+    //   url:'menus',
+    //   resolve:{
+    //     auth:function(authService){
+    //       return authService.auth();
+    //     }
+    //   },
+    //   views:{
+    //     'breadcrumb':{
+    //       templateUrl:'views/breadcrumb.html',
+    //       controller:'BreadcrumbCtrl'
+    //     },
+    //     'content':{
+    //       templateUrl:'views/menus.html',
+    //       //controller:'MenusCtrl'
+    //     }
+    //   }
+    // })
+    // .state('admin.menus.list',{
+    //   url:'/list',
+    //   resolve:{
+    //     auth:function(authService){
+    //       return authService.auth();
+    //     }
+    //   },
+    //   views:{
+    //     'list':{
+    //       templateUrl:'views/menus_list.html',
+    //       controller:'MenusCtrl'
+    //     }
+    //   }
+    // })
     .state('admin.sys.column', {
     url: '/column',
     resolve: {

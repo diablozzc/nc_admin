@@ -10,8 +10,8 @@
           <!--<td class="text-center w150" sortable="'columnKey'" data-title="'#'">{{item.columnKey}}</td>-->
           <td class="w100" data-title="'栏目名称'" sortable="'name'">{{item.name}}</td>
           <td class="w100" data-title="'是否显示海报'">{{item.isShowPoster|statesName:'TrueOrFalse'}}</td>
-          <td class="mnw150" data-title="'海报地址'" sortable="'posterUrl'">{{item.posterUrl}}</td>
-
+          <td class="mnw150" data-title="'链接地址'" sortable="'posterUrl'">{{item.posterUrl}}</td>
+          <td class="mnw150" data-title="'海报地址'" sortable="'posterImageUrl'">{{item.posterImageUrl}}</td>
           <td class="w150" data-title="'操作'">
             <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'set_poster',func:set,param:item})"
                     ng-disabled="!flag.set_poster">设置

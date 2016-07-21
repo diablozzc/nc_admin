@@ -151,6 +151,8 @@ app.value('config', {
       'admin.article.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.article.new'},
       'admin.article.edit':{parent:'admin.article.listedit',text:'修改文章内容',href:'admin.article.edit'},
       'admin.feedback.list':{parent:'admin.welcome',text:'我有话说',href:'admin.feedback.list'},
+      'admin.comment.list':{parent:'admin.welcome',text:'留言评论',href:'admin.comment.list'},
+      'admin.activity.add':{parent:'admin.welcome',text:'活动发布',href:'admin.activity.add'},
       'admin.feedback.detail':{parent:'admin.feedback.list',text:'详情',href:'admin.feedback.detail'},
     },
     resources:{
@@ -545,31 +547,12 @@ app.value('config', {
       //     {action:'get',method:'GET',isArray:false}
       //   ],serverKey:'prop_server'
       // },
-      'MenuGroups':{
-        name:'MenuGroups',uri:'menugroups',actions:[
-          {action:'add',method:'POST',isArray:false},
-          {action:'list',method:'GET',isArray:false}
-        ],serverKey:''
-      },
 
-      'MenuGroups/id':{
-        name:'MenuGroups/id',uri:'menugroups/:autoId',actions:[
-          {action:'get',method:'GET',isArray:false},
-          {action:'edit',method:'PUT',isArray:false},
-          {action:'delete',method:'DELETE',isArray:false}
-        ],serverKey:''
-      },
 
-      'GroupMenus':{
-        name:'GroupMenus',uri:'groupmenus',actions:[
-          {action:'build',method:'POST',isArray:false}
-        ],serverKey:''
-      },
-      'GroupMenus/id':{
-        name:'GroupMenus/id',uri:'groupmenus/:groupId',actions:[
-          {action:'get',method:'GET',isArray:false}
-        ],serverKey:''
-      },
+
+
+
+
 
       'UserMenuGroup':{
         name:'UserMenuGroup',uri:'usermenugroups',actions:[
@@ -668,11 +651,54 @@ app.value('config', {
           {action:'update',method:'PUT',isArray:false}
         ],serverKey:'nc_server'
       },
-
+      'Admins/All':{
+        name:'Admins/All',uri:'admins/all',actions:[
+          {action:'get',method:'GET',isArray:true},
+        ],serverKey:'nc_server'
+      },
+      'Admins/InGroup':{
+        name:'Admins/InGroup',uri:'v1/usermenugroups/admins',actions:[
+          {action:'get',method:'GET',isArray:true},
+        ],serverKey:'nc_server'
+      },
+      //权限
       'Menus/UserMenus':{
         name:'Menus/UserMenus',uri:'v1/menus/usermenus',actions:[
           {action:'get',method:'GET',isArray:true}
         ],serverKey:'nc_server'
+      },
+      'Menus/AllMenus':{
+        name:'Menus/AllMenus',uri:'v1/menus/tree',actions:[
+          {action:'get',method:'GET',isArray:true}
+        ],serverKey:'nc_server'
+      },
+      'MenuGroups':{
+        name:'MenuGroups',uri:'v1/menugroups',actions:[
+          {action:'add',method:'POST',isArray:false},
+          {action:'list',method:'GET',isArray:true}
+        ],serverKey:'nc_server'
+      },
+      'GroupMenus/id':{
+        name:'GroupMenus/id',uri:'v1/groupmenus/:groupId',actions:[
+          {action:'get',method:'GET',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'GroupMenus':{
+        name:'GroupMenus',uri:'v1/groupmenus',actions:[
+          {action:'build',method:'POST',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'GroupAddUser':{
+        name:'GroupAddUser',uri:'v1/usermenugroups/adduser',actions:[
+          {action:'build',method:'POST',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'MenuGroups/id':{
+        name:'MenuGroups/id',uri:'v1/menugroups/:autoId',actions:[
+          {action:'get',method:'GET',isArray:false},
+          {action:'edit',method:'PUT',isArray:false},
+          {action:'delete',method:'DELETE',isArray:false}
+        ],serverKey:''
       },
       //栏目管理接口配置
       'Columns/Posters':{
