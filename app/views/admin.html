@@ -30,10 +30,12 @@
     <li class="dropdown menu-merge" ng-if="user.userTag === 0 && flag.withdraw">
       <div class="btn-group mt15 mb15">
         <h3 class="pull-left mt5 mr20 ">
-          账户余额: ￥<span id="my_balance" count-up ng-model="user.balance" data-num-decimals="0" data-animation-length="3"></span>
+          账户余额: ￥<span id="my_balance" count-up ng-model="user.balance" data-num-decimals="0"
+                       data-animation-length="3"></span>
         </h3>
         <button class="btn btn-sm pull-right btn-system" ng-click="withDraw()" ng-disabled="!flag.withdraw">
-          <i class="glyphicons glyphicons-coins mr5"></i>提现</button>
+          <i class="glyphicons glyphicons-coins mr5"></i>提现
+        </button>
       </div>
     </li>
     <li class="menu-divider hidden-xs">
@@ -98,7 +100,8 @@
           </a>
           <div class="media-body">
             <div class="media-links">
-              <a ui-sref="admin.usercenter.userinfo" class="sidebar-menu-toggle">用户中心</a> - <a href="" ng-click="logout()">退出</a>
+              <a ui-sref="admin.usercenter.userinfo" class="sidebar-menu-toggle">用户中心</a> - <a href=""
+                                                                                               ng-click="logout()">退出</a>
             </div>
             <div class="media-author">{{user.name}}</div>
           </div>
@@ -159,19 +162,21 @@
         <div class="panel-body">
 
           <div class="row">
-              <div class="col-md-12">
-                  <div class="section">
-                      <div class="form-group">
-                        <div datetime-select select-id="dropCloseTime" select-value="the_entering.expire" format="yyyy-MM-dd" label="过期时间" min-view="day" icon="fa fa-calendar"></div>
-                      </div>
-                  </div>
+            <div class="col-md-12">
+              <div class="section">
+                <div class="form-group">
+                  <div datetime-select select-id="dropCloseTime" select-value="the_entering.expire" format="yyyy-MM-dd"
+                       label="过期时间" min-view="day" icon="fa fa-calendar"></div>
+                </div>
               </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="section">
                 <label class="field prepend-icon">
-                  <textarea class="gui-textarea" id="remark" name="remark" placeholder="审核备注" ng-model="the_entering.remark"></textarea>
+                  <textarea class="gui-textarea" id="remark" name="remark" placeholder="审核备注"
+                            ng-model="the_entering.remark"></textarea>
                   <label for="remark" class="field-icon">
                     <i class="fa fa-comments"></i>
                   </label>
@@ -214,7 +219,8 @@
                     <div class="bs-component">
                       <div class="input-group">
                         <span class="input-group-addon">权限组名称</span>
-                        <input type="text" name="name" id="menuGroupName" class="form-control" ng-model="the_menu_group.groupName" required>
+                        <input type="text" name="name" id="menuGroupName" class="form-control"
+                               ng-model="the_menu_group.groupName" required>
                       </div>
                     </div>
                   </div>
@@ -233,7 +239,8 @@
                     <div class="bs-component">
                       <div class="input-group">
                         <span class="input-group-addon">权限组编码</span>
-                        <input type="text" name="code" id="menuGroupCode" class="form-control" ng-model="the_menu_group.code" required disabled>
+                        <input type="text" name="code" id="menuGroupCode" class="form-control"
+                               ng-model="the_menu_group.code" required disabled>
                       </div>
                     </div>
                   </div>
@@ -294,7 +301,7 @@
               <td>{{item.period | date:'yyyy-MM-dd'}}</td>
               <td class="text-right">{{item.paymentAmt}}元</td>
             </tr>
-            <tr >
+            <tr>
               <th></th>
               <td></td>
               <td></td>
@@ -314,7 +321,8 @@
             <div class="col-md-6">
               <div class="section">
                 <div class="form-group">
-                  <div item-select item-data="pay_channel_list" selected-value="thePay.payChannel" title="缴款方式" name-key="name" val-key="val" disabled="true"></div>
+                  <div item-select item-data="pay_channel_list" selected-value="thePay.payChannel" title="缴款方式"
+                       name-key="name" val-key="val" disabled="true"></div>
                 </div>
               </div>
             </div>
@@ -350,7 +358,8 @@
             <div class="col-md-12">
               <div class="section">
                 <div class="form-group">
-                  <div item-select item-data="accountTypeList" selected-value="accountType" title="账户类型" name-key="name" val-key="val" on-change="accountTypeChange" disabled="true"></div>
+                  <div item-select item-data="accountTypeList" selected-value="accountType" title="账户类型" name-key="name"
+                       val-key="val" on-change="accountTypeChange" disabled="true"></div>
                 </div>
               </div>
             </div>
@@ -416,7 +425,8 @@
             <div class="col-md-12">
               <div class="section">
                 <div class="form-group">
-                  <div item-select item-data="accounts" selected-value="account" title="提款账户" name-key="bankName" val-key="bankCardNo" on-change="accountChange" disabled="true"></div>
+                  <div item-select item-data="accounts" selected-value="account" title="提款账户" name-key="bankName"
+                       val-key="bankCardNo" on-change="accountChange" disabled="true"></div>
                 </div>
               </div>
             </div>
@@ -426,7 +436,8 @@
             <div class="col-md-12">
               <div class="section">
                 <div class="form-group">
-                  <div input-number="applyAmt" type="number" min="0.01" max="{{balance}}" step="0.01" value="the_apply.applyAmt" label="提款金额" unit="元" required="true"></div>
+                  <div input-number="applyAmt" type="number" min="0.01" max="{{balance}}" step="0.01"
+                       value="the_apply.applyAmt" label="提款金额" unit="元" required="true"></div>
                 </div>
               </div>
             </div>
@@ -436,12 +447,13 @@
             <div class="col-md-12">
               <div class="section">
 
-                  <label class="field prepend-icon">
-                    <textarea class="gui-textarea" id="applyMsg" name="applyMsg" placeholder="申请备注" ng-model="the_apply.applyMsg"></textarea>
-                    <label for="remark" class="field-icon">
-                      <i class="fa fa-comments"></i>
-                    </label>
+                <label class="field prepend-icon">
+                  <textarea class="gui-textarea" id="applyMsg" name="applyMsg" placeholder="申请备注"
+                            ng-model="the_apply.applyMsg"></textarea>
+                  <label for="remark" class="field-icon">
+                    <i class="fa fa-comments"></i>
                   </label>
+                </label>
 
               </div>
             </div>
@@ -461,98 +473,99 @@
 
 <script type="text/ng-template" id="paymentVoucher">
   <div>
-  <style>
-    @media print {
-      table{
-        font-size:8pt;
-        width:100%;
+    <style>
+      @media print {
+        table {
+          font-size: 8pt;
+          width: 100%;
+        }
+
+        td {
+          vertical-align: top;
+        }
       }
-      td{
-        vertical-align: top;
-      }
-    }
-  </style>
-  <div class="print_page">
-    <table>
-      <tr>
-        <td class="text-center">缴费凭证</td>
-      </tr>
-      <tr>
-        <td>缴费流水号:{{tpl_data.payBillNo}}</td>
-      </tr>
-      <tr>
-        <td>房间信息:{{tpl_data.roomInfo}}</td>
-      </tr>
-    </table>
+    </style>
+    <div class="print_page">
+      <table>
+        <tr>
+          <td class="text-center">缴费凭证</td>
+        </tr>
+        <tr>
+          <td>缴费流水号:{{tpl_data.payBillNo}}</td>
+        </tr>
+        <tr>
+          <td>房间信息:{{tpl_data.roomInfo}}</td>
+        </tr>
+      </table>
 
-    <table style="margin-top: 1em;">
-      <thead style="border-bottom:1pt dotted #999">
-      <tr>
-        <td style="width:1em;"></td>
-        <td>项目</td>
-        <td class="text-left" style="width:7em;">账期</td>
-        <td class="text-right">金额</td>
-      </tr>
-      </thead>
-      <tbody style="border-bottom:1pt dotted #999">
-      <tr style="line-height: 1em;">
-        <td colspan="4">&nbsp;</td>
-      </tr>
-      <tr ng-repeat="item in tpl_data.list">
-        <td colspan="4">
-          <table style="width:100%">
-            <tr>
-              <td style="width:1em;">{{$index+1}}</td>
-              <td style="word-break: break-all">{{item.itemName}}</td>
-              <td class="text-left" style="width:7em;">{{item.period | date:'yyyy-MM-dd'}}</td>
-              <td class="text-right">{{item.paymentAmt | currency:'￥'}}</td>
-            </tr>
-            <tr>
-              <td>
-                &nbsp;
-              </td>
-              <td colspan="3" style="word-break: break-all">
-                {{item.code}}
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
+      <table style="margin-top: 1em;">
+        <thead style="border-bottom:1pt dotted #999">
+        <tr>
+          <td style="width:1em;"></td>
+          <td>项目</td>
+          <td class="text-left" style="width:7em;">账期</td>
+          <td class="text-right">金额</td>
+        </tr>
+        </thead>
+        <tbody style="border-bottom:1pt dotted #999">
+        <tr style="line-height: 1em;">
+          <td colspan="4">&nbsp;</td>
+        </tr>
+        <tr ng-repeat="item in tpl_data.list">
+          <td colspan="4">
+            <table style="width:100%">
+              <tr>
+                <td style="width:1em;">{{$index+1}}</td>
+                <td style="word-break: break-all">{{item.itemName}}</td>
+                <td class="text-left" style="width:7em;">{{item.period | date:'yyyy-MM-dd'}}</td>
+                <td class="text-right">{{item.paymentAmt | currency:'￥'}}</td>
+              </tr>
+              <tr>
+                <td>
+                  &nbsp;
+                </td>
+                <td colspan="3" style="word-break: break-all">
+                  {{item.code}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
 
-      <tr style="line-height: 1em;">
-        <td colspan="4">&nbsp;</td>
-      </tr>
-      </tbody>
-    </table>
-    <table style="margin-top: 20pt">
+        <tr style="line-height: 1em;">
+          <td colspan="4">&nbsp;</td>
+        </tr>
+        </tbody>
+      </table>
+      <table style="margin-top: 20pt">
 
-      <tbody >
-      <tr>
-        <td style="min-width:5em;">缴费时间:</td>
-        <td>{{tpl_data.payTime}}</td>
-        <td style="min-width:5em;">总金额:</td>
-        <td>{{tpl_data.totalAmt | currency:'￥'}}</td>
-      </tr>
-      <tr>
-        <td>缴费方式:</td>
-        <td>{{tpl_data.payType}}</td>
-        <td>缴费结果:</td>
-        <td style="min-width:4em;">{{tpl_data.payResult}}</td>
-      </tr>
-      <tr>
-        <td>收费人:</td>
-        <td>{{tpl_data.operMan}}</td>
-        <td>缴费人:</td>
-        <td>{{tpl_data.payMan}}</td>
-      </tr>
-      <tr>
-        <td>收费单位:</td>
-        <td colspan="3">{{tpl_data.feeCollectors}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+        <tbody>
+        <tr>
+          <td style="min-width:5em;">缴费时间:</td>
+          <td>{{tpl_data.payTime}}</td>
+          <td style="min-width:5em;">总金额:</td>
+          <td>{{tpl_data.totalAmt | currency:'￥'}}</td>
+        </tr>
+        <tr>
+          <td>缴费方式:</td>
+          <td>{{tpl_data.payType}}</td>
+          <td>缴费结果:</td>
+          <td style="min-width:4em;">{{tpl_data.payResult}}</td>
+        </tr>
+        <tr>
+          <td>收费人:</td>
+          <td>{{tpl_data.operMan}}</td>
+          <td>缴费人:</td>
+          <td>{{tpl_data.payMan}}</td>
+        </tr>
+        <tr>
+          <td>收费单位:</td>
+          <td colspan="3">{{tpl_data.feeCollectors}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </script>
@@ -565,24 +578,30 @@
 </script>
 
 <script type="text/ng-template" id="confirm_button">
-  <span confirm-popover title="{{attrs.title}}" content="{{attrs.content}}" on-action="action" btn-class="{{attrs.btnClass}}" btn-name="{{attrs.btnName}}" btn-icon="{{attrs.btnIcon}}" on-useless="isDisable"></span>
+  <span confirm-popover title="{{attrs.title}}" content="{{attrs.content}}" on-action="action"
+        btn-class="{{attrs.btnClass}}" btn-name="{{attrs.btnName}}" btn-icon="{{attrs.btnIcon}}"
+        on-useless="isDisable"></span>
 </script>
 
 <script type="text/ng-template" id="olaTreeNestingTpl">
-  <span title="" class="toggle mt5" ng-class="{'fa fa-minus-square-o': !collapsed,'fa fa-plus-square-o': collapsed}" ng-click="toggleIt(node)" ng-hide="node.isLeaf"></span>
-  <a ui-tree-handle data-nodrag ng-click="selectData(this.$modelValue)" class="mt5" ng-class="{'curSelectedNode':node.selected}">
+  <span title="" class="toggle mt5" ng-class="{'fa fa-minus-square-o': !collapsed,'fa fa-plus-square-o': collapsed}"
+        ng-click="toggleIt(node)" ng-hide="node.isLeaf"></span>
+  <a ui-tree-handle data-nodrag ng-click="selectData(this.$modelValue)" class="mt5"
+     ng-class="{'curSelectedNode':node.selected}">
     <span ng-class="node.icon" ng-if="node.icon"></span>
     <span class="node_name">{{node.name}}</span>
   </a>
-  <ul ui-tree-nodes="" ng-model="node.children" class="line" ng-class="{hidden: collapsed}" >
-    <li ng-repeat="node in node.children" ui-tree-node ng-include="'olaTreeNestingTpl'" data-collapsed="node.collapsed"></li>
+  <ul ui-tree-nodes="" ng-model="node.children" class="line" ng-class="{hidden: collapsed}">
+    <li ng-repeat="node in node.children" ui-tree-node ng-include="'olaTreeNestingTpl'"
+        data-collapsed="node.collapsed"></li>
   </ul>
 </script>
 
 <script type="text/ng-template" id="olaTreeTpl">
   <div ui-tree>
     <ul ui-tree-nodes="" ng-model="treeData" class="ztree">
-      <li ng-repeat="node in treeData" ui-tree-node ng-include="'olaTreeNestingTpl'" data-collapsed="node.collapsed"></li>
+      <li ng-repeat="node in treeData" ui-tree-node ng-include="'olaTreeNestingTpl'"
+          data-collapsed="node.collapsed"></li>
     </ul>
   </div>
 </script>
@@ -604,9 +623,10 @@
             <div class="col-md-12">
               <div class="section">
                 <label class="field prepend-icon">
-                  <textarea class="gui-textarea" id="content" name="content" placeholder="回复内容" ng-model="the_reply.content"></textarea>
+                  <textarea class="gui-textarea" id="content" name="content" placeholder="回复内容"
+                            ng-model="the_reply.content"></textarea>
                   <!--<label for="remark" class="field-icon">-->
-                    <!--<i class="fa fa-comments"></i>-->
+                  <!--<i class="fa fa-comments"></i>-->
                   <!--</label>-->
                 </label>
               </div>
@@ -619,6 +639,44 @@
           <button class="btn" type="button" ng-click="close()">取消</button>
         </div>
       </form>
+    </div>
+  </div>
+
+</script>
+<script type="text/ng-template" id="articlePreTpl">
+  <div class="popup-basic bg-none">
+    <div class="panel">
+      <div class="panel-heading">
+              <span class="panel-icon">
+                <i class="fa fa-pencil"></i>
+              </span>
+        <span class="panel-title"> 预览:</span>
+      </div>
+      <div class="div-mobile">
+        <div class="divScroll">
+          <div class="video-wrapper" style="background-image: none;" ng-if="the_article.showType==='video'">
+            <div class="tt-video-box" style="margin: 0px auto;">
+              <video ng-src="{{videoUrl}}"
+                     type="video/mp4" controls
+                     preload="none" webkit-playsinline
+                     style="width:100%;"></video>
+            </div>
+          </div>
+          <div class="article-detail">
+
+            <h1 class="title">{{the_article.title}}</h1>
+            <div class="rich_media_meta_list">
+              <em id="post-date" class="rich_media_meta rich_media_meta_text">{{the_article.publishTime|date:"yyyy-MM-dd"}}</em>
+              <span class="rich_media_meta rich_media_meta_text rich_media_meta_nickname">{{the_article.source}}</span>
+            </div>
+            <div class="article-content" style="" ng-bind-html="the_article.content">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer text-right">
+        <button class="btn" type="button" ng-click="close()">取消</button>
+      </div>
     </div>
   </div>
 

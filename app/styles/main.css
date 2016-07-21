@@ -569,3 +569,10 @@ tr.selected{
   margin: 0 5px 5px;
   border: 1px solid #ddd;
 }
+
+.summernote-editor{
+}
+.summernote-editor .panel-heading{
+  padding:0 10px 11px !important;
+  overflow: visible !important;
+}

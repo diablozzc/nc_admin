@@ -39,7 +39,8 @@ var app = angular
     'ngTagsInput',
     'angularChart',
     'mgcrea.ngStrap',
-    'AngularPrint'
+    'AngularPrint',
+    'summernote'
   ]);
 
 window.app = app;
