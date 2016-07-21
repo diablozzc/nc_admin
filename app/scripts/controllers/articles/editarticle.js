@@ -3,6 +3,11 @@
  */
 app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, ngDialog,config, ucauth) {
 
+  $scope.ucauth = ucauth;
+  $scope.flag = {};
+  $scope.flag.add_article = false;//添加文章
+  ucauth.hasRole('add_article', $scope.flag);
+
   $scope.column_list = [];
   //栏目
   $scope.column_list = lodash.clone(config.data.states.columnName);

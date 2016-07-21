@@ -8,9 +8,11 @@
   padding: 0 17px;
   position: relative
 }
+
 #pageletArticleContent.box .article-detail .video-banner-download {
   text-align: center
 }
+
 #pageletArticleContent.box .article-detail .video-banner-download a {
   display: block;
   position: relative;
@@ -33,6 +35,7 @@
 #pageletArticleContent.box .article-detail .tt-video-box {
   position: relative
 }
+
 #pageletArticleContent.box .article-detail .video-mask {
   position: absolute;
   top: 0;
@@ -41,6 +44,7 @@
   bottom: 0;
   z-index: 0
 }
+
 #pageletArticleContent.box .article-detail .title {
   font-size: 20px !important;
   padding-top: 16px;
@@ -61,6 +65,7 @@
   display: block;
   float: left
 }
+
 #pageletArticleContent.box .article-detail .pgc-bar-top .avatar {
   height: 32px;
   width: 32px;
@@ -77,6 +82,7 @@
 #pageletArticleContent.box .article-detail .pgc-bar-top .subtitle a {
   color: #333
 }
+
 #pageletArticleContent.box .article-detail .pgc-bar-top .name {
   line-height: 16px;
   font-size: 12px;
@@ -86,6 +92,7 @@
 #pageletArticleContent.box .article-detail .pgc-bar-top .name a {
   color: #406599
 }
+
 #pageletArticleContent.box .article-detail .pgc-bar-top .name img {
   padding-left: 5px;
   height: 16px;
@@ -95,6 +102,7 @@
 #pageletArticleContent.box .article-detail .pgc-bar-top .time {
   font-size: 0
 }
+
 #pageletArticleContent.box .article-detail .pgc-bar-top .time span {
   font-size: 11px;
   display: inline-block;
@@ -121,9 +129,11 @@
 #pageletArticleContent.box .article-detail .src a {
   display: inline-block
 }
+
 #pageletArticleContent.box .article-detail .src .name {
   float: left
 }
+
 #pageletArticleContent.box .article-detail .src .time {
   padding-left: 12px;
   float: left
@@ -132,8 +142,9 @@
 #pageletArticleContent.box .article-detail .src .time span {
   color: #999
 }
+
 #pageletArticleContent.box .article-detail .article-content {
-//margin-bottom: 23px;
+/ / margin-bottom: 23 px;
   position: relative;
   overflow: hidden;
   clear: both
@@ -142,6 +153,7 @@
 #pageletArticleContent.box .article-detail .article-content .hide-elements {
   display: none
 }
+
 #pageletArticleContent.box .article-detail .article-content p, #pageletArticleContent.box .article-detail .article-content blockquote {
   margin-top: 24px
 }
@@ -150,6 +162,7 @@
   color: #5784df;
   display: inline
 }
+
 #pageletArticleContent.box .article-detail .article-content p, #pageletArticleContent.box .article-detail .article-content li, #pageletArticleContent.box .article-detail .article-content span {
   word-wrap: break-word;
   font-size: 17px;
@@ -163,12 +176,14 @@
   margin-right: auto;
   margin-left: auto
 }
+
 #pageletArticleContent.box .article-detail .article-content .img-wrapper-embedded {
   background-size: 40%;
   font-size: 0;
   margin-right: auto;
   margin-left: auto
 }
+
 #pageletArticleContent.box .article-detail .article-content blockquote {
   font-size: 15px;
   line-height: 21px;
@@ -181,6 +196,7 @@
   color: #999;
   margin-top: 0 !important
 }
+
 #pageletArticleContent.box .article-detail .article-content h1 {
   font-size: 17px;
   border-left-width: 4px;
@@ -213,9 +229,11 @@
 #pageletArticleContent.box .article-detail .article-content img.next20 {
   margin-bottom: 20px
 }
+
 #pageletArticleContent.box .article-detail .article-content table {
   width: 100%
 }
+
 #pageletArticleContent.box .article-detail .article-content table tr td {
   text-align: center;
   font-size: 12px;
@@ -226,9 +244,11 @@
 #pageletArticleContent.box .article-detail .article-content table.border {
   border-collapse: collapse
 }
+
 #pageletArticleContent.box .article-detail .article-content table.border tr:nth-child(2n), #pageletArticleContent.box .article-detail .article-content table.border tr th {
   background: rgba(240, 240, 240, .4)
 }
+
 #pageletArticleContent.box .article-detail .article-content table.border tr td, #pageletArticleContent.box .article-detail .article-content table.border tr th {
   padding: 5px 3px;
   border: 1px solid #ddd
@@ -242,12 +262,15 @@
   list-style-type: decimal !important;
   display: list-item !important
 }
+
 #pageletArticleContent.box .article-detail .article-content ul li {
   list-style-type: disc
 }
+
 #pageletArticleContent.box .article-detail .article-content ul li p {
   margin-top: .3em
 }
+
 #pageletArticleContent.box .article-detail .unfold-field {
   border-left: 0;
   border-right: 0;
@@ -308,7 +331,6 @@
   font-size: 16px;
 }
 
-
 #pageletArticleContent .video-wrapper {
 
   background-size: 50%;
@@ -321,20 +343,106 @@
 #pageletArticleContent .tt-video-box {
   position: relative;
   width: 100%;
-  z-index:99;
+  z-index: 99;
 }
 
-.divScroll{
+.divScroll {
   overflow-y: auto;
   overflow-x: hidden;
   height: 736px;
   width: 414px;
   padding: 10px;
-  margin:0 auto;
-  display:block;
-  border:solid 1px red;
+  margin: 0 auto;
+  display: block;
+  border: solid 1px red;
 }
-.div-mobile{
+
+.div-mobile {
   height: 736px;
   width: 450px;
+}
+
+.vux-flexbox {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  box-align: center;
+  align-items: center;
+}
+
+.vux-flexbox .vux-flexbox-item {
+  flex: 1;
+  min-width: 20px;
+}
+
+.vux-flexbox-item > .vux-flexbox {
+  width: 100%;
+}
+
+.vux-flexbox .vux-flexbox-item:first-child {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+}
+
+.vux-flex-col {
+  box-orient: vertical;
+  flex-direction: column;
+}
+
+.vux-flex-col > .vux-flexbox-item {
+  width: 100%;
+}
+
+.vux-flex-row {
+  box-direction: row;
+  box-orient: horizontal;
+  flex-direction: row;
+}
+
+.vux-flex-align-top {
+  align-items: flex-start;
+}
+
+.flex-col {
+  box-orient: vertical;
+  flex-direction: column;
+}
+
+.flex-col > .vux-flexbox-item {
+  width: 100%;
+}
+
+.flex-row {
+  box-direction: row;
+  box-orient: horizontal;
+  flex-direction: row;
+}
+
+#activity-header {
+  background-color: #FF7C24;
+}
+#activity-bottom {
+  background-color: #FF7C24;
+  text-align: center;
+  color: #ffffff;
+}
+
+/*.activity-detail {*/
+  /*background-color: #fefefe;*/
+/*}*/
+
+.activityContent {
+  height: 627px;
+  margin-top: 0px;
+  border-top: 1px solid #7E7E7E;
+  background-color: #fefefe;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y:scroll;
+}
+.maincolor{
+  color: #FF7C24;
+}
+.activity-content{
+  margin-top: 20px;
 }

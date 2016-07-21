@@ -55,7 +55,7 @@
           <td class="mnw75" data-title="'关键字词'">{{item.keywords}}</td>
           <td class="mnw75" data-title="'发布时间'">{{item.publishTime | date:'yyyy-MM-dd'}}</td>
           <td class="mnw75" data-title="'活动状态'">
-            <div class="btn-group" ng-if="item.status==0">
+            <div class="btn-group" ng-if="item.status==0" >
               <span class="text-danger">{{item.status|statesName:'ActivityStatus'}}</span>
             </div>
             <div class="btn-group" ng-if="item.status==1">
@@ -73,7 +73,7 @@
             <!--<button class="btn btn-xs btn-success" ng-if="item.status==0||item.status==2" ng-click="ucauth.isAccess({key:'set_poster',func:set,param:item})"-->
             <!--&gt;发布-->
             </button>
-            <button class="btn btn-xs btn-primary" ng-if="item.status==0||item.status==2" ng-click="ucauth.isAccess({key:'edit_activity',func:edit,param:item})"
+            <button class="btn btn-xs btn-primary" ng-if="item.status==0||item.status==2" ng-show="flag.edit_activity" ng-click="ucauth.isAccess({key:'edit_activity',func:edit,param:item})"
             >编辑
             </button>
             <!--<button class="btn btn-xs btn-warning" ng-if="item.status==1" ng-click="ucauth.isAccess({key:'set_poster',func:set,param:item})"-->
@@ -81,11 +81,11 @@
             <!--</button>-->
             <span confirm-popover title="收回活动" content="确定要收回活动'{{item.title}}'吗?" on-action="ucauth.isAccess"
                   value="{key:'back_activity',func:back,param:item}" btn-class="btn-xs btn-warning" btn-name="收回"
-                  ng-if="item.status==1"></span>
+                  ng-if="item.status==1" ng-show="flag.back_activity"></span>
 
             <span confirm-popover title="删除活动" content="确定要删除活动'{{item.title}}'吗?" on-action="ucauth.isAccess"
                   value="{key:'del_activity',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除"
-                  ng-if="item.status==0||item.status==2"></span>
+                  ng-if="item.status==0||item.status==2" ng-show="flag.delete_activity"></span>
           </td>
         </tr>
         </tbody>

@@ -35,14 +35,13 @@ app.controller('ActivityCtrl', function ($rootScope, $scope, $state, $stateParam
 
   $scope.ucauth = ucauth;
   $scope.flag = {};
-  $scope.flag.see_signinfo = false;
-  $scope.flag.publish_activity = false;
+  //$scope.flag.publish_activity = false;
   $scope.flag.edit_activity = false;
   $scope.flag.back_activity = false;
   $scope.flag.delete_activity = false;
 
-  ucauth.hasRole('see_signinfo', $scope.flag);
-  ucauth.hasRole('publish_activity', $scope.flag);
+
+  //ucauth.hasRole('publish_activity', $scope.flag);
   ucauth.hasRole('edit_activity', $scope.flag);
   ucauth.hasRole('back_activity', $scope.flag);
   ucauth.hasRole('delete_activity', $scope.flag);
@@ -156,5 +155,8 @@ app.controller('ActivityCtrl', function ($rootScope, $scope, $state, $stateParam
   })
 
   $scope.getPageList();
+
+
+
 
 });

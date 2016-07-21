@@ -75,9 +75,12 @@
                 <div class="col-md-3">
                   <div class="section">
                     <div class="form-group">
-                      <button class="button btn-primary col-md-3" type="submit" ng-click="search()">查询</button>
+                      <div class="col-md-12">
+                      <button class="button btn-primary btn-md" type="submit" ng-click="search()">查询</button>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -114,18 +117,18 @@
             <!--</button>-->
             <button class="btn btn-xs btn-primary"
                     ng-click="ucauth.isAccess({key:'edit_article',func:edit,param:item})"
-                    ng-show="item.status==0||item.status==2">编辑
+                    ng-show="(item.status==0||item.status==2)&&flag.edit_article">编辑
             </button>
               <span confirm-popover title="发布文章" content="确定要发布么?" on-action="ucauth.isAccess"
                     value="{key:'publish_article',func:publish,param:item}" btn-class="btn-xs btn-success" btn-name="发布"
-                    ng-show="item.status==0"></span>
+                    ng-show="item.status==0&&flag.publish_article"></span>
               <span confirm-popover title="收回文章" content="确定要收回么?" on-action="ucauth.isAccess"
                     value="{key:'back_article',func:back,param:item}" btn-class="btn-xs btn-warning" btn-name="收回"
-                    ng-show="item.status==1"></span>
+                    ng-show="item.status==1&&flag.back_article"></span>
 
             <span confirm-popover title="删除文章" content="确定要删除么?" on-action="ucauth.isAccess"
                   value="{key:'del_article',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除"
-                  disabled="!flag.del_article"></span>
+                  ng-show="flag.del_article"></span>
 
 
           </td>

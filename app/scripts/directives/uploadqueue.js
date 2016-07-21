@@ -34,10 +34,10 @@
 
         var max_files = scope.maxfiles;
         scope.add_files = 0;
-        console.log(scope.required);
+        //console.log(scope.required);
         scope.multiple = angular.isUndefined(scope.multiple) ? false : scope.multiple;
         scope.isRequired = angular.isUndefined(scope.required) ? false : scope.required;
-        console.log(scope.isRequired);
+        //console.log(scope.isRequired);
         scope.keep = angular.isUndefined(scope.keep) ? true : scope.keep;
         scope.distinct = angular.isUndefined(scope.distinct) ? true : scope.distinct;
         scope.isButton = angular.isUndefined(attrs.isButton) ? false : attrs.isButton;

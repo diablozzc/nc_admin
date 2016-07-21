@@ -22,10 +22,10 @@
           <td class="w150" data-title="'时间'">{{item.sayTime|date:"yyyy-MM-dd HH:mm"}}</td>
           <td class="w200" data-title="'操作'">
             <button class="btn btn-xs btn-primary"
-                    ng-click="ucauth.isAccess({key:'edit_article',func:entry,param:item})">详情
+                    ng-click="{func:entry,param:item}">详情
             </button>
-            <button class="btn btn-xs btn-success"
-                    ng-click="ucauth.isAccess({key:'edit_article',func:reply,param:item})">回复
+            <button class="btn btn-xs btn-success" ng-show="flag.reply_feedback"
+                    ng-click="ucauth.isAccess({key:'reply_feedback',func:reply,param:item})">回复
             </button>
           </td>
         </tr>

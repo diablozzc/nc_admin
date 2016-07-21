@@ -5,17 +5,11 @@ app.controller('CommentCtrl', function ($rootScope, $scope, $state, $stateParams
 
   $scope.ucauth = ucauth;
   $scope.flag = {};
-  $scope.flag.see_signinfo = false;
-  $scope.flag.publish_activity = false;
-  $scope.flag.edit_activity = false;
-  $scope.flag.back_activity = false;
-  $scope.flag.delete_activity = false;
+  $scope.flag.audit_comment = false;
+  $scope.flag.reply_comment = false;
 
-  ucauth.hasRole('see_signinfo', $scope.flag);
-  ucauth.hasRole('publish_activity', $scope.flag);
-  ucauth.hasRole('edit_activity', $scope.flag);
-  ucauth.hasRole('back_activity', $scope.flag);
-  ucauth.hasRole('delete_activity', $scope.flag);
+  ucauth.hasRole('audit_comment', $scope.flag);
+  ucauth.hasRole('reply_comment', $scope.flag);
 
   // 获取分页数据
   $scope.getPageList = function () {
@@ -37,7 +31,7 @@ app.controller('CommentCtrl', function ($rootScope, $scope, $state, $stateParams
         var the_param = {pageSize: params.count(), pageIndex: params.page()};
         the_param = angular.extend(the_param, $scope.search);
         $scope.commentListPromise = Models.init('Comments/list').actions('list', the_param).then(function (ret) {
-          console.log(ret);
+          //console.log(ret);
           params.total(ret.totalRecord);
           $defer.resolve(ret.data);
 
@@ -90,28 +84,28 @@ app.controller('CommentCtrl', function ($rootScope, $scope, $state, $stateParams
 
   $scope.showReply = function (item) {
     ngDialog.open({
-      template: 'showReplyTpl',
-      controller: 'showReplyWindow',
-      width:800,
-      resolve: {
-        info: function paymentInfoFactory() {
-          var info = item;
-          //info.autoId = item.autoId;
-          //info.content=
-          // info.selectedItems = selectedItem;
-          // info.totalPaymentAmt = total_payment_amt;
-          return info;
-        }
+  template: 'showReplyTpl',
+  controller: 'showReplyWindow',
+  width:800,
+  resolve: {
+    info: function paymentInfoFactory() {
+      var info = item;
+      //info.autoId = item.autoId;
+      //info.content=
+      // info.selectedItems = selectedItem;
+      // info.totalPaymentAmt = total_payment_amt;
+      return info;
+    }
 
-      },
-      preCloseCallback: function (value) {
-        //$scope.tableParams.reload();
-        $scope.getPageList();
-        //$scope.updateGrid();
+  },
+  preCloseCallback: function (value) {
+    //$scope.tableParams.reload();
+    $scope.getPageList();
+    //$scope.updateGrid();
 
-      }
-    });
-  };
+  }
+});
+};
 
 });
 

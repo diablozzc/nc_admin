@@ -138,9 +138,9 @@
       <div class="panel-footer">
         <button type="button" ng-click="preview(the_article,articleContent)" class="button btn-primary" ng-disabled="articleForm.$invalid">预览
         </button>
-        <button type="button" ng-click="save(false)" class="button btn-primary" ng-disabled="articleForm.$invalid">保存
+        <button type="button" ng-click="save(false)" class="button btn-primary" ng-disabled="articleForm.$invalid" ng-show="flag.add_article">保存
         </button>
-        <button type="button" ng-click="save(true)" class="button btn-success" ng-disabled="articleForm.$invalid">
+        <button type="button" ng-click="save(true)" class="button btn-success" ng-disabled="articleForm.$invalid" ng-show="flag.add_article">
           保存并发布
         </button>
         <button type="button" class="button" ng-click="close()">关闭</button>

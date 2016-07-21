@@ -8,7 +8,7 @@
  * Controller of the propertyAdminApp
  */
 
-app.controller('RoleCtrl', function ($scope, $state, $stateParams, $location, ngTableParams, localStorageService, Models, ngDialog, config, notify, ucauth) {
+app.controller('RRRCtrl', function ($scope, $state, $stateParams, $location, ngTableParams, localStorageService, Models, ngDialog, config, notify, ucauth) {
   $scope.system = 'nc';
   $scope.serverKey = $scope.system + '_server';
   $scope.menuGroupsSaved = true;
@@ -325,7 +325,7 @@ app.controller('RoleCtrl', function ($scope, $state, $stateParams, $location, ng
     $scope.getAdminList(the_group.autoId);
 
     $scope.menuGroupsSaved = true;
-    
+
 
   };
 

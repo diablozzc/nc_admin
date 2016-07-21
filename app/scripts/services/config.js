@@ -25,7 +25,7 @@ app.value('config', {
     download_bills:'bills/reports/excel',
     qiniu_pub_domain:'http://nc.mrshare.cn/',
     user_sys:'admin',
-    check_action_auth:false
+    check_action_auth:true
   },
   data:{
     menus:[
@@ -565,11 +565,7 @@ app.value('config', {
           {action:'get',method:'GET',isArray:false}
         ],serverKey:''
       },
-      'RoleRelations/getByKey/clientKey':{
-        name:'RoleRelations/getByKey/clientKey',uri:'rolerelations/getbykey/:clientKey',actions:[
-          {action:'get',method:'GET',isArray:false}
-        ],serverKey:'nc_server'
-      },
+
 
       'Provinces/getchild':{
         name:'Provinces/getchild',uri:'provinces/:parentId',actions:[
@@ -699,6 +695,11 @@ app.value('config', {
           {action:'edit',method:'PUT',isArray:false},
           {action:'delete',method:'DELETE',isArray:false}
         ],serverKey:''
+      },
+      'RoleRelations/getByKey/clientKey':{
+        name:'RoleRelations/getByKey/clientKey',uri:'v1/rolerelations/getbykey/:clientKey',actions:[
+          {action:'get',method:'GET',isArray:false}
+        ],serverKey:'nc_server'
       },
       //栏目管理接口配置
       'Columns/Posters':{
