@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/18.
  */
 'use strict';
-app.directive('uploadPreviewVideo', function (Models,$rootScope) {
+app.directive('uploadPreviewVideo', function (Models,$rootScope,$sce) {
   return {
     scope:{
       files:'=',
@@ -39,7 +39,7 @@ app.directive('uploadPreviewVideo', function (Models,$rootScope) {
           var imgs = scope.urls.split(',');
           lodash.forEach(imgs,function(key){
             var obj = {};
-            obj.fileName = key;
+            obj.fileName = $sce.trustAsResourceUrl(key);
             obj.uploaded = true;
             obj.old = true;
             obj.pub = scope.uploadParam.pub;

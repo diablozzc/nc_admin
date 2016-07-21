@@ -20,12 +20,12 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" ng-repeat="item in images">
               <div class="col-md-12">
                 <div class="section">
                   <div class="form-group">
                     <div class="img-feedback">
-                      <img  style="width:100% " ng-src="{{the_feedback.image}}"/></div>
+                      <img  style="width:100% " ng-src="{{item}}"/></div>
                   </div>
                 </div>
               </div>

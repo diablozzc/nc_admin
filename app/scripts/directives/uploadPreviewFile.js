@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/7/18.
  */
 'use strict';
-app.directive('uploadPreviewFile', function (Models,$rootScope) {
+app.directive('uploadPreviewFile', function (Models,$rootScope,$sce) {
   return {
     scope:{
       files:'=',

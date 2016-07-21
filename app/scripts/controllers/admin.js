@@ -33,9 +33,9 @@ app.controller('AdminCtrl', function ($state,$stateParams,$scope,$rootScope,$win
 
   $scope.user = ucauth.getUser();
   $scope.user.balance = 0;
-
+    // console.log($scope.user);
     // 获取管理员信息
-    Models.init('Admins/getByUsername/username').actions('get',{username:$scope.user.name}).then(function(ret){
+    Models.init('Admins/getByUsername/username').actions('get',{username:$scope.user.username}).then(function(ret){
 
       var user = lodash.merge($scope.user,ret);
       ucauth.setUser(user);

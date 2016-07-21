@@ -1,93 +1,4 @@
-<!--<div class="panel">-->
-<!--&lt;!&ndash; message toolbar header &ndash;&gt;-->
-<!--<div class="admin-form theme-primary">-->
 
-<!--<div class="panel heading-border panel-primary">-->
-<!--<div class="panel-body bg-light">-->
-<!--<div class="row">-->
-<!--&lt;!&ndash; begin: .tray-right &ndash;&gt;-->
-<!--&lt;!&ndash; menu quick links &ndash;&gt;-->
-<!--<div class="col-md-12">-->
-
-<!--<div class="row">-->
-<!--<div class="row">-->
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--<div class="col-lg-12">-->
-<!--<div class="bs-component">-->
-<!--<div class="input-group">-->
-<!--<span class="input-group-addon">关键字</span>-->
-<!--<input type="text" name="keyword" id="keyword" class="form-control"-->
-<!--ng-model="the_article.keyword">-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--<div input-text="title" value="the_article.title" label="标题"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--<div daterange-select value="datePicker.date" label="发布时间" time-picker="true"-->
-<!--on-change="dateChange"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--<div item-select item-data="column_list" selected-value="the_article.columnKey" title="栏目"-->
-<!--name-key="name" val-key="val" required="false"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--<div input-text="source" value="the_article.source" label="来源"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--&lt;!&ndash;<div item-select item-data="status_list" selected-value="the_article.status" title="状态"&ndash;&gt;-->
-<!--&lt;!&ndash;name-key="name" val-key="val" required="false" disabled="true" ng-if="flag.disabled"></div>&ndash;&gt;-->
-<!--<div item-select item-data="status_list" selected-value="the_article.status" title="状态"-->
-<!--name-key="name" val-key="val" required="false" disabled="false" ng-if="flag.disabled"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="col-md-3">-->
-<!--<div class="section">-->
-<!--<div class="form-group">-->
-<!--<button class="button btn-primary col-md-3" type="submit" ng-click="search()">查询</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--&lt;!&ndash; end: .tray-right &ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 <div class="panel">
   <!-- message listings table -->
   <div class="panel-body pn">
@@ -100,8 +11,7 @@
           <td class="text-center w50" sortable="'autoId'" data-title="'#'">{{item.autoId}}</td>
           <td class="w100" data-title="'图片'">
             <div class="item-f" >
-              <div class="item-clip" style="background-image: url('{{item.image}}')">
-                <!--<img  src="{{item.image}}"/>-->
+              <div class="item-clip" style="background-image: url('{{getImgUrl(item.image)}}')">
               </div>
             </div>
           </td>

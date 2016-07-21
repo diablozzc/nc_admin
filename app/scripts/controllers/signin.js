@@ -23,7 +23,7 @@ app.controller('SigninCtrl', function ($scope,$state,localStorageService,notify,
     $scope.signined = true;
 
     $scope.signinPromise = ucauth.login($scope.user.user,md5($scope.user.password)).then(function(ret){
-
+         
         if($scope.remember){
           localStorageService.set('last_user',$scope.user.user);
         }else{

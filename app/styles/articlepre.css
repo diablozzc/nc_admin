@@ -1,0 +1,340 @@
+#pageletArticleContent.box {
+  position: relative;
+
+  overflow: hidden
+}
+
+#pageletArticleContent.box .article-detail {
+  padding: 0 17px;
+  position: relative
+}
+#pageletArticleContent.box .article-detail .video-banner-download {
+  text-align: center
+}
+#pageletArticleContent.box .article-detail .video-banner-download a {
+  display: block;
+  position: relative;
+  text-align: center;
+  line-height: 36px;
+  background-color: #f67373;
+  font-size: 0
+}
+
+#pageletArticleContent.box .article-detail .video-banner-download a span {
+  display: inline-block;
+  background: url(//s3b.pstatp.com/growth/webroot/resource/growth/mobile_detail/static/image/wap_ic_more02@3x_e37b811.png) no-repeat right center;
+  background-size: 6px;
+  padding-right: 11px;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #fff
+}
+
+#pageletArticleContent.box .article-detail .tt-video-box {
+  position: relative
+}
+#pageletArticleContent.box .article-detail .video-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0
+}
+#pageletArticleContent.box .article-detail .title {
+  font-size: 20px !important;
+  padding-top: 16px;
+  line-height: 28px;
+  font-weight: bolder;
+  color: #3A3A3A
+}
+
+#pageletArticleContent.box .article-detail strong {
+  font-size: 17px !important;
+  padding-top: 16px;
+  line-height: 28px;
+  font-weight: bolder;
+  color: #3A3A3A
+}
+
+#pageletArticleContent.box .article-detail .pgc-bar-top a.avatar-link {
+  display: block;
+  float: left
+}
+#pageletArticleContent.box .article-detail .pgc-bar-top .avatar {
+  height: 32px;
+  width: 32px;
+  border: 0;
+  border-radius: 32px
+}
+
+#pageletArticleContent.box .article-detail .pgc-bar-top .subtitle {
+  padding: 1px 0 0 8px;
+  font-size: 0;
+  float: left
+}
+
+#pageletArticleContent.box .article-detail .pgc-bar-top .subtitle a {
+  color: #333
+}
+#pageletArticleContent.box .article-detail .pgc-bar-top .name {
+  line-height: 16px;
+  font-size: 12px;
+  margin-bottom: 4px
+}
+
+#pageletArticleContent.box .article-detail .pgc-bar-top .name a {
+  color: #406599
+}
+#pageletArticleContent.box .article-detail .pgc-bar-top .name img {
+  padding-left: 5px;
+  height: 16px;
+  margin-bottom: -3px
+}
+
+#pageletArticleContent.box .article-detail .pgc-bar-top .time {
+  font-size: 0
+}
+#pageletArticleContent.box .article-detail .pgc-bar-top .time span {
+  font-size: 11px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #999
+}
+
+#pageletArticleContent.box .article-detail .pgc-bar-top .time .original {
+  border: 1px solid #999;
+  font-size: 10px;
+  border-radius: 4px;
+  line-height: 14px;
+  width: 30px;
+  color: #505050;
+  text-align: center;
+  margin-right: 5px
+}
+
+#pageletArticleContent.box .article-detail .src {
+  margin-top: 12px;
+  font-size: 12px
+}
+
+#pageletArticleContent.box .article-detail .src a {
+  display: inline-block
+}
+#pageletArticleContent.box .article-detail .src .name {
+  float: left
+}
+#pageletArticleContent.box .article-detail .src .time {
+  padding-left: 12px;
+  float: left
+}
+
+#pageletArticleContent.box .article-detail .src .time span {
+  color: #999
+}
+#pageletArticleContent.box .article-detail .article-content {
+//margin-bottom: 23px;
+  position: relative;
+  overflow: hidden;
+  clear: both
+}
+
+#pageletArticleContent.box .article-detail .article-content .hide-elements {
+  display: none
+}
+#pageletArticleContent.box .article-detail .article-content p, #pageletArticleContent.box .article-detail .article-content blockquote {
+  margin-top: 24px
+}
+
+#pageletArticleContent.box .article-detail .article-content p a {
+  color: #5784df;
+  display: inline
+}
+#pageletArticleContent.box .article-detail .article-content p, #pageletArticleContent.box .article-detail .article-content li, #pageletArticleContent.box .article-detail .article-content span {
+  word-wrap: break-word;
+  font-size: 17px;
+  line-height: 28px;
+  color: #333
+}
+
+#pageletArticleContent.box .article-detail .article-content .img-wrapper {
+  background-size: contain;
+  font-size: 0;
+  margin-right: auto;
+  margin-left: auto
+}
+#pageletArticleContent.box .article-detail .article-content .img-wrapper-embedded {
+  background-size: 40%;
+  font-size: 0;
+  margin-right: auto;
+  margin-left: auto
+}
+#pageletArticleContent.box .article-detail .article-content blockquote {
+  font-size: 15px;
+  line-height: 21px;
+  padding: 12px 8px;
+  color: #999;
+  border: 1px solid #ddd
+}
+
+#pageletArticleContent.box .article-detail .article-content blockquote p {
+  color: #999;
+  margin-top: 0 !important
+}
+#pageletArticleContent.box .article-detail .article-content h1 {
+  font-size: 17px;
+  border-left-width: 4px;
+  border-left: solid #ed4040;
+  padding-left: 5px;
+  line-height: 28px;
+  margin: 24px 0
+}
+
+#pageletArticleContent.box .article-detail .article-content img {
+  width: 100%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 4px;
+  margin-bottom: 4px
+}
+
+#pageletArticleContent.box .article-detail .article-content img.mt12 {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 14px;
+  margin-bottom: 4px
+}
+
+#pageletArticleContent.box .article-detail .article-content img.pre20, #pageletArticleContent.box .article-detail .article-content .tt-video-box video {
+  margin-top: 20px
+}
+
+#pageletArticleContent.box .article-detail .article-content img.next20 {
+  margin-bottom: 20px
+}
+#pageletArticleContent.box .article-detail .article-content table {
+  width: 100%
+}
+#pageletArticleContent.box .article-detail .article-content table tr td {
+  text-align: center;
+  font-size: 12px;
+  color: #444;
+  line-height: 24px
+}
+
+#pageletArticleContent.box .article-detail .article-content table.border {
+  border-collapse: collapse
+}
+#pageletArticleContent.box .article-detail .article-content table.border tr:nth-child(2n), #pageletArticleContent.box .article-detail .article-content table.border tr th {
+  background: rgba(240, 240, 240, .4)
+}
+#pageletArticleContent.box .article-detail .article-content table.border tr td, #pageletArticleContent.box .article-detail .article-content table.border tr th {
+  padding: 5px 3px;
+  border: 1px solid #ddd
+}
+
+#pageletArticleContent.box .article-detail .article-content ol.list-paddingleft-2 {
+  padding-left: 30px
+}
+
+#pageletArticleContent.box .article-detail .article-content ol.list-paddingleft-2 li {
+  list-style-type: decimal !important;
+  display: list-item !important
+}
+#pageletArticleContent.box .article-detail .article-content ul li {
+  list-style-type: disc
+}
+#pageletArticleContent.box .article-detail .article-content ul li p {
+  margin-top: .3em
+}
+#pageletArticleContent.box .article-detail .unfold-field {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  text-align: center;
+  margin-bottom: 0;
+  display: none;
+  position: relative;
+  margin-top: -20px;
+  height: 20px;
+  color: #54a0dc
+}
+
+#pageletArticleContent.box .article-detail .unfold-field .text-link {
+  cursor: pointer;
+  display: inline-block;
+  line-height: 22px;
+  border-radius: 29px;
+  font-size: 14px
+}
+
+#pageletArticleContent.box .article-detail .unfold-field .text-link p {
+  display: block;
+  line-height: 3px;
+  width: 71px;
+  font-style: normal;
+  text-align: center;
+  color: #406599
+}
+
+#pageletArticleContent.box .article-detail .unfold-field .text-link p span {
+  background: url(//s3.pstatp.com/growth/webroot/resource/growth/mobile_detail/static/image/unfold_d42906b.png) no-repeat;
+  background-size: contain;
+  float: right;
+  width: 9px;
+  height: 6px
+}
+
+.rich_media_meta_list {
+  margin-top: 16px;
+  line-height: 20px;
+  font-size: 0;
+}
+
+.rich_media_meta_list em {
+  font-style: normal;
+}
+
+.rich_media_meta_text {
+  color: #8c8c8c;
+}
+
+.rich_media_meta {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+
+#pageletArticleContent .video-wrapper {
+
+  background-size: 50%;
+  font-size: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+#pageletArticleContent .tt-video-box {
+  position: relative;
+  width: 100%;
+  z-index:99;
+}
+
+.divScroll{
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 736px;
+  width: 414px;
+  padding: 10px;
+  margin:0 auto;
+  display:block;
+  border:solid 1px red;
+}
+.div-mobile{
+  height: 736px;
+  width: 450px;
+}

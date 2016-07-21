@@ -7,12 +7,17 @@ app.controller('FeedbackDetailCtrl', function ($rootScope, $scope, $state, $stat
 
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
+  $scope.images=[];//图片
+
   switch (action) {
     case 'entry':
-      // $scope.the_feedback = localStorageService.get('the_feedback_' + $stateParams.itemId);
       Models.init('Feedback/AutoId').actions('get', {'autoId': $stateParams.itemId}).then(
         function (ret) {
           $scope.the_feedback = ret;
+          if (ret.image) {
+            var imgs = ret.image.split(',');
+            $scope.images=imgs;
+          }
         },
         function (err) {
           notify({message: err.data.info, classes: 'alert-danger'});
@@ -34,4 +39,5 @@ app.controller('FeedbackDetailCtrl', function ($rootScope, $scope, $state, $stat
       }
     });
   };
+
 });

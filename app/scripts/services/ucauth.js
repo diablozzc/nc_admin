@@ -156,7 +156,7 @@ app.factory('ucauth', function (Models, $q, $state, $window, notify, config) {
     function _formatUserFrom(token) {
         var info = token.split('_');
         var user_info = {};
-        user_info.name = info[0];
+        user_info.username = info[0];
         user_info.startTime = info[1] - 0;
         user_info.userSys = info[2];
         return user_info;

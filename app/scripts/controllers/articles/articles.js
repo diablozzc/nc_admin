@@ -77,19 +77,19 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
     case 'search':
       $scope.flag.disabled = "false";
       $scope.flag.search = true;
-      console.log($scope.flag.disabled);
+      // console.log($scope.flag.disabled);
       break;
     case 'list':
       $scope.flag.disabled = "true";
       $scope.flag.list = true
       $scope.the_article.status = 1;
-      console.log($scope.flag.disabled);
+      // console.log($scope.flag.disabled);
       break;
     case 'listedit':
       $scope.flag.listedit = true;
       $scope.flag.disabled = "true";
       $scope.the_article.status = 0;
-      console.log($scope.flag.disabled);
+      // console.log($scope.flag.disabled);
       break;
 
   }

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/7/19.
  */
-app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParams, $location, localStorageService, ngTableParams, Models, notify, ucauth,ngDialog, config) {
+app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParams, $location, localStorageService, ngTableParams, Models, notify, ucauth, ngDialog, config) {
 
   $scope.key = 'Feedback';
   $scope.ucauth = ucauth;
@@ -96,14 +96,14 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
   // 回复
   $scope.reply = function (item) {
     ngDialog.open({
-      template:'replyFeedbackTpl',
-      controller:'ReplyFeedbackWindow',
+      template: 'replyFeedbackTpl',
+      controller: 'ReplyFeedbackWindow',
       resolve: {
         item: function enteringFactory() {
           return item;
         }
       },
-      preCloseCallback: function(value) {
+      preCloseCallback: function (value) {
         $scope.tableParams.reload();
       }
     });
@@ -116,36 +116,47 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
   }
   // 详情
   $scope.entry = function (item) {
-     localStorageService.set('the_feedback_'+item.autoId,item);
+    localStorageService.set('the_feedback_' + item.autoId, item);
     $state.go('admin.feedback.detail', {itemId: item.autoId, action: 'entry'});
   };
 
+  //获取一张图片
+  $scope.getImgUrl = function (urls) {
+    var imgUrl = "";
+    if (urls) {
+      var imgs = urls.split(',');
+      if (imgs.length > 0)
+        imgUrl = imgs[0];
+    }
+    // console.log(imgUrl);
+    return imgUrl;
+  }
   $scope.getPageList();
 
 });
-app.controller('ReplyFeedbackWindow',function($scope,Models,config,item){
+app.controller('ReplyFeedbackWindow', function ($scope, Models, config, item) {
 
-  if(angular.isDefined(item)){
+  if (angular.isDefined(item)) {
     $scope.the_feedback = item;
-  }else{
+  } else {
     $scope.the_feedback = {};
   }
-  $scope.the_reply={};
-  $scope.submit = function(data){
+  $scope.the_reply = {};
+  $scope.submit = function (data) {
 
-    Models.init('Replies/reply').actions('reply',data).then(function(ret){
+    Models.init('Replies/reply').actions('reply', data).then(function (ret) {
       $scope.closeThisDialog();
     });
   };
 
-  $scope.accept = function(){
-    $scope.the_reply.type=1;
-    $scope.the_reply.message=item.autoId;
-    $scope.the_reply.replyType=0;//居委会
+  $scope.accept = function () {
+    $scope.the_reply.type = 1;
+    $scope.the_reply.message = item.autoId;
+    $scope.the_reply.replyType = 0;//居委会
     $scope.submit($scope.the_reply);
   };
 
-  $scope.close = function(){
+  $scope.close = function () {
     $scope.closeThisDialog();
   }
 });

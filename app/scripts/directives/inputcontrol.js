@@ -22,7 +22,8 @@ app.directive('inputText', function () {
       value:'=',
       required:'@',
       requiredAsync:'=',
-      pattern:'@'
+      pattern:'@',
+      max:'@'
     },
     transclude: true,
     template:'<div ng-class="{\'col-md-12\':colClass}">' +
@@ -35,7 +36,7 @@ app.directive('inputText', function () {
                     '<ng-transclude></ng-transclude>' +
                     '<span class="label label-danger" ng-if="isRequired" ng-show="error.required">必填</span>' +
                     '<span class="label label-danger" ng-show="error.pattern">填写无效</span>' +
-                    '<input type="text" name="{{attrs.inputText}}" id="{{attrs.inputText}}" class="form-control" ng-model="value" ng-required="isRequired" ng-pattern="attrs.pattern" test-valid ng-disabled="isDisabled" ng-class="attrs.sizeClass"/> ' +
+                    '<input type="text" name="{{attrs.inputText}}" id="{{attrs.inputText}}" class="form-control" ng-model="value" maxlength="{{attrs.max}}" ng-required="isRequired" ng-pattern="attrs.pattern" test-valid ng-disabled="isDisabled" ng-class="attrs.sizeClass"/> ' +
                   '</label>' +
                 '</div>' +
               '</div>' +

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/7/16.
  */
-app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ucauth) {
+app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, ngDialog,config, ucauth) {
 
   $scope.column_list = [];
   //栏目
@@ -27,11 +27,11 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
   $scope.upload_file = {pub: 'pub', fileType: ''};
   switch (action) {
     case 'new':
-      $scope.form_title = '新增文章';
+      $scope.form_title = '新增内容';
       init();
       break;
     case 'edit':
-      $scope.form_title = '修改文章信息';
+      $scope.form_title = '修改信息';
       Models.init('Articles/Web/autoId').actions('get', {'autoId': $stateParams.itemId}).then(
         function (ret) {
           $scope.the_article = ret;
@@ -39,7 +39,7 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
           $scope.the_article.attachUrl="";
           Models.init('Attaches').actions('get', {'columnKey': ret.columnKey, 'itemId': $stateParams.itemId}).then(
             function (att) {
-              console.log(att);
+              // console.log(att);
               var attachs = att;
               if (attachs && attachs.length) {
                 for (var i = 0; i < attachs.length; i++) {
@@ -128,7 +128,35 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
     $state.go('admin.article.search', {'action': 'search'});
   };
   //预览（手机端）
-  $scope.preview = function () {
+  $scope.preview = function (item,content) {
+    item.content=content;
+    ngDialog.open({
+      template:'articlePreTpl',
+      controller:'ArticlePreWindow',
+      resolve: {
+        item: function preFactory() {
 
+          return item;
+
+        }
+      },
+      preCloseCallback: function(value) {
+        // $scope.tableParams.reload();
+      }
+    });
+  }
+});
+app.controller('ArticlePreWindow',function($scope,Models,config,item,$sce){
+
+  if(angular.isDefined(item)){
+    $scope.the_article = item;
+  }else{
+    $scope.the_article = {};
+  }
+  $scope.the_article.publishTime= new Date();
+  $scope.videoUrl= $sce.trustAsResourceUrl($scope.the_article.videoUrl);
+  console.log($scope.the_article.videoUrl);
+  $scope.close = function(){
+    $scope.closeThisDialog();
   }
 });
