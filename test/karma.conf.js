@@ -72,6 +72,8 @@ module.exports = function(config) {
       'bower_components/countUp.js/dist/countUp.min.js',
       'bower_components/angularPrint/angularPrint.js',
       'bower_components/angular-ui-layout/src/ui-layout.js',
+      'bower_components/summernote/dist/summernote.js',
+      'bower_components/angular-summernote/dist/angular-summernote.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

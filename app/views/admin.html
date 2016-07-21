@@ -643,6 +643,44 @@
   </div>
 
 </script>
+<script type="text/ng-template" id="articlePreTpl">
+  <div class="popup-basic bg-none">
+    <div class="panel">
+      <div class="panel-heading">
+              <span class="panel-icon">
+                <i class="fa fa-pencil"></i>
+              </span>
+        <span class="panel-title"> 预览:</span>
+      </div>
+      <div class="div-mobile">
+        <div class="divScroll">
+          <div class="video-wrapper" style="background-image: none;" ng-if="the_article.showType==='video'">
+            <div class="tt-video-box" style="margin: 0px auto;">
+              <video ng-src="{{videoUrl}}"
+                     type="video/mp4" controls
+                     preload="none" webkit-playsinline
+                     style="width:100%;"></video>
+            </div>
+          </div>
+          <div class="article-detail">
+
+            <h1 class="title">{{the_article.title}}</h1>
+            <div class="rich_media_meta_list">
+              <em id="post-date" class="rich_media_meta rich_media_meta_text">{{the_article.publishTime|date:"yyyy-MM-dd"}}</em>
+              <span class="rich_media_meta rich_media_meta_text rich_media_meta_nickname">{{the_article.source}}</span>
+            </div>
+            <div class="article-content" style="" ng-bind-html="the_article.content">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer text-right">
+        <button class="btn" type="button" ng-click="close()">取消</button>
+      </div>
+    </div>
+  </div>
+
+</script>
 
 <script type="text/ng-template" id="previewActivityTpl">
   <div class="h-40" id="activity-header"></div>

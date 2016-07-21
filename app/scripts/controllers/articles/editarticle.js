@@ -132,6 +132,7 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
   $scope.close = function () {
     $state.go('admin.article.search', {'action': 'search'});
   };
+
   //预览（手机端）
   $scope.preview = function (item,content) {
     item.content=content;

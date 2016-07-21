@@ -70,16 +70,22 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <div class="section">
-                  <div class="form-group">
-                    <div class="col-lg-12">
-                      <div class="bs-component" ng-class="{'has-error':articleForm.articleContent.$invalid}">
-                        <div text-angular=""  ng-model="articleContent" required placeholder="文章内容"
-                             value="the_article.content"></div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="summernote-editor">
+                  <div  summernote  ng-model="articleContent" required placeholder="文章内容"
+                        value="the_article.content" lang="zh-CN" ></div>
                 </div>
+
+                <!---->
+                <!--<div class="section">-->
+                  <!--<div class="form-group">-->
+                    <!--<div class="col-lg-12">-->
+                      <!--<div class="bs-component" ng-class="{'has-error':articleForm.articleContent.$invalid}">-->
+                      <!---->
+                        <!---->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
               </div>
             </div>
             <div class="row">
@@ -89,7 +95,7 @@
                     <div class="col-lg-12">
                       <div class="bs-component">
                         <div upload-queue maxfiles="3" fields="upload_file" title="上传附件" selected="fileFiles"
-                             result="the_article.attachUrl"></div>
+                             result="the_article.attachUrl" required="false"></div>
                         <div upload-preview-file files="fileFiles" urls="the_article.attachUrl"
                              upload-param="upload_file"></div>
                       </div>

@@ -39,5 +39,9 @@ app.controller('FeedbackDetailCtrl', function ($rootScope, $scope, $state, $stat
       }
     });
   };
-
+  $scope.preImageUrl="";
+  $scope.preImage=function (url) {
+    $scope.preImageUrl=url;
+    // console.log($scope.preImageUrl);
+  }
 });

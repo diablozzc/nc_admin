@@ -36,8 +36,12 @@
         scope.add_files = 0;
         //console.log(scope.required);
         scope.multiple = angular.isUndefined(scope.multiple) ? false : scope.multiple;
-        scope.isRequired = angular.isUndefined(scope.required) ? false : scope.required;
-        //console.log(scope.isRequired);
+        // scope.isRequired = angular.isUndefined(scope.required) ? false : scope.required;
+        if(angular.isUndefined(scope.required)){
+          scope.isRequired = false;
+        }else{
+          scope.isRequired = scope.required === 'true';
+        }
         scope.keep = angular.isUndefined(scope.keep) ? true : scope.keep;
         scope.distinct = angular.isUndefined(scope.distinct) ? true : scope.distinct;
         scope.isButton = angular.isUndefined(attrs.isButton) ? false : attrs.isButton;
