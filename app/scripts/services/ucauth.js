@@ -60,6 +60,7 @@ app.factory('ucauth', function (Models, $q, $state, $window, notify, config) {
     function _getRoleKey(key) {
         var deferred = $q.defer();
         Models.init('RoleRelations/getByKey/clientKey').actions('get', {clientKey: key}).then(function (ret) {
+            //console.log(ret);
             deferred.resolve(ret);
 
         }, function (error) {
@@ -76,8 +77,8 @@ app.factory('ucauth', function (Models, $q, $state, $window, notify, config) {
         if (config.global.check_action_auth) {
 
             _getRoleKey(key).then(function (ret) {
-                if (angular.isDefined(ret.data)) {
-                    var the_role_key = ret.data.serverRoleKey;
+                if (angular.isDefined(ret)) {
+                    var the_role_key = ret.serverRoleKey;
                     var myRoles = getRole();
                     flag[key] = lodash.indexOf(myRoles, the_role_key) !== -1;
                     return lodash.indexOf(myRoles, the_role_key) !== -1 ? deferred.resolve({data: true}) : deferred.resolve({data: false});

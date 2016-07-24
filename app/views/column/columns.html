@@ -14,7 +14,7 @@
           <td class="mnw150" data-title="'海报地址'" sortable="'posterImageUrl'">{{item.posterImageUrl}}</td>
           <td class="w150" data-title="'操作'">
             <button class="btn btn-xs btn-primary" ng-click="ucauth.isAccess({key:'set_poster',func:set,param:item})"
-                    ng-disabled="!flag.set_poster">设置
+                    ng-show="flag.set_poster">设置
             </button>
 
           </td>
@@ -39,7 +39,7 @@
               <input type="text" name="outUrl" id="outUrl" class="form-control " placeholder="外部链接" ng-model="outUrl">
             </label>
               <button class="btn btn-success btn-md ph25" type="submit"
-                      ng-disabled="!flag.set_poster">保存</button>
+                      ng-show="flag.set_outurl">保存</button>
           </div>
         </div>
       </form>

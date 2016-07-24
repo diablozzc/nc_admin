@@ -140,8 +140,9 @@
           <!-- end .form-body section -->
       </div>
       <div class="panel-footer">
-        <button type="button" class="button btn-primary" ng-click="save(false)" ng-disabled="activityForm.$invalid">保存</button>
-        <button type="button" class="button btn-success" ng-click="save(true)" ng-disabled="activityForm.$invalid">保存并发布</button>
+        <button type="button" class="button btn-info" ng-click="previewActivity(the_activity)" ng-disabled="activityForm.$invalid">预览</button>
+        <button type="button" class="button btn-primary" ng-click="save(false)" ng-disabled="activityForm.$invalid" ng-show="flag.add_activity">保存</button>
+        <button type="button" class="button btn-success" ng-click="save(true)" ng-disabled="activityForm.$invalid" ng-show="flag.add_activity">保存并发布</button>
         <button type="button" class="button" ng-click="close()">关闭</button>
       </div>
       <!-- end .form-footer section -->

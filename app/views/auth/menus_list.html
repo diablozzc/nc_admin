@@ -68,7 +68,7 @@
 
   <div class="col-md-3">
     <div class="row">
-      <button type="button" class="btn btn-info mb15" ng-click="ucauth.isAccess({key:'add_menugroup',func:addMenuGroup})" ng-disabled="!flag.add_menugroup">添加权限组</button>
+      <button type="button" class="btn btn-info mb15" ng-click="ucauth.isAccess({key:'add_menugroup',func:addMenuGroup})" ng-show="flag.add_menugroup">添加权限组</button>
     </div>
 
 
@@ -76,8 +76,8 @@
       <!--holder-active-->
       <div class="holder-style p15 mr20 mb15" href="" ng-click="selectGroup(group)" ng-class="{'holder-active':group.isActive}">
         {{group.groupName}}<br>[{{group.code}}]
-        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="ucauth.isAccess({key:'del_menugroup',func:delMenuGroup,param:group})" ng-disabled="!flag.del_menugroup"><span class="glyphicon glyphicon-remove"></span></a>
-        <a class="pull-right btn btn-primary btn-xs mr5" data-nodrag ng-click="ucauth.isAccess({key:'edit_menugroup',func:editMenuGroup,param:group})" ng-disabled="!flag.edit_menugroup"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="ucauth.isAccess({key:'del_menugroup',func:delMenuGroup,param:group})" ng-show="flag.del_menugroup"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="pull-right btn btn-primary btn-xs mr5" data-nodrag ng-click="ucauth.isAccess({key:'edit_menugroup',func:editMenuGroup,param:group})" ng-show="flag.edit_menugroup"><span class="glyphicon glyphicon-pencil"></span></a>
       </div>
 
 
@@ -89,7 +89,7 @@
   <div class="col-md-4" ng-if="selectedGroup">
     <div class="row">
       <button type="button" class="btn btn-warning" ng-click="resetMenuGroup()">重置</button>
-      <button type="button" class="btn btn-info" ng-click="ucauth.isAccess({key:'save_menugroup',func:saveMenuGroup})" ng-disabled="menuGroupsSaved || !flag.save_menugroup">保存</button>
+      <button type="button" class="btn btn-info" ng-click="ucauth.isAccess({key:'save_group_menu',func:saveMenuGroup})" ng-disabled="menuGroupsSaved " ng-show="flag.save_group_menu">保存</button>
     </div>
 
 
@@ -112,7 +112,7 @@
         <span class="panel-title">管理权限组用户</span>
 
         <div class="widget-menu pull-right mr10">
-          <button type="button" class="btn btn-xs btn-primary" ng-click="saveUserGroup()" ng-disabled="saved">
+          <button type="button" class="btn btn-xs btn-primary" ng-click="saveUserGroup()" ng-disabled="saved" ng-show="flag.save_group_user">
             <span class="glyphicon glyphicon-floppy-disk fs11 mr5"></span>保存</button>
 
           <button type="button" class="btn btn-xs btn-warning" ng-click="resetUserGroup()">

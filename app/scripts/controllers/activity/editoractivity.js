@@ -9,7 +9,7 @@
  */
 
 
-app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ucauth) {
+app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ngDialog, ucauth) {
 
   // 初始化数据
   //$scope.type_list = config.data.states.afficheType;
@@ -17,13 +17,16 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
   //$scope.errorInfo = [];
 
   //$scope.user = ucauth.getUser();
-
+  $scope.ucauth = ucauth;
+  $scope.flag = {};
+  $scope.flag.add_activity = false;
+  ucauth.hasRole('add_activity', $scope.flag);
 
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
 
   //console.log(action);
-  console.log($stateParams.itemId);
+  //console.log($stateParams.itemId);
 
   $scope.datePicker = {
     date: {startDate: undefined, endDate: undefined},
@@ -195,4 +198,47 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
     $scope.the_activity.signupEndTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
     $scope.the_activity.signupEndTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
   })
+
+  //预览
+  $scope.previewActivity = function (item) {
+    ngDialog.open({
+      template: 'previewActivityTpl',
+      controller: 'previewActivityWindow',
+      width:375,
+      height:667,
+      resolve: {
+        info: function paymentInfoFactory() {
+          var info = item;
+          //info.autoId = item.autoId;
+          //info.content=
+          // info.selectedItems = selectedItem;
+          // info.totalPaymentAmt = total_payment_amt;
+          //console.log(info);
+          return info;
+        }
+
+      },
+      preCloseCallback: function (value) {
+        //$scope.tableParams.reload();
+        //$scope.getPageList();
+        //$scope.updateGrid();
+
+      }
+    });
+  };
+
+});
+
+
+app.controller('previewActivityWindow', function ($scope, $rootScope, notify,info, ucauth, config, Models) {
+
+
+  $scope.prewActivity=info;
+  $scope.prewActivity.publishTime=new Date();
+
+  console.log($scope.prewActivity);
+
+  $scope.close = function () {
+    $scope.closeThisDialog();
+  }
 });

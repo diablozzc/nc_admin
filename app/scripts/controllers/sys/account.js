@@ -15,7 +15,6 @@ app.controller('AccountCtrl', function ($rootScope, $scope, $state, $stateParams
   ucauth.hasRole('add_employee', $scope.flag);
   ucauth.hasRole('edit_employee', $scope.flag);
   ucauth.hasRole('del_employee', $scope.flag);
-  ucauth.hasRole('save_menugroup', $scope.flag);
   ucauth.hasRole('reset_pwd',$scope.flag);
   // 获取分页数据
   $scope.getPageList = function () {

@@ -14,7 +14,7 @@ app.controller('ColumnCtrl', function ($rootScope, $scope, $state, $stateParams,
   // $scope.flag.entry_activity = false;
   //
   ucauth.hasRole('set_poster', $scope.flag);
-  ucauth.hasRole('set_poster', $scope.flag);
+  ucauth.hasRole('set_outurl', $scope.flag);
   // ucauth.hasRole('edit_activity',$scope.flag);
   // ucauth.hasRole('remove_activity',$scope.flag);
   // ucauth.hasRole('entry_activity',$scope.flag);
@@ -44,7 +44,7 @@ app.controller('ColumnCtrl', function ($rootScope, $scope, $state, $stateParams,
     $scope.the_params = {};
     var the_param = {};
     Models.init('Columns/Communities').actions('get', the_param).then(function (ret) {
-      console.info(ret);
+      //console.info(ret);
       //$defer.resolve(ret);
       $scope.outUrl=ret.value;
     }, function () {

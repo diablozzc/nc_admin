@@ -7,7 +7,7 @@
           <!--<button type="button" class="btn btn-default light">-->
           <!--<i class="fa fa-refresh"></i>-->
           <!--</button>-->
-          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_employee',func:add})" ng-disabled="!flag.add_employee">
+          <button type="button" class="btn btn-success light" ng-click="ucauth.isAccess({key:'add_employee',func:add})" ng-show="flag.add_employee">
             <i class="fa fa-plus pr5"></i>
             新增员工
           </button>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="col-xs-12 col-md-9 text-right">
-        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_employee',func:add})" ng-disabled="!flag.add_employee">新增员工</button>
+        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10" ng-click="ucauth.isAccess({key:'add_employee',func:add})" ng-show="flag.add_employee">新增员工</button>
 
         <!--<div class="btn-group mr10">-->
         <!--<label class="btn btn-default light" ng-model="statusModel" btn-radio="''">全部</label>-->
@@ -60,15 +60,15 @@
             <!--</button>-->
             <button class="btn btn-xs btn-primary"
                     ng-click="ucauth.isAccess({key:'edit_employee',func:edit,param:item})"
-                    ng-disabled="!flag.edit_employee">编辑
+                    ng-show="flag.edit_employee">编辑
             </button>
 
             <span confirm-popover title="删除员工" content="确定要删除{{item.name}}么?" on-action="ucauth.isAccess"
                   value="{key:'del_employee',func:del,param:item}" btn-class="btn-xs btn-danger" btn-name="删除"
-                  disabled="!flag.del_employee"></span>
+                  ng-show="flag.del_employee"></span>
             <span confirm-popover title="重置密码" content="确定要重置密码么?" on-action="ucauth.isAccess"
                   value="{key:'reset_pwd',func:resetPwd,param:item}" btn-class="btn-xs btn-danger" btn-name="重置密码"
-                  disabled="!flag.reset_pwd"></span>
+                  ng-show="flag.reset_pwd"></span>
 
           </td>
         </tr>

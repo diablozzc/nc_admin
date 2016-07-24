@@ -9,12 +9,7 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
   $scope.status_list = [];
   $scope.column_list = [];
   $scope.the_article = {};
-  $scope.flag.add_article = false;//添加文章
-  $scope.flag.edit_article = false;//修改
-  $scope.flag.del_article = false;//删除
-  $scope.flag.see_article = false;//详情
-  $scope.flag.publish_article = false;//发布
-  $scope.flag.back_article = false;//收回
+  $scope.flag.reply_feedback = false;//回复我有话说
 
   $scope.flag.disabled = "false";
   $scope.flag.list = false;//已发布
@@ -23,12 +18,7 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
 
-  ucauth.hasRole('add_article', $scope.flag);
-  ucauth.hasRole('edit_article', $scope.flag);
-  ucauth.hasRole('del_article', $scope.flag);
-  ucauth.hasRole('see_article', $scope.flag);
-  ucauth.hasRole('publish_article', $scope.flag);
-  ucauth.hasRole('back_article', $scope.flag);
+  ucauth.hasRole('reply_feedback', $scope.flag);
 
 
   $scope.datePicker = {
