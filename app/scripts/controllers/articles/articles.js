@@ -10,7 +10,7 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   $scope.status_list = [];
   $scope.column_list = [];
   $scope.the_article = {};
-  
+
   $scope.flag.edit_article = false;//修改
   $scope.flag.del_article = false;//删除
   $scope.flag.see_article = false;//详情
@@ -24,7 +24,7 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
 
-  
+
   ucauth.hasRole('edit_article', $scope.flag);
   ucauth.hasRole('del_article', $scope.flag);
   ucauth.hasRole('see_article', $scope.flag);
@@ -35,15 +35,19 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   $scope.datePicker = {
     date: {startDate: undefined, endDate: undefined}
   };
-  $scope.dateChange = function () {
-    $scope.the_article.startTime = $scope.datePicker.date.startDate.valueOf();
-    $scope.the_article.endTime = $scope.datePicker.date.endDate.valueOf();
+
+  $scope.dateChange = function (value) {
+    // console.log(value);
+    // console.log($scope.datePicker);
+    // $scope.the_article.startTime = $scope.datePicker.date.startDate.valueOf();
+    // $scope.the_article.endTime = $scope.datePicker.date.endDate.valueOf();
   };
 
   $scope.$on('updateDate', function (e, value) {
+    console.log(value);
     $scope.the_article.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
     $scope.the_article.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
-  })
+  });
   $scope.getStatusList = function () {
     //状态
     $scope.status_list = lodash.clone(config.data.states.publishStatus);
@@ -51,7 +55,7 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
     //栏目
     $scope.column_list = lodash.clone(config.data.states.columnName);
     $scope.column_list.unshift({name: '全部'});
-  }
+  };
   // 获取分页数据
   $scope.getPageList = function () {
     $scope.the_params = angular.extend({
@@ -135,7 +139,7 @@ app.controller('ArticlesSearchCtrl', function ($rootScope, $scope, $state, $stat
   //搜索
   $scope.search = function () {
     $scope.getPageList();
-  }
+  };
   // 文章详情
   $scope.entry = function (item) {
     $state.go('admin.activities.entry', {itemId: item.autoId, action: 'entry'});

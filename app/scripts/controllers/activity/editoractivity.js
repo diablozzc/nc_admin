@@ -9,7 +9,7 @@
  */
 
 
-app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ngDialog, ucauth) {
+app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ngDialog, ucauth, Upload) {
 
   // 初始化数据
   //$scope.type_list = config.data.states.afficheType;
@@ -33,7 +33,34 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
     closeTime: {startDate: undefined, endDate: undefined}
   };
 
+  $scope.summernote_conf = {
+    height:300,
+    placeholder: '活动内容'
+  };
+
   $scope.upload_param = {pub: 'pub', fileType: 'activity_poster'};
+
+
+  $scope.imageUpload = function(files) {
+    // console.log('image upload:', files);
+
+    if (files && files.length) {
+
+      for (var i = 0; i < files.length; i++) {
+        Upload.upload({
+          // 上传服务器地址
+          url: config.global.nc_server + config.global.upload_service,
+          sendFieldAs: 'form',
+          file: files[i]
+        }).success(function(data, status, headers, config){
+          $scope.editor.summernote('insertImage', data.data, function ($image) {
+            $image.css('width', '50%');
+          });
+
+        });
+      }
+    }
+  };
 
   switch (action) {
     case 'add':

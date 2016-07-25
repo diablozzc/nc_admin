@@ -2,15 +2,18 @@
  * Created by zhangzhichao on 15/10/5.
  */
 
-app.directive('testValid',function(){
+app.directive('testValid',function($timeout){
   return {
     restrict: 'A',
     require:'ngModel',
     link:function(scope,element,attrs,c){
       scope.$watch(attrs.ngModel,function(data){
-        scope.isValid = c.$valid;
-        scope.isDirty = c.$dirty;
-        scope.error   = c.$error;
+
+        $timeout(function(){
+          scope.isValid = c.$valid;
+          scope.isDirty = c.$dirty;
+          scope.error   = c.$error;
+        });
       });
     }
   }

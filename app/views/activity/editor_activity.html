@@ -7,7 +7,6 @@
             <span>{{form_title}}</span>
           </div>
           <!-- .section-divider -->
-
           <!-- Basic Inputs -->
           <div class="row">
             <div class="col-md-8">
@@ -24,14 +23,11 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="section">
-                    <div class="form-group">
-                      <div class="col-lg-12">
-                        <div class="bs-component" ng-class="{'has-error':activityForm.activityContent.$invalid}">
-                          <div text-angular="" name="activityContent" ng-model="the_activity.content" required placeholder="活动内容" ></div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="summernote-editor">
+                    <summernote ng-model="the_activity.content"
+                                config="summernote_conf" required
+                                on-image-upload="imageUpload(files)"
+                                editable="editable" editor="editor"></summernote>
                   </div>
                 </div>
               </div>
@@ -122,9 +118,7 @@
                       <div class="col-lg-12">
                         <div class="bs-component">
 
-                          <div upload-queue maxfiles="1" fields="upload_param" title="上传活动海报" selected="files" result="the_activity.coverUrl" required="true"></div>
-
-
+                          <div upload-queue maxfiles="1" fields="upload_param" title="上传活动海报" selected="files" result="the_activity.coverUrl" required="false"></div>
                           <div upload-preview files="files" urls="the_activity.coverUrl" upload-param="upload_param"></div>
 
                         </div>

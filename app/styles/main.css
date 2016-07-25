@@ -576,6 +576,10 @@ tr.selected{
   padding:0 10px 11px !important;
   overflow: visible !important;
 }
+
+.note-placeholder {
+  z-index: 1 !important;
+}
 div[role='tooltip']{
   display: none;
 }

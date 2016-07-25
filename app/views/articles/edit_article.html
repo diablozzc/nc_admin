@@ -71,21 +71,12 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="summernote-editor">
-                  <div  id="summernote" summernote  ng-model="articleContent" required="true" placeholder="文章内容"
-                        value="the_article.content"></div>
+                  <summernote ng-model="the_article.content"
+                              config="summernote_conf" required
+                              on-image-upload="imageUpload(files)"
+                              editable="editable" editor="editor"></summernote>
                 </div>
 
-                <!---->
-                <!--<div class="section">-->
-                  <!--<div class="form-group">-->
-                    <!--<div class="col-lg-12">-->
-                      <!--<div class="bs-component" ng-class="{'has-error':articleForm.articleContent.$invalid}">-->
-                      <!---->
-                        <!---->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
               </div>
             </div>
             <div class="row">
@@ -107,13 +98,13 @@
           </div>
           <div class="col-md-4">
             <div class="row"
-                 ng-show="the_article.showType=='singleImage'||the_article.showType=='multiImage'||the_article.showType=='imageText'">
+                 ng-if="the_article.showType=='singleImage'||the_article.showType=='multiImage'||the_article.showType=='imageText'||the_article.showType=='video'">
               <div class="section ">
                 <div class="form-group">
                   <div class="col-lg-12">
                     <div class="bs-component">
                       <div upload-queue maxfiles="3" fields="upload_param" title="封面" selected="imgFiles"
-                           result="the_article.coverUrl" required="false"></div>
+                           result="the_article.coverUrl"></div>
                       <div upload-preview files="imgFiles" urls="the_article.coverUrl"
                            upload-param="upload_param"></div>
                     </div>
@@ -121,13 +112,13 @@
                 </div>
               </div>
             </div>
-            <div class="row" ng-show="the_article.showType=='video'">
+            <div class="row" ng-if="the_article.showType=='video'">
               <div class="section ">
                 <div class="form-group">
                   <div class="col-lg-12">
                     <div class="bs-component">
                       <div upload-queue maxfiles="1" fields="upload_video" title="上传视频" selected="videoFiles"
-                           result="the_article.videoUrl" required="false"></div>
+                           result="the_article.videoUrl"></div>
                       <div upload-preview-video files="videoFiles" urls="the_article.videoUrl"
                            upload-param="upload_video"></div>
                     </div>

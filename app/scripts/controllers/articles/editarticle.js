@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/7/16.
  */
-app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, ngDialog,config, ucauth) {
+app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, ngDialog, config, ucauth,Upload) {
 
   $scope.ucauth = ucauth;
   $scope.flag = {};
@@ -25,6 +25,9 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
     $scope.the_article = {};
     $scope.the_article.showType = 'text';
     $scope.the_article.columnKey = 'column_news';
+    $scope.the_article.attachUrl = '';
+    $scope.the_article.coverUrl = '';
+    $scope.the_article.videoUrl = '';
   };
 
   $scope.upload_param = {pub: 'pub', fileType: 'activity_poster'};
@@ -40,8 +43,10 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
       Models.init('Articles/Web/autoId').actions('get', {'autoId': $stateParams.itemId}).then(
         function (ret) {
           $scope.the_article = ret;
-          $scope.articleContent = $scope.the_article.content;
+          console.log($scope.the_article);
+          // $scope.articleContent = $scope.the_article.content;
           $scope.the_article.attachUrl="";
+
           Models.init('Attaches').actions('get', {'columnKey': ret.columnKey, 'itemId': $stateParams.itemId}).then(
             function (att) {
               // console.log(att);
@@ -62,6 +67,28 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
 
       break;
   }
+
+
+  $scope.imageUpload = function(files) {
+    // console.log('image upload:', files);
+
+    if (files && files.length) {
+
+      for (var i = 0; i < files.length; i++) {
+        Upload.upload({
+          // 上传服务器地址
+          url: config.global.nc_server + config.global.upload_service,
+          sendFieldAs: 'form',
+          file: files[i]
+        }).success(function(data, status, headers, config){
+          $scope.editor.summernote('insertImage', data.data, function ($image) {
+            $image.css('width', '50%');
+          });
+
+        });
+      }
+    }
+  };
 
 
   $scope.deleteUploadFile = function (index, file) {
@@ -87,7 +114,7 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
       $scope.the_article.status = 0;
     }
     if ($scope.articleForm.$valid) {
-      $scope.the_article.content = $scope.articleContent;
+      // $scope.the_article.content = $scope.articleContent;
       //图片控制
       switch ($scope.the_article.showType) {
         case 'text':
@@ -104,11 +131,11 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
           $scope.the_article.videoUrl = "";
           break;
         case 'video':
-          $scope.the_article.coverUrl = "";
           break;
       }
       switch (action) {
         case 'new':
+          // console.log($scope.the_article);
           Models.init('Articles').actions('add', $scope.the_article).then(function (ret) {
             notify({message: '添加成功', classes: 'alert-success'});
             init();
@@ -132,13 +159,11 @@ app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $state
   $scope.close = function () {
     $state.go('admin.article.search', {'action': 'search'});
   };
-  $('#summernote').summernote({
-    height: 200,                 // set editor height
-    minHeight: null,             // set minimum height of editor
-    maxHeight: null,             // set maximum height of editor
-    focus: false ,                 // set focus to editable area after initializing summernote
-    lang:"zh-CN"
-  });
+  $scope.summernote_conf = {
+    height:300,
+    placeholder: '文章内容'
+  };
+
   //预览（手机端）
   $scope.preview = function (item,content) {
     item.content=content;
