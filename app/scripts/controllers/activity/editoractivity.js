@@ -16,7 +16,6 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
   //$scope.user_tag_list = config.data.states.userTag;
   //$scope.errorInfo = [];
 
-  //$scope.user = ucauth.getUser();
   $scope.ucauth = ucauth;
   $scope.flag = {};
   $scope.flag.add_activity = false;
@@ -25,13 +24,17 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
 
-  //console.log(action);
-  //console.log($stateParams.itemId);
 
   $scope.datePicker = {
-    date: {startDate: undefined, endDate: undefined},
-    closeTime: {startDate: undefined, endDate: undefined}
+    startTime: {startDate: undefined, endDate: undefined},
+    endTime: {startDate: undefined, endDate: undefined},
+    signupStartTime: {startDate: undefined, endDate: undefined},
+    signupEndTime: {startDate: undefined, endDate: undefined},
   };
+
+
+  var today = (new Date(moment().get('year'),moment().get('month'),moment().get('date')));
+  $scope.minDate = moment(today);
 
   $scope.summernote_conf = {
     height:300,
@@ -65,12 +68,7 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
   switch (action) {
     case 'add':
       $scope.form_title = '活动发布';
-      // $scope.datePicker = {
-      //   closeTime: {
-      //     startDate: moment(),
-      //     endDate: moment()
-      //   }
-      // };
+      $scope.the_activity = {};
       break;
     case 'edit':
       $scope.form_title = '编辑活动';
@@ -82,30 +80,26 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
           $scope.activityContent = $scope.the_activity.content;
 
           $scope.datePicker = {
-            date: {
+            startTime: {
               startDate: moment($scope.the_activity.startTime),
-              endDate: moment($scope.the_activity.endTime)
+              endDate: undefined
             },
-            closeTime: {
+            endTime: {
+              startDate: moment($scope.the_activity.endTime),
+              endDate: undefined
+            },
+            signupStartTime: {
+              startDate: moment($scope.the_activity.signupStartTime),
+              endDate: undefined
+            },
+            signupEndTime: {
               startDate: moment($scope.the_activity.signupEndTime),
-              endDate: moment($scope.the_activity.signupEndTime)
-            }
+              endDate: undefined
+            },
+
           };
           $scope.the_activity.coverUrl = $scope.the_activity.overUrl;
-          //var files = [];
-          //if($scope.the_activity.imgPoster){
-          //  var imgs = $scope.the_activity.imgPoster.split(',');
-          //  lodash.forEach(imgs,function(key){
-          //    var obj = {};
-          //    obj.fileName = key;
-          //    obj.uploaded = true;
-          //    obj.old = true;
-          //    obj.pub = $scope.upload_param.pub;
-          //    obj.fileType = $scope.upload_param.fileType;
-          //    files.push(obj);
-          //  });
-          //}
-          //$scope.files = files;
+
         }
       );
       break;
@@ -149,17 +143,14 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
           if (angular.isDate($scope.the_activity.endTime)) {
             $scope.the_activity.endTime = (Date.parse($scope.the_activity.endTime));
           }
+          if (angular.isDate($scope.the_activity.signupStartTime)) {
+            $scope.the_activity.signupStartTime = (Date.parse($scope.the_activity.signupStartTime));
+          }
           if (angular.isDate($scope.the_activity.signupEndTime)) {
             $scope.the_activity.signupEndTime = (Date.parse($scope.the_activity.signupEndTime));
           }
-          // $scope.the_activity.property = ucauth.getUser().property;
-          //if($scope.the_affiche.type == 1){
-          //  $scope.community = '';
-          //}
-          //
-          //
 
-           //console.log($scope.the_activity.content);
+
           Models.init('Activities').actions('add', $scope.the_activity).then(function (ret) {
             notify({message: '添加成功', classes: 'alert-success'});
             if (keep) {
@@ -181,6 +172,9 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
           }
           if (angular.isDate($scope.the_activity.endTime)) {
             $scope.the_activity.endTime = (Date.parse($scope.the_activity.endTime));
+          }
+          if (angular.isDate($scope.the_activity.signupStartTime)) {
+            $scope.the_activity.signupStartTime = (Date.parse($scope.the_activity.signupStartTime));
           }
           if (angular.isDate($scope.the_activity.signupEndTime)) {
             $scope.the_activity.signupEndTime = (Date.parse($scope.the_activity.signupEndTime));
@@ -211,20 +205,13 @@ app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stat
     $state.go('admin.activity.list');
   };
 
-  $scope.dateChange = function () {
-    $scope.the_activity.startTime = angular.isUndefined($scope.datePicker.date.startDate)?null: $scope.datePicker.date.startDate.valueOf();
-    $scope.the_activity.endTime = angular.isUndefined($scope.datePicker.date.endDate)?null:$scope.datePicker.date.endDate.valueOf();
-    $scope.the_activity.signupEndTime = angular.isUndefined($scope.datePicker.closeTime.startDate)?null:$scope.datePicker.closeTime.startDate.valueOf();
+  $scope.dateChange = function (value) {
+    $scope.the_activity.startTime = angular.isUndefined($scope.datePicker.startTime.startDate)? null: $scope.datePicker.startTime.startDate.valueOf();
+    $scope.the_activity.endTime = angular.isUndefined($scope.datePicker.endTime.startDate)?null:$scope.datePicker.endTime.startDate.valueOf();
+    $scope.the_activity.signupStartTime = angular.isUndefined($scope.datePicker.signupStartTime.startDate)?null:$scope.datePicker.signupStartTime.startDate.valueOf();
+    $scope.the_activity.signupEndTime = angular.isUndefined($scope.datePicker.signupEndTime.startDate)?null:$scope.datePicker.signupEndTime.startDate.valueOf();
   };
 
-
-
-  $scope.$on('updateDate', function (e, value) {
-    $scope.the_activity.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
-    $scope.the_activity.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
-    $scope.the_activity.signupEndTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
-    $scope.the_activity.signupEndTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
-  })
 
   //预览
   $scope.previewActivity = function (item) {

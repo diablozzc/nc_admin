@@ -149,10 +149,10 @@ app.controller('ActivityCtrl', function ($rootScope, $scope, $state, $stateParam
     $scope.search.endTime = $scope.datePicker.date.endDate.valueOf();
   };
 
-  $scope.$on('updateDate', function (e, value) {
-    $scope.search.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
-    $scope.search.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
-  })
+  // $scope.$on('updateDate', function (e, value) {
+  //   $scope.search.startTime = angular.isUndefined(value.startDate) ? null : value.startDate.valueOf();
+  //   $scope.search.endTime = angular.isUndefined(value.endDate) ? null : value.endDate.valueOf();
+  // })
 
   $scope.getPageList();
 

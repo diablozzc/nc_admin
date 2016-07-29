@@ -38,7 +38,8 @@
         change:'&onChange',
         maxDate:'=',
         minDate:'=',
-        limit:'='
+        limit:'=',
+        need:'='
       },
       template: '<div class="col-lg-12">' +
                   '<div class="bs-component" ng-class="{\'has-error\':!isValid && isDirty}">' +
@@ -48,7 +49,7 @@
                       '</span>' +
                       '<label class="field input-text">' +
                         '<span class="label label-danger" ng-if="isRequired" ng-show="error.required">必填</span>' +
-                        '<input  date-range-picker type="text" name="{{attrs.inputText}}" id="{{attrs.inputText}}" class="form-control date-picker" ng-model="value" ng-required="isRequired" test-date options="options"/> ' +
+                        '<input  date-range-picker type="text" name="{{attrs.inputText}}" id="{{attrs.inputText}}" class="form-control date-picker" ng-model="value" ng-required="isRequired" ng-disabled="isDisabled" test-date options="options"/> ' +
                       '</label>' +
                       '<span class="input-group-addon"><i ng-class="icon"></i></span>' +
                     '</div>' +
@@ -57,17 +58,12 @@
       restrict: 'A',
       controller:function($scope,$attrs){
 
-        //// 变更事件
-        //$scope.changeValue = function(val){
-        //  if($scope.change()){
-        //    $scope.change()(val);
-        //  }
-        //};
 
         $scope.options = {
           'autoApply': true,
           'timePicker': false,
           'locale': {
+            'format': 'YYYY-MM-DD',
             'applyLabel': "确定",
             'cancelLabel': "取消"
           },
@@ -75,6 +71,9 @@
           'eventHandlers':{
             'apply.daterangepicker':function(e,picker){
               if($scope.change()){
+                if(angular.isUndefined($scope.value.startDate)){
+                  $scope.value.startDate = moment();
+                }
                 $scope.change()($scope.value);
               }
               $scope.$emit('updateDate',$scope.value);
@@ -88,6 +87,10 @@
           $scope.options.timePicker = false;
         }else{
           $scope.options.timePicker = $attrs.timePicker === 'true';
+        }
+
+        if(angular.isDefined($attrs.format)){
+          $scope.options.locale.format = $attrs.format;
         }
 
         if(angular.isUndefined($attrs.single)){
@@ -109,6 +112,25 @@
           $scope.options.dateLimit = $scope.limit;
         }
 
+        $scope.$watch('maxDate',function(value){
+          if(angular.isDefined(value)){
+            $scope.options['maxDate'] = value;
+          }
+        },true);
+
+        $scope.$watch('minDate',function(value){
+          if(angular.isDefined(value)){
+            $scope.options['minDate'] = value;
+          }
+        },true);
+
+        $scope.$watch('need',function(value){
+          if(angular.isDefined(value)){
+            $scope.isDisabled = angular.isUndefined(value.startDate);
+          }
+        },true);
+
+
       },
       link: function (scope, element, attrs) {
 
@@ -129,6 +151,8 @@
         }else{
           scope.isRequired = scope.required === 'true';
         }
+
+        // scope.isDisabled = attrs.disabled === 'true';
 
         scope.$on('updateOptions',function(e,data){
           if(scope.id == data.id){

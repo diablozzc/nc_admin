@@ -31,13 +31,21 @@
                   </div>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-md-6">
                   <div class="section">
                     <div class="form-group">
 
-                      <!--<div datetime-select select-id="dropStartTime" select-value="the_activity.startTime" format="yyyy-MM-dd HH:mm" label="开始时间"></div>-->
-                      <div daterange-select value="datePicker.date" label="活动时间" time-picker="true" required="true" on-change="dateChange"></div>
+                      <div daterange-select="start_time"
+                           value="datePicker.signupStartTime"
+                           label="报名开始时间"
+                           time-picker="true"
+                           format="YYYY-MM-DD HH:mm"
+                           single="true"
+                           on-change="dateChange"
+                           max-date="datePicker.signupEndTime.startDate"
+                           min-date="minDate"></div>
 
                     </div>
                   </div>
@@ -47,14 +55,63 @@
                   <div class="section">
                     <div class="form-group">
 
-                      <!--<div datetime-select select-id="dropCloseTime" select-value="the_activity.closeTime" format="yyyy-MM-dd" label="报名截止日期" min-view="day" icon="fa fa-calendar"></div>-->
-
-                      <div daterange-select="close_time" value="datePicker.closeTime" label="报名截止日期" icon="fa fa-calendar" single="true" required="true" on-change="dateChange"></div>
+                      <div daterange-select="end_time"
+                           value="datePicker.signupEndTime"
+                           label="报名结束时间"
+                           time-picker="true"
+                           format="YYYY-MM-DD HH:mm"
+                           single="true"
+                           on-change="dateChange"
+                           min-date="datePicker.signupStartTime.startDate"
+                           need="datePicker.signupStartTime"></div>
 
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="section">
+                    <div class="form-group">
+
+                      <div daterange-select="start_time"
+                           value="datePicker.startTime"
+                           label="活动开始时间"
+                           time-picker="true"
+                           format="YYYY-MM-DD HH:mm"
+                           single="true"
+                           required="true"
+                           on-change="dateChange"
+                           max-date="datePicker.endTime.startDate"
+                           min-date="minDate"></div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="section">
+                    <div class="form-group">
+
+                      <div daterange-select="end_time"
+                           value="datePicker.endTime"
+                           label="活动结束时间"
+                           time-picker="true"
+                           format="YYYY-MM-DD HH:mm"
+                           single="true"
+                           required="true"
+                           on-change="dateChange"
+                           min-date="datePicker.startTime.startDate"
+                           need="datePicker.startTime"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
 
 
               <div class="row">
@@ -79,15 +136,6 @@
                     </div>
                   </div>
                 </div>
-                <!--<div class="col-md-6">-->
-                  <!--<div class="section">-->
-                    <!--<div class="form-group">-->
-
-                      <!--<div input-text="assistUnit" value="the_activity.keywords" label="关键字"></div>-->
-
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
               </div>
 
             </div>
