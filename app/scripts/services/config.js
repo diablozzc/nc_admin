@@ -544,18 +544,6 @@ app.value('config', {
         ],serverKey:'prop_server'
       },
 
-      // 'Menus/UserMenus':{
-      //   name:'Menus/UserMenus',uri:'menus/usermenus',actions:[
-      //     {action:'get',method:'GET',isArray:false}
-      //   ],serverKey:'prop_server'
-      // },
-
-
-
-
-
-
-
       'UserMenuGroup':{
         name:'UserMenuGroup',uri:'usermenugroups',actions:[
           {action:'build',method:'POST',isArray:false},
@@ -958,8 +946,10 @@ app.value('config', {
       columnName:[
         {val:'column_news',name:'小区新闻'},
         {val:'column_notices',name:'各类通知'},
-        {val:'column_service_guide',name:'办事指南'},
-        {val:'column_convenience',name:'便民服务'}
+        // {val:'column_service_guide',name:'办事指南'},
+        {val:'column_convenience',name:'便民服务'},
+        {val:'column_unit',name:'驻区单位'},
+        {val:'column_shop',name:'周边商家'}
       ],
       showType:[
         {val:'text',name:'无图'},
