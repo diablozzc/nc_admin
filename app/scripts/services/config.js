@@ -10,22 +10,13 @@
 // var server = 'http://file.muranyun.com/';
 app.value('config', {
   global:{
-    auth_server:'http://auth.muranyun.com/api/v1/',
-    prop_server:'http://pp.muranyun.com/api/v1/',
-    sys_server:'http://sys.muranyun.com/api/v1/',
-    fs_server:'http://fs.muranyun.com/api/v1/',
-    ad_server:'http://ad.muranyun.com/api/v1/',
-    ps_server:'http://ps.muranyun.com/api/v1/',
-    as_server:'http://as.muranyun.com/api/v1/',
-    sc_server:'http://sc.muranyun.com/api/v1/',
-    nc_server:'http://d3.shhuason.com/api/',
-    // nc_server:'http://nc.mrshare.cn/api/',
+
+    nc_server:'http://'+window.nc.domain+'/api/',
 
     upload_service:'upload/stream',
     download_payrecords:'payrecords/reports/excel',
     download_bills:'bills/reports/excel',
-    qiniu_pub_domain:'http://d3.shhuason.com/',
-    // qiniu_pub_domain:'http://nc.mrshare.cn/',
+    qiniu_pub_domain:'http://'+window.nc.domain+'/',
     user_sys:'admin',
     check_action_auth:true
   },
