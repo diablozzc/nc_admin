@@ -1,0 +1,37 @@
+<div class="panel">
+
+  <div class="panel-body pn">
+    <div class="table-responsive">
+      <table class="table table-hover admin-form theme-warning tc-checkbox-1 fs13" ng-table="tableParams"
+             template-pagination="custom/pager" cg-busy="{promise:columnListPromise,message:'请稍候...'}">
+
+        <tbody>
+        <tr ng-repeat="item in $data">
+          <!--<td class="text-center w150" sortable="'columnKey'" data-title="'#'">{{item.columnKey}}</td>-->
+          <td class="w100 text-left" data-title="'栏目名称'" sortable="'name'">{{item.columnName}}</td>
+          <td class="w100" data-title="'是否显示阅读数'">
+            <div class="btn-group">
+              <button type="button" class="btn br2 btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                      ng-class="{'btn-success':item.showReadNum,'btn-danger':!item.showReadNum}">
+                {{item.showReadNum|statesName:'columnConfigStatus'}}
+                <span class="caret ml5"></span>
+              </button>
+
+              <ul class="dropdown-menu" role="menu" >
+                <li><a href="" ng-if="item.showReadNum"
+                       ng-click="readNumControl({autoId:item.autoId,showReadNum:false})">关闭</a>
+                </li>
+                <li><a href="" ng-if="!item.showReadNum"
+                       ng-click="readNumControl({autoId:item.autoId,showReadNum:true})">打开</a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="custom/pager">
+</script>
