@@ -9,7 +9,7 @@
  */
 
 
-app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, config, ngDialog, ucauth, Upload) {
+app.controller('EditoractivityCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService , Models, notify, config, ngDialog, ucauth, Upload) {
 
   // 初始化数据
   //$scope.type_list = config.data.states.afficheType;

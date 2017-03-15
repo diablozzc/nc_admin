@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/7/16.
  */
-app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService, uiGridConstants, Models, notify, ngDialog, config, ucauth,Upload) {
+app.controller('EditorarticleCtrl', function ($rootScope, $scope, $state, $stateParams, localStorageService,  Models, notify, ngDialog, config, ucauth,Upload) {
 
   $scope.ucauth = ucauth;
   $scope.flag = {};
