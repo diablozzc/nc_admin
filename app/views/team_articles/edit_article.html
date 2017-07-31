@@ -1,0 +1,149 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="articleForm" name="articleForm" class="form-horizontal">
+      <div class="panel-body bg-light">
+        <div class="section-divider mb40">
+          <span>{{form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-text="title" value="the_article.title" label="文章标题" required="true" max="50">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="column_list" selected-value="the_article.columnKey" title="栏目"
+                         name-key="name" val-key="val" required="true"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="showType_list" selected-value="the_article.showType" title="类型"
+                         name-key="name" val-key="val" required="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="source" value="the_article.source" label="来源" required="false"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-text="writer" value="the_article.writer" label="作者"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="title" value="the_article.keywords" label="关键字" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="summernote-editor">
+                  <summernote ng-model="the_article.content"
+                              config="summernote_conf" required
+                              on-image-upload="imageUpload(files)"
+                              editable="editable" editor="editor"></summernote>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section ">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+                        <div upload-queue maxfiles="3" fields="upload_file" title="上传附件" selected="fileFiles"
+                             result="the_article.attachUrl" required="false"></div>
+                        <div upload-preview-file files="fileFiles" urls="the_article.attachUrl"
+                             upload-param="upload_file"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row"
+                 ng-if="the_article.showType=='singleImage'||the_article.showType=='multiImage'||the_article.showType=='imageText'||the_article.showType=='video'">
+              <div class="section ">
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <div class="bs-component">
+                      <div upload-queue maxfiles="3" fields="upload_param" title="封面" selected="imgFiles"
+                           result="the_article.coverUrl"></div>
+                      <div upload-preview files="imgFiles" urls="the_article.coverUrl"
+                           upload-param="upload_param"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-if="the_article.showType=='video'">
+              <div class="section ">
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <div class="bs-component">
+                      <div upload-queue maxfiles="1" fields="upload_video" title="上传视频" selected="videoFiles"
+                           result="the_article.videoUrl"></div>
+                      <div upload-preview-video files="videoFiles" urls="the_article.videoUrl"
+                           upload-param="upload_video"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- end .section -->
+        <!-- end .form-body section -->
+      </div>
+      <div class="panel-footer">
+        <button type="button" ng-click="preview(the_article,articleContent)" class="button btn-primary" ng-disabled="articleForm.$invalid">预览
+        </button>
+        <button type="button" ng-click="save(false)" class="button btn-primary" ng-disabled="articleForm.$invalid" ng-show="flag.add_article">保存
+        </button>
+        <button type="button" ng-click="save(true)" class="button btn-success" ng-disabled="articleForm.$invalid" ng-show="flag.add_article">
+          保存并发布
+        </button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

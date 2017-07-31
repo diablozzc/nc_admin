@@ -556,6 +556,43 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       }
     })
+    //团队
+    .state('admin.team', {
+      url: '/team',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/team/index.html'
+        }
+      }
+    })
+    .state('admin.team.list', {
+      url: '/list',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/team/index.html',
+          controller: 'TeamCtrl'
+        }
+      }
+    })
+
+    //团队文章
+
+
+
+    //团队文章评论
+
+
+
   // .state('admin.usercenter.withdraw',{
   //   url:'/list',
   //   resolve:{

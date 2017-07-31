@@ -147,6 +147,9 @@ app.value('config', {
       'admin.comment.list':{parent:'admin.welcome',text:'留言评论',href:'admin.comment.list'},
       'admin.activity.add':{parent:'admin.welcome',text:'活动发布',href:'admin.activity.add'},
       'admin.feedback.detail':{parent:'admin.feedback.list',text:'详情',href:'admin.feedback.detail'},
+
+      'admin.team.list':{parent:'admin.welcome',text:'团队列表',href:'admin.team.list'},
+
     },
     resources:{
       // 'Users':{
