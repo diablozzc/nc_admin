@@ -148,8 +148,8 @@ app.value('config', {
       'admin.activity.add':{parent:'admin.welcome',text:'活动发布',href:'admin.activity.add'},
       'admin.feedback.detail':{parent:'admin.feedback.list',text:'详情',href:'admin.feedback.detail'},
 
-      'admin.team.list':{parent:'admin.welcome',text:'团队列表',href:'admin.team.list'},
-
+      'admin.sys.columnconfig':{parent:'admin.welcome',text:'统计配置',href:'admin.sys.columnconfig'},
+      'admin.article.count':{parent:'admin.welcome',text:'统计查询',href:'admin.article.count'},
     },
     resources:{
       // 'Users':{
@@ -703,6 +703,16 @@ app.value('config', {
           {action:'put',method:'PUT',isArray:false}
         ],serverKey:'nc_server'
       },
+      'Columns/Config':{
+        name:'Columns/Config',uri:'columns/configs',actions:[
+          {action:'get',method:'GET',isArray:true},
+        ],serverKey:'nc_server'
+      },
+      'Columns/Config/ShowReadNum':{
+        name:'Columns/Config/ShowReadNum',uri:'columns/configs/:autoId',actions:[
+          {action:'put',method:'PUT',isArray:false}
+        ],serverKey:'nc_server'
+      },
       //活动接口配置
       'Activities':{
         name:'Activities',uri:'activities',actions:[
@@ -780,6 +790,11 @@ app.value('config', {
       'Feedback/list':{
         name:'Feedback/list',uri:'feedbacks/web',actions:[
           {action:'list',method:'GET',isArray:false,requestType:'json'},
+        ],serverKey:'nc_server'
+      },
+      'Feedback/audit':{
+        name:'Feedback/audit',uri:'feedbacks/:autoId',actions:[
+          {action:'audit',method:'PUT',isArray:false},
         ],serverKey:'nc_server'
       },
       'Feedback/AutoId':{
@@ -930,6 +945,14 @@ app.value('config', {
         {val:0,name:'未审核'},
         {val:1,name:'审核通过'},
         {val:2,name:'审核拒绝'},
+      ],
+      auditFeedbackStatus:[
+        {val:0,name:'未公开'},
+        {val:1,name:'已公开'},
+      ],
+      columnConfigStatus:[
+        {val:true,name:'打开'},
+        {val:false,name:'关闭'},
       ],
       publishStatus:[
         {val:0,name:'未发布'},

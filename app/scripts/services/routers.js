@@ -238,6 +238,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
     }
   })
 
+    .state('admin.sys.columnconfig', {
+      url: '/column/config',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'column': {
+          templateUrl: 'views/column/config.html',
+          controller: 'ColumnConfigCtrl'
+        }
+      }
+    })
+
     .state('admin.sys.setposter', {
       url: '/setposter?itemKey',
       resolve: {
@@ -334,6 +349,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       views: {
         'searchlist': {
           templateUrl: 'views/articles/articles_search.html',
+          controller: 'ArticlesSearchCtrl'
+        }
+      }
+    })
+
+    .state('admin.article.count', {
+      url: '/article/count',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'searchlist': {
+          templateUrl: 'views/articles/articles_count.html',
           controller: 'ArticlesSearchCtrl'
         }
       }

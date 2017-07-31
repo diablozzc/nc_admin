@@ -10,6 +10,7 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
   $scope.column_list = [];
   $scope.the_article = {};
   $scope.flag.reply_feedback = false;//回复我有话说
+  $scope.flag.audit_feedback = false;//审核我有话说
 
   $scope.flag.disabled = "false";
   $scope.flag.list = false;//已发布
@@ -19,6 +20,7 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
   $scope.action = $stateParams.action;
 
   ucauth.hasRole('reply_feedback', $scope.flag);
+  ucauth.hasRole('audit_feedback', $scope.flag);
 
 
   $scope.datePicker = {
@@ -41,6 +43,20 @@ app.controller('FeedbackCtrl', function ($rootScope, $scope, $state, $stateParam
     $scope.column_list = lodash.clone(config.data.states.columnName);
     $scope.column_list.unshift({name: '全部'});
   }
+
+
+  $scope.audit = function (item) {
+    // console.log(autoId);
+    // console.log(status);
+    Models.init('Feedback/audit').actions('audit', {'status': item.status}, {'autoId': item.autoId}).then(function (ret) {
+        notify({message: '审核成功!', classes: 'alert-success'});
+        $scope.tableParams.reload();
+      },
+      function (err) {
+        notify({message: err.data.info, classes: 'alert-danger'});
+      });
+  };
+
   // 获取分页数据
   $scope.getPageList = function () {
     $scope.the_params = angular.extend({
