@@ -14,36 +14,28 @@ app.controller('EditoremployeeCtrl', function ($rootScope, $scope, $state, $stat
   $scope.gender_list = config.data.states.gender;
   $scope.user_tag_list = config.data.states.userTag;
   $scope.errorInfo = [];
-
-  // $scope.community_list = [];
-  // Models.init('Communities').actions('list',{}).then(
-  //   function(ret){
-  //     $scope.community_list = ret.data;
-  //     $scope.community_list.unshift({name:'请选择...'});
-  //   }
-  // );
-
+  $scope.userRoles = config.data.states.userRoles;
 
   var action = $stateParams.action;
   $scope.action = $stateParams.action;
-
+  $scope.isEdit = false
   var init = function () {
     $scope.the_employee = {};
     $scope.the_employee.gender = true;
     $scope.the_employee.national = '汉族';
     $scope.the_employee.userTag = 1;
-
+    $scope.the_employee.userRole = 'supper'
+    $scope.isEdit = false
   };
 
   switch (action) {
     case 'add':
       $scope.form_title = '新增员工';
       init();
-
       break;
     case 'edit':
       $scope.form_title = '修改员工信息';
-
+      $scope.isEdit = true
       Models.init('Admins/AutoId').actions('get', {'autoId': $stateParams.itemId}).then(
         function (ret) {
           $scope.the_employee = ret;
@@ -58,17 +50,6 @@ app.controller('EditoremployeeCtrl', function ($rootScope, $scope, $state, $stat
     if ($scope.employeeForm.$valid) {
       switch (action) {
         case 'add':
-          // if(angular.isDate($scope.the_employee.birthday)) {
-          //   $scope.the_employee.birthday = (Date.parse($scope.the_employee.birthday));
-          // }
-          // if(angular.isDate($scope.the_employee.joinTime)){
-          //   $scope.the_employee.joinTime = (Date.parse($scope.the_employee.joinTime));
-          // }
-          // $scope.the_employee.property = ucauth.getUser().property;
-
-          // $scope.the_employee.pwd = md5($scope.the_employee.pwd);
-          //
-          //
 
           Models.init('Admins').actions('add', $scope.the_employee).then(function (ret) {
               notify({message: '添加成功', classes: 'alert-success'});
@@ -85,18 +66,7 @@ app.controller('EditoremployeeCtrl', function ($rootScope, $scope, $state, $stat
           );
           break;
         case
-        'edit'
-        :
-          // if (angular.isDate($scope.the_employee.birthday)) {
-          //   $scope.the_employee.birthday = (Date.parse($scope.the_employee.birthday));
-          // }
-          // if (angular.isDate($scope.the_employee.joinTime)) {
-          //   $scope.the_employee.joinTime = (Date.parse($scope.the_employee.joinTime));
-          // }
-          // $scope.the_employee.property = ucauth.getUser().property;
-//
-//
-
+        'edit':
           Models.init('Admins/AutoId').actions('update', $scope.the_employee, {'autoId': $scope.the_employee.autoId}).then(
             function (ret) {
               notify({message: '修改成功', classes: 'alert-success'});

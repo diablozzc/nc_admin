@@ -588,14 +588,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
     })
     //团队
     .state('admin.team', {
-      url: '/team',
+      url: 'team',
       resolve: {
         auth: function (authService) {
           return authService.auth();
         }
       },
       views: {
-        'list': {
+        'content': {
           templateUrl: 'views/team/index.html'
         }
       }
@@ -609,18 +609,170 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
       },
       views: {
         'list': {
-          templateUrl: 'views/team/index.html',
+          templateUrl: 'views/team/team_list.html',
           controller: 'TeamCtrl'
         }
       }
     })
-
+    .state('admin.team.add', {
+      url: '/{action:add}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/team/editor_team.html',
+          controller: 'EditorTeamCtrl'
+        }
+      }
+    })
+    .state('admin.team.edit', {
+      url: '/{action:edit}?itemId',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/team/editor_team.html',
+          controller: 'EditorTeamCtrl'
+        }
+      }
+    })
+    .state('admin.team.members', {
+      url: '/members?activityId',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/team/team_members.html',
+          controller: 'TeamMembersCtrl'
+        }
+      }
+    })
     //团队文章
+    .state('admin.teamNews', {
+      url: 'teamNews',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'content': {
+          templateUrl: 'views/team_articles/articles.html',
 
+        }
+      }
+    })
+    .state('admin.teamNews.new', {
+      url: '/{action:new}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'forms': {
+          templateUrl: 'views/team_articles/edit_article.html',
+          controller: 'EditorNewsCtrl'
+        }
+      }
+    })
+    .state('admin.teamNews.edit', {
+      url: '/{itemId:[0-9]{1,4}}/{action:edit}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'forms': {
+          templateUrl: 'views/team_articles/edit_article.html',
+          controller: 'EditorNewsCtrl'
+        }
+      }
+    })
+    .state('admin.teamNews.listedit', {
+      url: '/{action:listedit}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'editList': {
+          templateUrl: 'views/team_articles/articles_search.html',
+          controller: 'TeamArticlesCtrl'
+        }
+      }
+    })
+    .state('admin.teamNews.list', {
+      url: '/{action:list}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'articleList': {
+          templateUrl: 'views/team_articles/articles_search.html',
+          controller: 'TeamArticlesCtrl'
+        }
+      }
+    })
+    .state('admin.teamNews.search', {
+      url: '/{action:search}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'searchlist': {
+          templateUrl: 'views/team_articles/articles_search.html',
+          controller: 'TeamArticlesCtrl'
+        }
+      }
+    })
 
 
     //团队文章评论
 
+    .state('admin.teamComment', {
+      url: 'teamComment',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'content': {
+          templateUrl: 'views/team_comment/comment.html',
+          controller: 'TeamCommentCtrl'
+        }
+      }
+    })
+    .state('admin.teamComment.list', {
+      url: '/list?itemId',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/team_comment/commentlist.html',
+          controller: 'TeamCommentCtrl'
+        }
+      }
+    })
 
 
   // .state('admin.usercenter.withdraw',{

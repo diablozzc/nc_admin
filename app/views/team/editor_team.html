@@ -1,0 +1,90 @@
+<div class="admin-form theme-primary">
+
+  <div class="panel heading-border panel-primary">
+    <form id="activityForm" ng-submit="save()" name="activityForm" class="form-horizontal">
+      <div class="panel-body bg-light">
+        <div class="section-divider mb40">
+          <span>{{form_title}}</span>
+        </div>
+        <!-- .section-divider -->
+        <!-- Basic Inputs -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+
+                    <div input-text="title" value="the_team.name" label="团队名称" required="true"></div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div item-select item-data="userAdmins" selected-value="the_team.manageUser" title="指定管理员" name-key="name"
+                         val-key="username" required="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+
+                <div class="section ">
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <div class="bs-component">
+
+                        <div upload-queue maxfiles="1" fields="upload_param" title="上传团队海报" selected="files"
+                             result="the_activity.cover" required="false"></div>
+                        <div upload-preview files="files" urls="the_activity.cover"
+                             upload-param="upload_param"></div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <!--<div class="summernote-editor">-->
+                <!--<summernote ng-model="the_activity.content"-->
+                <!--config="summernote_conf" required-->
+                <!--on-image-upload="imageUpload(files)"-->
+                <!--editable="editable" editor="editor"></summernote>-->
+                <!--</div>-->
+                <div class="section">
+                  <label class="field prepend-icon">
+                  <textarea class="gui-textarea" name="description" placeholder="团队简介"
+                            ng-model="the_team.description"></textarea>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- end .section -->
+        <!-- end .form-body section -->
+      </div>
+      <div class="panel-footer">
+        <button type="button" class="button btn-info" ng-click="previewActivity(the_activity)"
+                ng-disabled="activityForm.$invalid">预览
+        </button>
+        <button type="button" class="button btn-primary" ng-click="save(false)" ng-disabled="activityForm.$invalid"
+                ng-show="flag.add_team">保存
+        </button>
+        <button type="button" class="button btn-success" ng-click="save(true)" ng-disabled="activityForm.$invalid"
+                ng-show="flag.add_team">保存并发布
+        </button>
+        <button type="button" class="button" ng-click="close()">关闭</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+
+</div>

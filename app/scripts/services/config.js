@@ -18,105 +18,44 @@ app.value('config', {
     download_bills:'bills/reports/excel',
     qiniu_pub_domain:'http://'+window.nc.domain+'/',
     user_sys:'admin',
-    check_action_auth:true
+    check_action_auth:false
   },
   data:{
     menus:[
-      {name:'物业管理',type:'group',menus:[
-        {name:'小区管理',type:'menu',icon:'imoon imoon-office',path:'admin.communities.list'},
-        {name:'楼宇管理',type:'menu',icon:'imoon imoon-home',path:'admin.buildings.list'},
-        {name:'住户管理',type:'fold',icon:'imoon imoon-users',menus:[
-          {name:'业主管理',type:'sub',icon:'imoon imoon-user3',path:'admin.tenement.list.owners'},
-          {name:'租赁管理',type:'sub',icon:'imoon imoon-user',path:'admin.tenement.list.lessee'},
-          {name:'入驻管理',type:'sub',icon:'imoon imoon-user',path:'admin.tenement.list.entering'}
-        ]},
-        {name:'缴费管理',type:'fold',icon:'imoon imoon-coin',menus:[
-          {name:'缴费项目',type:'sub',icon:'imoon imoon-coin',path:'admin.payment.items'},
-          {name:'抄表信息',type:'sub',icon:'imoon imoon-coin',path:'admin.payment.meters'},
-          {name:'账单信息',type:'sub',icon:'imoon imoon-coin',path:'admin.payment.bills'}
-        ]},
-        {name:'员工管理',type:'menu',icon:'imoon imoon-user2',path:'admin.employees.list'},
-        {name:'公告管理',type:'menu',icon:'imoon imoon-podcast',path:'admin.affiches.list'}
-      ]},
-      {name:'社区管理',type:'group',menus:[
-        {name:'投诉建议',type:'menu',icon:'imoon imoon-bug',path:'admin.suggestions'},
-        {name:'报修信息',type:'menu',icon:'imoon imoon-wrench',path:'admin.repairs'},
-        {name:'活动管理',type:'menu',icon:'imoon imoon-gift',path:'admin.activities.list'},
-        {name:'便民信息',type:'menu',icon:'imoon imoon-gift',path:'admin.conveniences'}
-      ]}
+      // {name:'物业管理',type:'group',menus:[
+      //   {name:'小区管理',type:'menu',icon:'imoon imoon-office',path:'admin.communities.list'},
+      //   {name:'楼宇管理',type:'menu',icon:'imoon imoon-home',path:'admin.buildings.list'},
+      //   {name:'住户管理',type:'fold',icon:'imoon imoon-users',menus:[
+      //     {name:'业主管理',type:'sub',icon:'imoon imoon-user3',path:'admin.tenement.list.owners'},
+      //     {name:'租赁管理',type:'sub',icon:'imoon imoon-user',path:'admin.tenement.list.lessee'},
+      //     {name:'入驻管理',type:'sub',icon:'imoon imoon-user',path:'admin.tenement.list.entering'}
+      //   ]},
+      //   {name:'缴费管理',type:'fold',icon:'imoon imoon-coin',menus:[
+      //     {name:'缴费项目',type:'sub',icon:'imoon imoon-coin',path:'admin.payment.items'},
+      //     {name:'抄表信息',type:'sub',icon:'imoon imoon-coin',path:'admin.payment.meters'},
+      //     {name:'账单信息',type:'sub',icon:'imoon imoon-coin',path:'admin.payment.bills'}
+      //   ]},
+      //   {name:'员工管理',type:'menu',icon:'imoon imoon-user2',path:'admin.employees.list'},
+      //   {name:'公告管理',type:'menu',icon:'imoon imoon-podcast',path:'admin.affiches.list'}
+      // ]},
+      // {name:'社区管理',type:'group',menus:[
+      //   {name:'投诉建议',type:'menu',icon:'imoon imoon-bug',path:'admin.suggestions'},
+      //   {name:'报修信息',type:'menu',icon:'imoon imoon-wrench',path:'admin.repairs'},
+      //   {name:'活动管理',type:'menu',icon:'imoon imoon-gift',path:'admin.activities.list'},
+      //   {name:'便民信息',type:'menu',icon:'imoon imoon-gift',path:'admin.conveniences'}
+      // ]}
     ],
     breadcrumb:{
       'admin.welcome':{parent:'',text:'微信通管理平台',href:'admin.welcome'},
-      'admin.communities.list':{parent:'admin.welcome',text:'小区管理',href:'admin.communities.list'},
-      'admin.communities.add':{parent:'admin.communities.list',text:'新增小区',href:'admin.communities.add'},
-      'admin.communities.edit':{parent:'admin.communities.list',text:'修改小区',href:'admin.communities.edit'},
-      'admin.buildings.list':{parent:'admin.welcome',text:'楼宇管理',href:'admin.buildings.list'},
-      'admin.buildings.add':{parent:'admin.buildings.list',text:'新增楼宇',href:'admin.buildings.add'},
-      'admin.buildings.edit':{parent:'admin.buildings.list',text:'修改楼宇',href:'admin.buildings.edit'},
-      'admin.rooms.list':{parent:'admin.buildings.list',text:'房间管理',href:'admin.rooms.list'},
-      'admin.rooms.add':{parent:'admin.rooms.list',text:'新增房间',href:'admin.rooms.add'},
-      'admin.rooms.generate':{parent:'admin.rooms.list',text:'房间生成器',href:'admin.rooms.generate'},
-      'admin.rooms.edit':{parent:'admin.rooms.list',text:'修改房间',href:'admin.rooms.edit'},
-
-      'admin.tenement.list':{parent:'admin.welcome',text:'住户档案',href:'admin.tenement.list'},
-      'admin.tenement.add':{parent:'admin.tenement.list',text:'新增住户',href:'admin.tenement.add'},
-      'admin.tenement.edit':{parent:'admin.tenement.list',text:'修改住户',href:'admin.tenement.edit'},
-      'admin.entering.list':{parent:'admin.welcome',text:'入住管理',href:'admin.entering.list'},
-
-      'admin.payment.items':{parent:'admin.welcome',text:'缴费项目',href:'admin.payment.items'},
-      'admin.payment.additem':{parent:'admin.payment.items',text:'新增缴费项目',href:'admin.payment.additem'},
-      'admin.payment.edititem':{parent:'admin.payment.items',text:'编辑缴费项目',href:'admin.payment.edititem'},
-      'admin.payment.itemappend':{parent:'admin.payment.items',text:'附加缴费项目',href:'admin.payment.itemappend'},
-      'admin.payment.additemappend':{parent:'admin.payment.items',text:'新增附加项目',href:'admin.payment.additemappend'},
-      'admin.payment.edititemappend':{parent:'admin.payment.items',text:'编辑附加项目',href:'admin.payment.edititemappend'},
-      'admin.payment.itemspecial':{parent:'admin.payment.items',text:'特殊缴费项目',href:'admin.payment.itemspecial'},
-      'admin.payment.additemspecial':{parent:'admin.payment.items',text:'新增特殊项目',href:'admin.payment.additemspecial'},
-      'admin.payment.edititemspecial':{parent:'admin.payment.items',text:'编辑特殊项目',href:'admin.payment.edititemspecial'},
-
-      'admin.payment.meters':{parent:'admin.welcome',text:'抄表信息',href:'admin.payment.meters'},
-      'admin.payment.addmeter':{parent:'admin.payment.meters',text:'新增抄表信息',href:'admin.payment.addmeter'},
-      'admin.payment.editmeter':{parent:'admin.payment.meters',text:'编辑抄表信息',href:'admin.payment.editmeter'},
-      'admin.payment.bills':{parent:'admin.welcome',text:'账单信息',href:'admin.payment.bills'},
-      'admin.payment.createbills':{parent:'admin.payment.bills',text:'生成账单',href:'admin.payment.createbills'},
-      'admin.payment.addbill':{parent:'admin.payment.bills',text:'添加账单',href:'admin.payment.addbill'},
-      'admin.payment.record':{parent:'admin.welcome',text:'缴费记录',href:'admin.payment.record'},
 
       'admin.employees.list':{parent:'admin.welcome',text:'员工管理',href:'admin.employees.list'},
       'admin.employees.add':{parent:'admin.employees.list',text:'新增员工',href:'admin.employees.add'},
       'admin.employees.edit':{parent:'admin.employees.list',text:'修改员工信息',href:'admin.employees.edit'},
       'admin.employees.menus':{parent:'admin.employees.list',text:'分配菜单',href:'admin.employees.menus'},
 
-      'admin.affiches.list':{parent:'admin.welcome',text:'公告管理',href:'admin.affiches.list'},
-      'admin.affiches.add':{parent:'admin.affiches.list',text:'新增公告',href:'admin.affiches.add'},
-      'admin.affiches.edit':{parent:'admin.affiches.list',text:'编辑公告',href:'admin.affiches.edit'},
-      'admin.affiches.publish':{parent:'admin.affiches.list',text:'发布公告',href:'admin.affiches.publish'},
-      'admin.affiches.details':{parent:'admin.affiches.list',text:'公告发布详情',href:'admin.affiches.details'},
 
-      'admin.suggestions.list':{parent:'admin.welcome',text:'投诉建议',href:'admin.suggestions.list'},
-      'admin.suggestions.check':{parent:'admin.suggestions.list',text:'审查投诉建议',href:'admin.suggestions.check'},
-      'admin.suggestions.feedback':{parent:'admin.suggestions.list',text:'投诉建议反馈',href:'admin.suggestions.feedback'},
-
-      'admin.activities.list':{parent:'admin.welcome',text:'活动管理',href:'admin.activities.list'},
-      'admin.activities.add':{parent:'admin.activities.list',text:'新增活动',href:'admin.activities.add'},
-      'admin.activities.edit':{parent:'admin.activities.list',text:'修改活动',href:'admin.activities.edit'},
-      'admin.activities.entry':{parent:'admin.activities.list',text:'活动详情',href:'admin.activities.entry'},
-
-      'admin.repairs.list':{parent:'admin.welcome',text:'报修信息',href:'admin.repairs.list'},
-      'admin.repairs.check':{parent:'admin.repairs.list',text:'审查报修信息',href:'admin.repairs.check'},
-      'admin.repairs.feedback':{parent:'admin.repairs.list',text:'报修反馈',href:'admin.repairs.feedback'},
-
-      'admin.conveniences.list':{parent:'admin.welcome',text:'便民信息',href:'admin.conveniences.list'},
-      'admin.conveniences.add':{parent:'admin.conveniences.list',text:'新增便民信息',href:'admin.conveniences.add'},
-      'admin.conveniences.edit':{parent:'admin.conveniences.list',text:'修改便民信息',href:'admin.conveniences.edit'},
       'admin.menus.list':{parent:'admin.welcome',text:'菜单管理',href:'admin.menus.list'},
 
-      'admin.bylaw.list':{parent:'admin.welcome',text:'管理规定',href:'admin.bylaw.list'},
-      'admin.bylaw.add':{parent:'admin.bylaw.list',text:'新增管理规定',href:'admin.bylaw.add'},
-      'admin.bylaw.edit':{parent:'admin.bylaw.list',text:'修改管理规定',href:'admin.bylaw.edit'},
-
-      'admin.guide.list':{parent:'admin.welcome',text:'办事指南管理',href:'admin.guide.list'},
-      'admin.guide.add':{parent:'admin.guide.list',text:'新增办事指南',href:'admin.guide.add'},
-      'admin.guide.edit':{parent:'admin.guide.list',text:'修改办事指南',href:'admin.guide.edit'},
 
       'admin.checkin':{parent:'admin.welcome',text:'入驻统计',href:'admin.checkin'},
       'admin.meter_report':{parent:'admin.welcome',text:'抄表统计',href:'admin.meter_report'},
@@ -146,29 +85,27 @@ app.value('config', {
       'admin.feedback.list':{parent:'admin.welcome',text:'我有话说',href:'admin.feedback.list'},
       'admin.comment.list':{parent:'admin.welcome',text:'留言评论',href:'admin.comment.list'},
       'admin.activity.add':{parent:'admin.welcome',text:'活动发布',href:'admin.activity.add'},
+      'admin.activity.edit':{parent:'admin.welcome',text:'编辑活动',href:'admin.activity.edit'},
       'admin.feedback.detail':{parent:'admin.feedback.list',text:'详情',href:'admin.feedback.detail'},
 
       'admin.sys.columnconfig':{parent:'admin.welcome',text:'统计配置',href:'admin.sys.columnconfig'},
       'admin.article.count':{parent:'admin.welcome',text:'统计查询',href:'admin.article.count'},
+
+      'admin.team.add':{parent:'admin.welcome',text:'新增团队',href:'admin.team.add'},
+      'admin.team.edit':{parent:'admin.welcome',text:'编辑团队',href:'admin.team.edit'},
+      'admin.team.list':{parent:'admin.welcome',text:'团队列表',href:'admin.team.list'},
+      'admin.team.members':{parent:'admin.team.list',text:'团队成员',href:'admin.team.members'},
+
+      'admin.teamNews.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.teamNews.new'},
+      'admin.teamNews.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.teamNews.listedit'},
+      'admin.teamNews.list':{parent:'admin.welcome',text:'已发布内容',href:'admin.teamNews.list'},
+      'admin.teamNews.search':{parent:'admin.welcome',text:'搜索',href:'admin.teamNews.search'},
+
+      'admin.teamComment.list':{parent:'admin.welcome',text:'留言评论',href:'admin.teamComment.list'},
+
     },
     resources:{
-      // 'Users':{
-      //     name:'Users',uri:'users',actions:[
-      //       {action:'signup',method:'POST',isArray:false}
-      //     ],serverKey:'auth_server'
-      // },
 
-      // 'Usernames':{
-      //   name:'Usernames',uri:'usernames',actions:[
-      //     {action:'check',method:'POST',isArray:false}
-      //   ],serverKey:'auth_server'
-      // },
-      // 'Usertokens':{
-      //   name:'Usertokens',uri:'usertokens',actions:[
-      //     {action:'signin',method:'POST',isArray:false},
-      //     {action:'signout',method:'DELETE',isArray:false}
-      //   ],serverKey:'auth_server'
-      // },
       'Passwords/Update':{
         name:'Passwords/Update',uri:'users/:username/password',actions:[
           {action:'update',method:'POST',isArray:false}
@@ -823,48 +760,41 @@ app.value('config', {
         name:'Attaches',uri:'attaches',actions:[
           {action:'get',method:'GET',isArray:true,requestType:'json'}
         ],serverKey:'nc_server'
+      },
+      //团队接口
+      'Teams':{
+        name:'Teams',uri:'teams/admin/acitities',actions:[
+          {action:'add',method:'POST',isArray:false,requestType:'json'},
+          {action:'delete',method:'DELETE',isArray:false},
+          {action:'list',method:'GET',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'UpdateTeamStatus':{
+        name:'UpdateTeamStatus',uri:'teams/admin/acitities/status',actions:[
+          {action:'update',method:'PUT',isArray:false}
+        ],serverKey:'nc_server'
+      },
+      'Teams/users':{
+        name:'Teams/users',uri:'teams/admin/users',actions:[
+          {action:'users',method:'GET',isArray:false},
+        ],serverKey:'nc_server'
+      },
+      'Teams/autoId':{
+        name:'Teams/autoId',uri:'teams/user/activities/:activityId',actions:[
+          {action:'info',method:'GET',isArray:false}
+        ],serverKey:'nc_server'
       }
+
+
     },
     states:{
-      saleState:[
-        {val:0,name:'未出售'},
-        {val:1,name:'已出售'}
-      ],
-      useState:[
-        {val:0,name:'空闲'},
-        {val:1,name:'物业已出租'},
-        {val:2,name:'业主自用'},
-        {val:3,name:'业主已出租'}
-      ],
-      houseDoorModel:[
-        {val:'一室一厅',name:'一室一厅'},
-        {val:'两室一厅',name:'两室一厅'},
-        {val:'三室一厅',name:'三室一厅'},
-        {val:'三室两厅',name:'三室两厅'},
-        {val:'四室两厅',name:'四室两厅'}
-      ],
-      buildingHead:[
-        {val:'朝南',name:'朝南'},
-        {val:'朝北',name:'朝北'},
-        {val:'朝东',name:'朝东'},
-        {val:'朝西',name:'朝西'}
-      ],
+
       national:[
         {val:'汉族',name:'汉族'}
       ],
       gender:[
         {val:false,name:'女'},
         {val:true,name:'男'}
-      ],
-      ownerType:[
-        {val:0,name:'业主'},
-        {val:1,name:'租户'},
-        {val:2,name:'家属'}
-      ],
-      idType:[
-        {val:'T',name:'租户'},
-        {val:'O',name:'业主'},
-        {val:'F',name:'家属'}
       ],
       enteringStatus:[
         {val:0,name:'提交审核'},
@@ -978,6 +908,10 @@ app.value('config', {
       replyType:[
         {val:0,name:'居委回复'},
         {val:1,name:'用户回复'}
+      ],
+      userRoles:[
+        {val:'supper',name:'超级管理员'},
+        {val:'normal',name:'一般管理员'}
       ]
     },
     //operation: [
