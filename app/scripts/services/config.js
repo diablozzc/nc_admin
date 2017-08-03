@@ -71,6 +71,7 @@ app.value('config', {
 
       'admin.sys.role':{parent:'admin.welcome',text:'权限管理',href:'admin.sys.role'},
       'admin.sys.column':{parent:'admin.welcome',text:'栏目管理',href:'admin.sys.column'},
+      'admin.sys.setposter':{parent:'admin.sys.column',text:'栏目设置',href:'admin.sys.setposter'},
       'admin.activity.list':{parent:'admin.welcome',text:'已发布活动',href:'admin.activity.list'},
       'admin.activity.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.activity.listedit'},
       'admin.activity.search':{parent:'admin.welcome',text:'活动搜索',href:'admin.activity.search'},
@@ -100,7 +101,7 @@ app.value('config', {
       'admin.teamNews.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.teamNews.listedit'},
       'admin.teamNews.list':{parent:'admin.welcome',text:'已发布内容',href:'admin.teamNews.list'},
       'admin.teamNews.search':{parent:'admin.welcome',text:'搜索',href:'admin.teamNews.search'},
-
+      'admin.teamNews.edit':{parent:'admin.teamNews.search',text:'修改文章内容',href:'admin.teamNews.edit'},
       'admin.teamComment.list':{parent:'admin.welcome',text:'留言评论',href:'admin.teamComment.list'},
 
     },
@@ -762,6 +763,12 @@ app.value('config', {
         ],serverKey:'nc_server'
       },
       //团队接口
+      'Teams/teams':{
+        name:'Teams/teams',uri:'teams',actions:[
+          {action:'delete',method:'DELETE',isArray:false},
+          {action:'update',method:'PUT',isArray:false}
+        ],serverKey:'nc_server'
+      },
       'Teams':{
         name:'Teams',uri:'teams/admin/acitities',actions:[
           {action:'add',method:'POST',isArray:false,requestType:'json'},
@@ -783,6 +790,11 @@ app.value('config', {
         name:'Teams/autoId',uri:'teams/user/activities/:activityId',actions:[
           {action:'info',method:'GET',isArray:false}
         ],serverKey:'nc_server'
+      },
+      'Teams/outUser':{
+        name:'Teams/outUser',uri:'teams/outUser',actions:[
+          {action:'delete',method:'DELETE',isArray:false}
+        ],serverKey:'nc_server'
       }
 
 
@@ -801,53 +813,11 @@ app.value('config', {
         {val:1,name:'审核通过'},
         {val:2,name:'驳回'}
       ],
-      chargeType:[
-        {val:0,name:'固定类'},
-        {val:1,name:'抄表类'},
-        {val:2,name:'面积类'}
-      ],
-      rateType:[
-        {val:1,name:'固定费率'},
-        {val:2,name:'阶梯（分阶计算）'},
-        {val:3,name:'阶梯（不分阶计算）'}
-      ],
-      //预交费
-      prePayment:[
-        {val:true,name:'是'},
-        {val:false,name:'否'}
-      ],
-      scopeType:[
-        //{val:0,name:'小区'},
-        {val:1,name:'楼宇'},
-        {val:2,name:'房间'}
-      ],
-      appendRateType:[
-        {val:0,name:'固定值'},
-        {val:1,name:'固定费率'},
-        {val:2,name:'阶梯（分阶计算）'},
-        {val:3,name:'阶梯（不分阶计算）'}
-      ],
-      billType:[
-        {val:0,name:'自动'},
-        {val:1,name:'手动'}
-      ],
-      payChannel:[
-        {val:0,name:'网络'},
-        {val:1,name:'人工'}
-      ],
+
       userTag:[
         {val:1,name:'普通管理员'}
       ],
-      afficheType:[
-        {val:0,name:'小区公告'},
-        {val:1,name:'物业公告'}
-      ],
-      acceptType:[
-        {val:0,name:'小区'},
-        {val:1,name:'楼宇'},
-        {val:2,name:'单元'},
-        {val:3,name:'房间'}
-      ],
+
       activityStatus:[
         {val:0,name:'未开始'},
         {val:1,name:'进行中'},
@@ -912,6 +882,11 @@ app.value('config', {
       userRoles:[
         {val:'supper',name:'超级管理员'},
         {val:'normal',name:'一般管理员'}
+      ],
+      MemberStatus:[
+        {val:'NEW',name:'待审核'},
+        {val:'ADUTIED',name:'审核通过'},
+        {val:'REJECTED',name:'拒绝'}
       ]
     },
     //operation: [

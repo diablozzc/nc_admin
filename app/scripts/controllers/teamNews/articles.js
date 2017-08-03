@@ -40,13 +40,13 @@ app.controller('TeamArticlesCtrl', function ($rootScope, $scope, $state, $stateP
     var the_param = {pageSize: 100000, pageIndex: 1}
     Models.init('Teams').actions('list', the_param).then(function (ret) {
       $scope.teams = ret.data;
-      if ($scope.isAdmin) {
-        $scope.teams.unshift({name: '全部'})
-      } else {
+      // if ($scope.isAdmin) {
+      //   $scope.teams.unshift({name: '全部'})
+      // } else {
         if ($scope.teams.length > 0) {
           $scope.the_article.teamId = $scope.teams[0].autoId
         }
-      }
+      // }
       $scope.getPageList();
     }, function (err) {
       notify({message: err.data.info, classes: 'alert-danger'});
@@ -123,11 +123,11 @@ app.controller('TeamArticlesCtrl', function ($rootScope, $scope, $state, $stateP
   }
   // 编辑按钮
   $scope.edit = function (item) {
-    $state.go('admin.article.edit', {itemId: item.autoId, action: 'edit'});
+    $state.go('admin.teamNews.edit', {itemId: item.autoId, action: 'edit'});
   };
   // 添加按钮
   $scope.add = function () {
-    $state.go('admin.article.add', {action: 'add'});
+    $state.go('admin.teamNews.add', {action: 'add'});
   };
   // 删除按钮
   $scope.del = function (item) {

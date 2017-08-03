@@ -50,7 +50,9 @@
             </div>
           </td>
           <td class="w350" data-title="'操作'">
-
+            <button class="btn btn-xs btn-info" ng-if="item.status==0" ng-click="publish(item)"
+            >发布
+            </button>
             <button class="btn btn-xs btn-info" ng-if="item.status==1||item.status==2" ng-click="signupinfo(item)"
             >成员信息
             </button>

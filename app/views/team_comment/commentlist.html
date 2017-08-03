@@ -6,7 +6,7 @@
              template-pagination="custom/pager" cg-busy="{promise:commentListPromise,message:'请稍候...'}">
         <tbody>
         <tr ng-repeat="item in $data">
-          <td class="mnw100 text-left" data-title="'所属栏目'">{{item.columnName}}</td>
+          <!--<td class="mnw100 text-left" data-title="'所属栏目'">{{item.columnName}}</td>-->
           <td class="mnw75" data-title="'标题'">{{item.itemTitle}}</td>
           <td class="mnw300" data-title="'内容'">{{item.content}}</td>
           <td class="mnw75" data-title="'留言微信昵称'">{{item.nickName}}</td>

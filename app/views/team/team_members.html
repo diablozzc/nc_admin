@@ -13,6 +13,18 @@
           <td class="mnw100 text-left" data-title="'姓名'">{{item.name}}</td>
           <td class="mnw75" data-title="'手机号'">{{item.mobile}}</td>
           <td class="mnw200" data-title="'地址'">{{item.addr}}</td>
+          <td class="w75" data-title="'状态'"
+              ng-class="{'text-danger':item.status=='NEW','text-success':item.status=='ADUTIED','text-info':item.status=='REJECTED'}">
+            {{item.status|statesName:"MemberStatus"}}
+          </td>
+          <td class="w200" data-title="'操作'">
+            <button class="btn btn-xs btn-primary"
+                    ng-click="audit(item)">审核
+            </button>
+            <span confirm-popover title="踢出" content="确定要踢出成员么?" on-action="ucauth.isAccess"
+                  value="{key:'del_member',func:deleteMember,param:item}" btn-class="btn-xs btn-danger" btn-name="踢出"
+                  ></span>
+          </td>
         </tr>
         </tbody>
       </table>

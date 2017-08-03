@@ -86,6 +86,19 @@ app.controller('TeamCtrl', function ($rootScope, $scope, $state, $stateParams, $
     $state.go('admin.team.members', {activityId: item.autoId});
   }
 
+  //发布
+  $scope.publish = function (item) {
+    Models.init('UpdateTeamStatus').actions('update', {}, {
+      'activityId': item.autoId,
+      'status': '1'
+    }).then(function (ret) {
+        notify({message: '发布成功!', classes: 'alert-success'});
+        $scope.tableParams.reload();
+      },
+      function (err) {
+        notify({message: err.data.info, classes: 'alert-danger'});
+      });
+  }
   // 删除按钮
   $scope.del = function (item) {
     Models.init('Teams').actions('delete', {}, {'activityId': item.autoId}).then(function (ret) {

@@ -172,7 +172,7 @@ app.controller('EditorNewsCtrl', function ($rootScope, $scope, $state, $statePar
   };
   //关闭
   $scope.close = function () {
-    $state.go('admin.article.search', {'action': 'search'});
+    $state.go('admin.teamNews.search', {'action': 'search'});
   };
   $scope.summernote_conf = {
     height:300,
