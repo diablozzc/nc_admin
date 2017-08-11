@@ -85,7 +85,10 @@ app.controller('TeamCtrl', function ($rootScope, $scope, $state, $stateParams, $
   $scope.signupinfo = function (item) {
     $state.go('admin.team.members', {activityId: item.autoId});
   }
-
+  //我有话说
+  $scope.feedBack=function (item) {
+    $state.go('admin.team.feedback', {teamId: item.autoId});
+  }
   //发布
   $scope.publish = function (item) {
     Models.init('UpdateTeamStatus').actions('update', {}, {

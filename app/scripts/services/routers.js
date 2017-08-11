@@ -656,6 +656,34 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
         }
       }
     })
+    .state('admin.team.feedback', {
+      url: '/feedbackList?teamId',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/feedback/feedback_list.html',
+          controller: 'TeamFeedbackCtrl'
+        }
+      }
+    })
+    .state('admin.team.feedbackDetail', {
+      url: '/{itemId:[0-9]{1,4}}/{action:entry}',
+      resolve: {
+        auth: function (authService) {
+          return authService.auth();
+        }
+      },
+      views: {
+        'list': {
+          templateUrl: 'views/feedback/feedback_detail.html',
+          controller: 'TeamFeedbackDetailCtrl'
+        }
+      }
+    })
     //团队文章
     .state('admin.teamNews', {
       url: 'teamNews',

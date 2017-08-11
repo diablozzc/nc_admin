@@ -37,6 +37,7 @@
           <td class="mnw100 text-left" data-title="'团队ID'">{{item.autoId}}</td>
           <td class="mnw100 " data-title="'团队名称'">{{item.name}}</td>
           <td class="mnw75" data-title="'管理员'">{{item.manageUser}}</td>
+          <td class="mnw75" data-title="'手机号'">{{item.mobile}}</td>
           <td class="mnw75" data-title="'发布时间'">{{item.publishTime | date:'yyyy-MM-dd'}}</td>
           <td class="mnw75" data-title="'团队状态'">
             <div class="btn-group" ng-if="item.status==0">
@@ -55,6 +56,9 @@
             </button>
             <button class="btn btn-xs btn-info" ng-if="item.status==1||item.status==2" ng-click="signupinfo(item)"
             >成员信息
+            </button>
+            <button class="btn btn-xs btn-info" ng-if="item.status==1||item.status==2" ng-click="feedBack(item)"
+            >我有话说
             </button>
             </button>
             <button class="btn btn-xs btn-primary" ng-if="item.status==0||item.status==2"

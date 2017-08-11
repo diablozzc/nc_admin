@@ -96,6 +96,8 @@ app.value('config', {
       'admin.team.edit':{parent:'admin.welcome',text:'编辑团队',href:'admin.team.edit'},
       'admin.team.list':{parent:'admin.welcome',text:'团队列表',href:'admin.team.list'},
       'admin.team.members':{parent:'admin.team.list',text:'团队成员',href:'admin.team.members'},
+      'admin.team.feedback':{parent:'admin.team.list',text:'我有话说',href:'admin.team.feedback'},
+      'admin.team.feedbackDetail':{parent:'admin.team.feedback',text:'详情',href:'admin.team.feedbackDetail'},
 
       'admin.teamNews.new':{parent:'admin.welcome',text:'发布新内容',href:'admin.teamNews.new'},
       'admin.teamNews.listedit':{parent:'admin.welcome',text:'继续编辑',href:'admin.teamNews.listedit'},

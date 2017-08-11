@@ -14,9 +14,7 @@
               <div class="col-md-6">
                 <div class="section">
                   <div class="form-group">
-
                     <div input-text="title" value="the_team.name" label="团队名称" required="true"></div>
-
                   </div>
                 </div>
               </div>
@@ -30,8 +28,16 @@
               </div>
             </div>
             <div class="row">
+              <div class="col-md-6">
+                <div class="section">
+                  <div class="form-group">
+                    <div input-text="title" value="the_team.mobile" label="联系电话" required="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-12">
-
                 <div class="section ">
                   <div class="form-group">
                     <div class="col-lg-12">
@@ -51,16 +57,10 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <!--<div class="summernote-editor">-->
-                <!--<summernote ng-model="the_activity.content"-->
-                <!--config="summernote_conf" required-->
-                <!--on-image-upload="imageUpload(files)"-->
-                <!--editable="editable" editor="editor"></summernote>-->
-                <!--</div>-->
                 <div class="section">
                   <label class="field prepend-icon">
                   <textarea class="gui-textarea" name="description" placeholder="团队简介"
-                            ng-model="the_team.description"></textarea>
+                            ng-model="the_team.description"  maxlength="300"></textarea>
                   </label>
                 </div>
               </div>
