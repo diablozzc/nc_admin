@@ -1,4 +1,5 @@
-# property-admin
+# nc-admin
+# 东三社区后台管理系统
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.1.

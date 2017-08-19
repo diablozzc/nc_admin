@@ -156,7 +156,7 @@ app.controller('ReplyFeedbackWindow', function ($scope, Models, config, item) {
   $scope.accept = function () {
     $scope.the_reply.type = 1;
     $scope.the_reply.message = item.autoId;
-    $scope.the_reply.replyType = 0;//居委会
+    $scope.the_reply.replyType = 2;//团队回复
     $scope.submit($scope.the_reply);
   };
 
