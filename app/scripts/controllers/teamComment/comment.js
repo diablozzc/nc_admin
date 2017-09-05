@@ -61,7 +61,7 @@ app.controller('TeamCommentCtrl', function ($rootScope, $scope, $state, $statePa
   $scope.reply = function (item) {
     ngDialog.open({
       template: 'commentReplyTpl',
-      controller: 'commentReplyWindow',
+      controller: 'TeamCommentReplyWindow',
       resolve: {
         info: function paymentInfoFactory() {
           var info = item;
@@ -109,7 +109,7 @@ app.controller('TeamCommentCtrl', function ($rootScope, $scope, $state, $statePa
 
 });
 
-app.controller('commentReplyWindow', function ($scope, $rootScope, notify, info, ucauth, config, Models) {
+app.controller('TeamCommentReplyWindow', function ($scope, $rootScope, notify, info, ucauth, config, Models) {
 
 
 
@@ -134,7 +134,7 @@ app.controller('commentReplyWindow', function ($scope, $rootScope, notify, info,
     $scope.the_reply.type=0;//留言
     $scope.the_reply.message=info.autoId;
     //$scope.the_reply.reply={};
-    $scope.the_reply.replyType=0;//居委会回复
+    $scope.the_reply.replyType=2;//团队回复
 
     Models.init('Replies/reply').actions('reply', $scope.the_reply).then(function (ret) {
 
@@ -146,7 +146,6 @@ app.controller('commentReplyWindow', function ($scope, $rootScope, notify, info,
         notify({message: err.data.info, classes: 'alert-danger'});
         $scope.closeThisDialog();
       });
-
 
   };
 

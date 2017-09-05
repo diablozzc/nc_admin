@@ -28,7 +28,7 @@ app.controller('TeamFeedbackDetailCtrl', function ($rootScope, $scope, $state, $
   $scope.reply = function (item) {
     ngDialog.open({
       template: 'replyFeedbackTpl',
-      controller: 'ReplyFeedbackWindow',
+      controller: 'TeamReplyFeedbackWindow',
       resolve: {
         item: function enteringFactory() {
           return item;

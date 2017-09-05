@@ -101,7 +101,7 @@ app.controller('TeamFeedbackCtrl', function ($rootScope, $scope, $state, $stateP
   $scope.reply = function (item) {
     ngDialog.open({
       template: 'replyFeedbackTpl',
-      controller: 'ReplyFeedbackWindow',
+      controller: 'TeamReplyFeedbackWindow',
       resolve: {
         item: function enteringFactory() {
           return item;
@@ -138,7 +138,7 @@ app.controller('TeamFeedbackCtrl', function ($rootScope, $scope, $state, $stateP
   $scope.getPageList();
 
 });
-app.controller('ReplyFeedbackWindow', function ($scope, Models, config, item) {
+app.controller('TeamReplyFeedbackWindow', function ($scope, Models, config, item) {
 
   if (angular.isDefined(item)) {
     $scope.the_feedback = item;
